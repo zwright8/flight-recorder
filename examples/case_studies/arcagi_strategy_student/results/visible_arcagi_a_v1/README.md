@@ -28,6 +28,18 @@ raw generations, local paths, traces, and model weights are intentionally not
 published. The cryptographic hashes in `metrics.json` bind this sanitized
 surface to the retained local receipts and source data.
 
+## Public artifact map
+
+- [`metrics.json`](metrics.json) is the canonical machine-readable result,
+  including evaluation controls, aggregate comparisons, limitations, and
+  hashes that bind the retained private evidence.
+- [`metrics_summary.csv`](metrics_summary.csv) provides the four-arm aggregate
+  comparison in a compact tabular form.
+- [`outcomes.jsonl`](outcomes.jsonl) contains the 52 anonymous per-query
+  outcomes needed to replay every published numerator and invalid-action count.
+- [`SHA256SUMS`](SHA256SUMS) fingerprints each machine-readable public result
+  artifact in this directory.
+
 ## What the model does
 
 This is a hybrid agent, not direct neural grid generation. The LLM emits one
@@ -50,9 +62,6 @@ accessed, and no adapter or dataset is published by this evidence package.
 
 ## Reproduction surface
 
-- `metrics.json` records the aggregate metrics, run controls, and hashes.
-- `outcomes.jsonl` independently replays the aggregate numerators without
-  exposing task content.
 - [`../../README.md`](../../README.md) documents the local generation,
   training, evaluation, and bounded-ensemble commands.
 - [`../../evaluate_student.py`](../../evaluate_student.py) implements the

@@ -28,28 +28,28 @@ The central question remains simple:
 
 ## Verified Training Results
 
-The repository includes two completed, public, evidence-bound LoRA results.
-GitHub holds the replayable manifests, evaluations, decisions, and checksums;
-Hugging Face holds the reviewed datasets and loadable adapters. These model
-repositories contain PEFT adapters tied to pinned base-model revisions, not
-merged full-model checkpoints.
+The repository includes three completed, public, evidence-bound LoRA results.
+GitHub holds the replayable manifests, evaluations, decisions, and checksums.
+Where publication review permits it, Hugging Face holds the corresponding
+datasets and loadable PEFT adapters tied to pinned base-model revisions rather
+than merged full-model checkpoints. Sensitive task content and weights remain
+private when the evidence capsule's claim does not require publishing them.
 
-| Demonstration | Governed experiment | Held-out result | Public artifacts |
+| Demonstration | Governed experiment | Evaluation result | Public artifacts |
 | --- | --- | --- | --- |
 | Qwen3-0.6B multi-family agent LoRA | 800 public-safe trajectories; 150 frozen tasks; 11 task families; three seeds per arm | Exact task pass rate rose from 17.11% to 96.22%; critical-safety pass rate rose from 45.56% to 100% | [Evidence](docs/case-studies/self-improving-agent-heldout.md) · [adapter](https://huggingface.co/zwright/qwen3-0.6b-hermes-flight-recorder-agent/tree/5c4b3eb6e8540be59ecfea563b2f2f12b9bd1877) · [dataset](https://huggingface.co/datasets/zwright/hermes-flight-recorder-self-improving-agent-trajectories/tree/82cbbb6ec1d6dbf47803b9a32201171e2926dc00) · [live demo](https://zwright-hermes-flight-recorder-agent-demo.hf.space) |
 | Qwen3-4B browser-tool LoRA | 71 reviewed source trajectories expanded to 355 supervised rows; four development and nine sealed browser tasks | Base: 0/4 development and 0/9 sealed. Adapter: 4/4 and 9/9 with zero critical failures | [Paired evidence](examples/case_studies/runtime_adapter_router/results/qwen3_4b_browser_lora_v9/README.md) · [adapter](https://huggingface.co/zwright/qwen3-4b-hermes-flight-recorder-browser-lora/tree/599b7343c7b3b6c7d9d65b403e76f7f017628cfa) · [dataset](https://huggingface.co/datasets/zwright/hermes-flight-recorder-browser-tool-calling-trajectories/tree/0030982a7d3181563e41afb3d0e740652cb705b3) |
+| Qwen3-0.6B ARC strategy-router LoRA | 1,561 validated Flight Recorder trajectories; 1,457 visible-family training rows; 52 untouched visible queries | Base: 2/52 (3.85%). Either LoRA checkpoint: 50/52 (96.15%). Bounded two-checkpoint ensemble: 52/52 (100%) | [Evidence](examples/case_studies/arcagi_strategy_student/results/visible_arcagi_a_v1/README.md) · [metrics](examples/case_studies/arcagi_strategy_student/results/visible_arcagi_a_v1/metrics.json) · [aggregate CSV](examples/case_studies/arcagi_strategy_student/results/visible_arcagi_a_v1/metrics_summary.csv) · [anonymous outcomes](examples/case_studies/arcagi_strategy_student/results/visible_arcagi_a_v1/outcomes.jsonl) · [checksums](examples/case_studies/arcagi_strategy_student/results/visible_arcagi_a_v1/SHA256SUMS) |
 
-### Visible-task ARC strategy distillation
+### ARC result boundary
 
-A separate Qwen3-0.6B strategy-router experiment used 1,561 validated Flight
-Recorder trajectories. On 52 untouched visible ARC-AGI-A queries, the frozen
-base solved 2/52 and either individual LoRA checkpoint solved 50/52; a bounded
-two-checkpoint ensemble solved 52/52. This is a visible-family teacher-imitation
-result, not an unseen or sealed ARC benchmark score, because transformations
-from the same source task families occur in training. The
-[sanitized evidence](examples/case_studies/arcagi_strategy_student/results/visible_arcagi_a_v1/README.md)
-publishes anonymous per-query outcomes and exact receipt hashes without grids,
-task identifiers, private paths, traces, or model weights.
+The ARC result is visible-family teacher imitation, not an unseen or sealed ARC
+benchmark score, because transformations from the same 48 source task families
+occur in training. Its sanitized evidence capsule publishes aggregate metrics,
+anonymous per-query outcomes, and exact receipt hashes without grids, task
+identifiers, private paths, traces, datasets, adapters, or model weights.
+
+### Browser result boundary
 
 The 4B base arm was run post-hoc against the same frozen tasks and evaluator,
 so it demonstrates measured scoped improvement but is not a preregistered

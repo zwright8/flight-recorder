@@ -1,0 +1,5 @@
+configuration,model_state,exact_strategy_or_recall_count,exact_grid_count,example_count,exact_grid_rate,invalid_action_count,absolute_grid_rate_gain_over_base
+base,frozen_base,2,2,52,0.038461538461538464,2,0.0
+lora_checkpoint_0900,lora_adapter,50,50,52,0.9615384615384616,0,0.9230769230769231
+lora_checkpoint_1200,lora_adapter,50,50,52,0.9615384615384616,0,0.9230769230769231
+two_checkpoint_ensemble,bounded_lora_ensemble,52,52,52,1.0,0,0.9615384615384616

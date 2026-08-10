@@ -1,3 +1,5 @@
+import csv
+import hashlib
 import importlib.util
 import json
 import sys
@@ -84,6 +86,33 @@ class ArcAgiStrategyStudentTests(unittest.TestCase):
 
 
 class ArcAgiPublicEvidenceTests(unittest.TestCase):
+    def test_public_aggregate_csv_matches_canonical_metrics(self):
+        metrics = json.loads((PUBLIC_RESULTS / "metrics.json").read_text(encoding="utf-8"))
+        with (PUBLIC_RESULTS / "metrics_summary.csv").open(encoding="utf-8", newline="") as handle:
+            rows = {row["configuration"]: row for row in csv.DictReader(handle)}
+
+        self.assertEqual(set(rows), set(metrics["results"]))
+        for configuration, result in metrics["results"].items():
+            row = rows[configuration]
+            strategy_count = result.get("exact_strategy_count", result.get("strategy_recall_count"))
+            self.assertEqual(int(row["exact_strategy_or_recall_count"]), strategy_count)
+            self.assertEqual(int(row["exact_grid_count"]), result["exact_grid_count"])
+            self.assertEqual(int(row["example_count"]), result["example_count"])
+            self.assertEqual(float(row["exact_grid_rate"]), result["exact_grid_rate"])
+            self.assertEqual(int(row["invalid_action_count"]), result["invalid_action_count"])
+
+    def test_public_checksum_manifest_verifies(self):
+        checksums = {}
+        for line in (PUBLIC_RESULTS / "SHA256SUMS").read_text(encoding="utf-8").splitlines():
+            digest, filename = line.split("  ", 1)
+            checksums[filename] = digest
+
+        expected_files = {"metrics.json", "metrics_summary.csv", "outcomes.jsonl"}
+        self.assertEqual(set(checksums), expected_files)
+        for filename, expected_digest in checksums.items():
+            actual_digest = hashlib.sha256((PUBLIC_RESULTS / filename).read_bytes()).hexdigest()
+            self.assertEqual(actual_digest, expected_digest)
+
     def test_public_evidence_replays_from_anonymous_outcomes(self):
         metrics = json.loads((PUBLIC_RESULTS / "metrics.json").read_text(encoding="utf-8"))
         rows = [
