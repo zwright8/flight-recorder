@@ -19,12 +19,20 @@ def load_module(name, filename):
     return module
 
 
-pipeline = load_module("arcagi_strategy_pipeline", "pipeline.py")
-sys.path.insert(0, str(CASE))
-evaluation = load_module("arcagi_strategy_evaluation", "evaluate_student.py")
-ensemble = load_module("arcagi_strategy_ensemble", "evaluate_ensemble.py")
+NUMPY_AVAILABLE = importlib.util.find_spec("numpy") is not None
+
+if NUMPY_AVAILABLE:
+    pipeline = load_module("arcagi_strategy_pipeline", "pipeline.py")
+    sys.path.insert(0, str(CASE))
+    evaluation = load_module("arcagi_strategy_evaluation", "evaluate_student.py")
+    ensemble = load_module("arcagi_strategy_ensemble", "evaluate_ensemble.py")
+else:
+    pipeline = None
+    evaluation = None
+    ensemble = None
 
 
+@unittest.skipUnless(NUMPY_AVAILABLE, "NumPy is an optional ARC case-study dependency")
 class ArcAgiStrategyStudentTests(unittest.TestCase):
     def test_d4_transforms_cover_eight_distinct_orientations(self):
         grid = [[1, 2, 3], [4, 5, 6]]
@@ -74,6 +82,8 @@ class ArcAgiStrategyStudentTests(unittest.TestCase):
         ensemble.append_unique(values, np.array([[3]]), 2)
         self.assertEqual([value.tolist() for value in values], [[[1]], [[2]]])
 
+
+class ArcAgiPublicEvidenceTests(unittest.TestCase):
     def test_public_evidence_replays_from_anonymous_outcomes(self):
         metrics = json.loads((PUBLIC_RESULTS / "metrics.json").read_text(encoding="utf-8"))
         rows = [
