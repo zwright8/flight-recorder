@@ -73,3 +73,65 @@ marks benchmark claims as disallowed because source families occur in train.
 The trainer wrapper forces MLX's single-process ring backend. This avoids an
 abort in Conda environments that expose MPICH, which MLX cannot use as its MPI
 backend, and does not alter the installed MLX package.
+
+## Private Kaggle sealed route
+
+The published MLX checkpoint is not promoted directly to Kaggle. Although its
+weights can be converted exactly into PEFT tensor layout, the converted
+checkpoint did not preserve the visible-query behavior on Linux CPU. A
+100-step Linux calibration and a clean 100-step Linux adapter also failed the
+controlled 12-query promotion probe at 4/12. These are negative portability
+results, not hidden benchmark results.
+
+The governed Kaggle route therefore retrains two PEFT checkpoints natively in
+Kaggle's Linux/CUDA environment. It runs the frozen visible 52-query replay,
+requires a clean 52/52 two-checkpoint pass@2 result with zero invalid strategy
+actions and zero executor errors, and fails before hidden inference if any gate
+is unmet. The hidden challenge file is never passed to the scorer, and the
+notebook cannot access hidden solutions. No Apple GPU is used by this route.
+
+Build the private dataset and private GPU-kernel directories locally:
+
+```bash
+.venv/bin/python examples/case_studies/arcagi_strategy_student/build_kaggle_bundle.py \
+  --repo-root "$PWD" \
+  --arc-root /absolute/path/to/ArcAgi_StarterCode_v1.3.0 \
+  --training-data local/arcagi_strategy_student/run-v1/visible_distillation_data/train.jsonl \
+  --visible-challenges local/arcagi_strategy_student/kaggle-v1/visible-label-blind-challenges.json \
+  --visible-solutions local/arcagi_strategy_student/kaggle-v1/visible-solutions.json \
+  --base-model /absolute/path/to/Qwen3-0.6B/pinned-snapshot \
+  --wheel-dir local/arcagi_strategy_student/kaggle-v1/vendor-wheels \
+  --dataset-id kaggle_owner/hfr-arcagi-strategy-private-v1 \
+  --kernel-id kaggle_owner/hfr-arcagi-strategy-sealed-v1 \
+  --out local/arcagi_strategy_student/kaggle-v1/upload-bundle
+```
+
+The builder refuses a nonempty destination, pins the reviewed teacher and
+training export hashes, dereferences the offline model snapshot, inventories
+every uploaded file, pins offline PEFT/Accelerate wheels, and marks the bundle
+as private sensitive input. It
+includes only the minimum student rows needed for retraining; raw Flight
+Recorder traces are excluded.
+
+After reviewing the manifest, create the dataset with Kaggle's private flag and
+push the private, GPU-enabled, internet-disabled kernel:
+
+```bash
+kaggle datasets create \
+  -p local/arcagi_strategy_student/kaggle-v1/upload-bundle/dataset \
+  --dir-mode zip
+
+kaggle kernels push \
+  -p local/arcagi_strategy_student/kaggle-v1/upload-bundle/kernel
+```
+
+Kaggle datasets are private by default. Do not add the CLI's `--public` flag;
+`--dir-mode zip` is required so the nested offline runtime and model files are
+included instead of skipped.
+
+Do not publish the private dataset, notebook outputs, adapter checkpoints,
+visible solutions, or deterministic coursework executor. Only a sanitized
+Kaggle score receipt may be considered for the public evidence package after
+the external score is independently verified. This hybrid system uses a LoRA
+router plus client-side deterministic strategy tools, so it is a Kaggle system
+entry rather than a standalone ARC Verified-model submission.
