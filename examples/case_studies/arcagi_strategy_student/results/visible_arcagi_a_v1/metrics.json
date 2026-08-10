@@ -1,0 +1,102 @@
+{
+  "format_version": "arcagi-public-comparison-v1",
+  "result_kind": "visible_task_distillation",
+  "benchmark_claim_allowed": false,
+  "model": {
+    "base_model": "Qwen/Qwen3-0.6B",
+    "base_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "adapter_method": "LoRA",
+    "adapter_layers": 8,
+    "training_seed": 17
+  },
+  "data": {
+    "validated_hfr_trajectories": 1561,
+    "source_task_families": 48,
+    "visible_distillation_train_rows": 1457,
+    "visible_distillation_validation_rows": 52,
+    "untouched_visible_evaluation_rows": 52,
+    "evaluation_families_occur_in_training": true,
+    "source_data_sha256": "6264f88c73216f75ee181e9bddbd86274ee6152eede4f91fff5dd8a92ab4d749"
+  },
+  "evaluation_contract": {
+    "same_base_weights": true,
+    "same_prompt_renderer": true,
+    "same_source_rows": true,
+    "same_deterministic_decoding": true,
+    "same_tool_catalog": true,
+    "same_strategy_executor": true,
+    "same_exact_grid_scorer": true,
+    "maximum_candidate_grids": 3,
+    "grid_success": "At least one candidate from the selected deterministic strategy exactly matches the visible expected grid."
+  },
+  "results": {
+    "base": {
+      "exact_strategy_count": 2,
+      "exact_grid_count": 2,
+      "example_count": 52,
+      "exact_grid_rate": 0.038461538461538464,
+      "invalid_action_count": 2
+    },
+    "lora_checkpoint_0900": {
+      "exact_strategy_count": 50,
+      "exact_grid_count": 50,
+      "example_count": 52,
+      "exact_grid_rate": 0.9615384615384616,
+      "invalid_action_count": 0
+    },
+    "lora_checkpoint_1200": {
+      "exact_strategy_count": 50,
+      "exact_grid_count": 50,
+      "example_count": 52,
+      "exact_grid_rate": 0.9615384615384616,
+      "invalid_action_count": 0
+    },
+    "two_checkpoint_ensemble": {
+      "strategy_recall_count": 52,
+      "exact_grid_count": 52,
+      "example_count": 52,
+      "exact_grid_rate": 1.0,
+      "invalid_action_count": 0
+    }
+  },
+  "improvement_over_base": {
+    "single_adapter": {
+      "additional_exact_grids": 48,
+      "percentage_point_gain": 92.3076923076923,
+      "success_rate_multiple": 25.0,
+      "relative_error_reduction": 0.96
+    },
+    "two_checkpoint_ensemble": {
+      "additional_exact_grids": 50,
+      "percentage_point_gain": 96.15384615384616,
+      "success_rate_multiple": 26.0,
+      "relative_error_reduction": 1.0
+    }
+  },
+  "private_evidence_hashes": {
+    "arc_dataset_revision": "9cde783367c752431b729c86bb81d9cba69c51e8d1dbec0569a20f21813fc7ad",
+    "teacher_source_sha256": "4e3396985cc35477c360c41b8d6a8068aa5d2c455d12b89f515e5418785815f1",
+    "generation_manifest_sha256": "33a724139903253d6d6231429022dbf69cf81cb0764704e21ada4ac3f0b1820c",
+    "hfr_export_manifest_sha256": "cd1167cedc9dbb7b27974c5bddbb2c8a3bcb56e96abb5ff58dff3935d47edb08",
+    "hfr_validation_sha256": "514aa0f3d73327bce00ba8d179d6acbf81e05e20caf22167441f1517f9943e69",
+    "base_evaluation_sha256": "50162a539e68a957253089fbea8842b47933840d6a844b0fe0b75e7a41ef2688",
+    "checkpoint_0900_evaluation_sha256": "cd2133d2e07cff98e58eb62d8f63dd02180494da0bab21ead041bdb0ef714f41",
+    "checkpoint_1200_evaluation_sha256": "80e22e35e2aa6ba52f199d13cbf95dd987256b8798c1a9225c5ef49051800aeb",
+    "ensemble_evaluation_sha256": "06b49d2d174bce43511ef7e71332771a4fb08e143fbf84f9f072ff6d5c85ecb5",
+    "checkpoint_0900_adapter_sha256": "9fa68af6efb0c7f06709b2ca9eddfdf6e856d2227df615b9145ce8ad9af36981",
+    "checkpoint_1200_adapter_sha256": "2efb03e3a52c7c535c0223cf4ba04368eb988356d71dea65a88a4e1c5ef1a731"
+  },
+  "limitations": [
+    "The evaluation prompts are untouched, but their source task families occur in transformed training rows.",
+    "This is teacher imitation and transformation robustness, not unseen-task generalization.",
+    "The LLM selects a deterministic strategy tool; it does not directly generate grids.",
+    "Official and sealed ARC evaluation sets were not accessed or measured."
+  ],
+  "publication": {
+    "contains_raw_traces": false,
+    "contains_arc_grids_or_prompts": false,
+    "contains_task_identifiers": false,
+    "contains_private_paths": false,
+    "contains_model_weights": false
+  }
+}
