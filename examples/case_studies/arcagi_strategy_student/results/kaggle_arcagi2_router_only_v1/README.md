@@ -33,10 +33,10 @@ execution errors. Base produced 14 invalid strategy actions; LoRA produced
 zero. The promoted files are independently hash-bound in `metrics.json`.
 
 Kaggle submission 55427691 references the LoRA `submission.json` from the
-completed private notebook. Its official score is pending. Kaggle permits one
-submission per day for this competition; the base artifact is retained but
-cannot receive an official score until the daily quota resets. No official
-sealed improvement claim is made before both scores exist.
+completed private notebook. Kaggle reports the submission as complete but
+returns blank public and private score fields. The base artifact is retained
+but has not received an official score. No official sealed improvement claim
+is made without scored results for both arms.
 
 ## Publication boundary
 

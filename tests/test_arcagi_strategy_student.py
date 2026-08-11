@@ -883,6 +883,11 @@ class ArcAgiPublicEvidenceTests(unittest.TestCase):
         self.assertEqual(metrics["sealed_artifacts"]["test_input_count"], 259)
         self.assertTrue(metrics["sealed_artifacts"]["base_gate_passed"])
         self.assertTrue(metrics["sealed_artifacts"]["lora_gate_passed"])
+        self.assertEqual(
+            metrics["kaggle"]["lora_submission_status"], "complete_unscored"
+        )
+        self.assertIsNone(metrics["kaggle"]["lora_public_score"])
+        self.assertIsNone(metrics["kaggle"]["lora_private_score"])
         self.assertFalse(metrics["kaggle"]["official_improvement_claim_allowed"])
         forbidden_keys = {
             "episode_id",

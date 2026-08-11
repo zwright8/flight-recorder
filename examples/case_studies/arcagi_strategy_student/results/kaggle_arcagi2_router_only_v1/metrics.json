@@ -67,10 +67,10 @@
     "kernel": "zwright8/hfr-arcagi-controlled-base-lora-comparison-v1",
     "kernel_version": 7,
     "lora_submission_ref": 55427691,
-    "lora_submission_status": "pending",
+    "lora_submission_status": "complete_unscored",
     "lora_public_score": null,
     "lora_private_score": null,
-    "base_submission_status": "daily_quota_pending",
+    "base_submission_status": "not_officially_scored",
     "base_public_score": null,
     "base_private_score": null,
     "official_improvement_claim_allowed": false
