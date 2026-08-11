@@ -33,9 +33,9 @@ complete claim boundary.
 A second [Kaggle-native evidence package](results/kaggle_arcagi2_router_only_v1/README.md)
 records the controlled Linux PEFT replay. Under an identical router-only
 contract, its frozen base scored 0/52 and its step-900 HFR LoRA scored 17/52
-(32.69%), with zero execution errors. The official LoRA ARC-AGI-2 submission is
-pending; no sealed improvement claim is made before the base arm also receives
-an official score.
+(32.69%), with zero execution errors. LoRA submission 55427691 completed, but
+Kaggle returned no public or private score; no sealed improvement claim is made
+without scored results for both arms.
 
 ```bash
 .venv/bin/python examples/case_studies/arcagi_strategy_student/pipeline.py generate \

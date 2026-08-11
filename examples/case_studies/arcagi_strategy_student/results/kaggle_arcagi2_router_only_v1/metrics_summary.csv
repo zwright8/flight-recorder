@@ -1,5 +1,5 @@
 scope,arm,model_state,exact_grid_count,example_count,exact_grid_rate,invalid_action_count,execution_error_count,official_status,official_public_score
 visible,base,frozen_base,0,52,0.0,1,0,not_applicable,
 visible,lora_checkpoint_0900,lora_adapter,17,52,0.3269230769230769,0,0,not_applicable,
-sealed,base,frozen_base,,,,14,0,daily_quota_pending,
-sealed,lora_checkpoint_0900,lora_adapter,,,,0,0,pending,
+sealed,base,frozen_base,,,,14,0,not_officially_scored,
+sealed,lora_checkpoint_0900,lora_adapter,,,,0,0,complete_unscored,
