@@ -30,6 +30,13 @@ transformations from the same source task families occur in training. See the
 anonymous per-query outcomes, aggregate replay, provenance hashes, and the
 complete claim boundary.
 
+A second [Kaggle-native evidence package](results/kaggle_arcagi2_router_only_v1/README.md)
+records the controlled Linux PEFT replay. Under an identical router-only
+contract, its frozen base scored 0/52 and its step-900 HFR LoRA scored 17/52
+(32.69%), with zero execution errors. The official LoRA ARC-AGI-2 submission is
+pending; no sealed improvement claim is made before the base arm also receives
+an official score.
+
 ```bash
 .venv/bin/python examples/case_studies/arcagi_strategy_student/pipeline.py generate \
   --arc-root /absolute/path/to/ArcAgi_StarterCode_v1.3.0 \
@@ -83,12 +90,36 @@ checkpoint did not preserve the visible-query behavior on Linux CPU. A
 controlled 12-query promotion probe at 4/12. These are negative portability
 results, not hidden benchmark results.
 
-The governed Kaggle route therefore retrains two PEFT checkpoints natively in
-Kaggle's Linux/CUDA environment. It runs the frozen visible 52-query replay,
-requires a clean 52/52 two-checkpoint pass@2 result with zero invalid strategy
-actions and zero executor errors, and fails before hidden inference if any gate
-is unmet. The hidden challenge file is never passed to the scorer, and the
-notebook cannot access hidden solutions. No Apple GPU is used by this route.
+The governed Kaggle route retrains PEFT checkpoints natively in Kaggle's Linux
+environment. Its preserved negative evidence includes a full-context CPU pilot
+that stopped at 263/900 after five hours, a T4 adapter reload stall after a
+successful 900-step run, a repaired 4,096-token run that excluded 210/1,457
+rows and scored only 19/52 at pass@2, and two nonreproducible 8,192-token T4
+attempts. None accessed hidden tasks or produced a competition submission.
+
+The successful training route losslessly converts recorded native JSON grids
+to versioned `compact-grid-v1` row strings. All 1,457 rows fit under its
+4,608-token gate (maximum 4,518), and the original HFR rows remain unchanged.
+It completed the exact 900-step checkpoint and a bounded 300-step continuation.
+The two checkpoints scored 17/52 and 15/52 individually on the visible replay;
+their pass@2 union scored 20/52, so that training route correctly failed closed
+before hidden inference.
+
+For the scientific base-versus-LoRA comparison, a private runtime overlay
+freezes the step-900 adapter and loads it once with exact tensor parity. One
+resident T4 model then toggles the adapter off and on, holding prompt, tools,
+context, decoding, executor, normalization, and challenge bytes fixed. The
+executable teacher remains the source of HFR training labels but is not an
+inference fallback: an earlier fallback pilot made both visible arms 52/52,
+masking the adapter effect, and later stalled inside the full teacher search on
+a sealed input. That failed pilot is retained as negative evidence.
+
+The repaired router-only route reproduced a controlled visible result of 0/52
+for base and 17/52 for step-900 LoRA, then ran label-blind inference over 240
+sealed tasks and 259 inputs per arm. Both hidden artifact gates passed with
+zero execution errors before `submission.json` files were promoted. The hidden
+challenge is never sent to the visible scorer, no hidden solution is available
+to the notebook, and no Apple GPU is used.
 
 Build the private dataset and private GPU-kernel directories locally:
 
@@ -108,8 +139,9 @@ Build the private dataset and private GPU-kernel directories locally:
 
 The builder refuses a nonempty destination, pins the reviewed teacher and
 training export hashes, dereferences the offline model snapshot, inventories
-every uploaded file, pins offline PEFT/Accelerate wheels, and marks the bundle
-as private sensitive input. It
+every runtime payload file (excluding Kaggle-rewritten control-plane metadata),
+pins offline PEFT/Accelerate wheels, and marks the bundle as private sensitive
+input. It
 includes only the minimum student rows needed for retraining; raw Flight
 Recorder traces are excluded.
 
@@ -122,12 +154,25 @@ kaggle datasets create \
   --dir-mode zip
 
 kaggle kernels push \
+  --accelerator NvidiaTeslaT4 \
   -p local/arcagi_strategy_student/kaggle-v1/upload-bundle/kernel
 ```
 
 Kaggle datasets are private by default. Do not add the CLI's `--public` flag;
 `--dir-mode zip` is required so the nested offline runtime and model files are
-included instead of skipped.
+included instead of skipped. The explicit T4 selector avoids Kaggle's default
+P100, whose compute capability is unsupported by the current PyTorch image;
+the runtime also rejects any CUDA device below compute capability 7.0.
+
+The private export retains all 1,457 governed rows. The T4 training contract
+losslessly maps each recorded native JSON prompt to `compact-grid-v1`, requires
+every complete rendered prompt to fit within 4,608 tokens, and fails closed if
+any row would be excluded. It does not truncate a grid, prompt, or assistant
+label. The encoding, retained-row count, and fraction are recorded in each
+training receipt. To bound memory, the trainer projects vocabulary
+logits only for the contiguous supervised assistant suffix (plus its causal
+predecessor), instead of materializing unused logits for masked prompt tokens.
+This changes neither the retained input context nor the supervised-token loss.
 
 Do not publish the private dataset, notebook outputs, adapter checkpoints,
 visible solutions, or deterministic coursework executor. Only a sanitized

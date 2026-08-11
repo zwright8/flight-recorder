@@ -8,12 +8,15 @@ import hashlib
 import json
 import re
 import shutil
+import subprocess
+import sys
 from pathlib import Path
 from typing import Any
 
 
 MODEL_ID = "Qwen/Qwen3-0.6B"
 MODEL_REVISION = "c1899de289a04d12100db370d81485cdf75e47ca"
+PEFT_IMPORT_UTILS_SHA256 = "c91d1933c155ad5a8e732d21feb4d35978c5c81ccfc173df83f01463accbcb3f"
 TRAINING_SHA256 = "5e46e23ca114cc1e830e6a415f6277d44228a2feabf6655141232aa2ead5b58d"
 TEACHER_SHA256 = "4e3396985cc35477c360c41b8d6a8068aa5d2c455d12b89f515e5418785815f1"
 WHEEL_SHA256 = {
@@ -43,6 +46,7 @@ ARC_RUNTIME_FILES = (
     "ArcProblem.py",
     "ArcSet.py",
 )
+KAGGLE_MUTABLE_CONTROL_PLANE_FILES = frozenset({"dataset-metadata.json"})
 
 
 def file_sha256(path: Path) -> str:
@@ -72,7 +76,19 @@ def copy_file(source: Path, destination: Path) -> None:
     # The private upload tree must be independent of reviewed source artifacts.
     # A hard link would make chmod or any later upload-tree mutation affect the
     # original model/data inode as well.
-    shutil.copy2(source, destination)
+    cloned = False
+    if sys.platform == "darwin":
+        clone = subprocess.run(
+            ["/bin/cp", "-c", str(source), str(destination)],
+            check=False,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        cloned = clone.returncode == 0
+        if cloned:
+            shutil.copystat(source, destination)
+    if not cloned:
+        shutil.copy2(source, destination)
     destination.chmod(0o600)
 
 
@@ -96,6 +112,13 @@ def inventory(root: Path, *, exclude: set[str] | None = None) -> dict[str, dict[
     return values
 
 
+def sealed_payload_inventory(root: Path) -> dict[str, dict[str, Any]]:
+    return inventory(
+        root,
+        exclude={"bundle_manifest.json", *KAGGLE_MUTABLE_CONTROL_PLANE_FILES},
+    )
+
+
 def verify_exact_file_set(root: Path, expected: dict[str, str], label: str) -> None:
     actual = {
         path.relative_to(root).as_posix(): file_sha256(path)
@@ -109,6 +132,8 @@ def verify_exact_file_set(root: Path, expected: dict[str, str], label: str) -> N
 def notebook_payload() -> dict[str, Any]:
     source = [
         "from pathlib import Path\n",
+        "import hashlib\n",
+        "import json\n",
         "import os\n",
         "import subprocess\n",
         "import sys\n",
@@ -121,7 +146,41 @@ def notebook_payload() -> dict[str, Any]:
         "wheels = sorted(str(path) for path in (bundle / 'wheels').glob('*.whl'))\n",
         "subprocess.run([sys.executable, '-m', 'pip', 'install', '--disable-pip-version-check', "
         "'--no-input', '--no-index', '--no-deps', '--target', str(vendor), *wheels], check=True)\n",
-        "runner = bundle / 'repo/examples/case_studies/arcagi_strategy_student/run_kaggle_route.py'\n",
+        "peft_probe = vendor / 'peft/import_utils.py'\n",
+        "peft_source = peft_probe.read_text(encoding='utf-8')\n",
+        "peft_before_sha = hashlib.sha256(peft_source.encode('utf-8')).hexdigest()\n",
+        f"if peft_before_sha != '{PEFT_IMPORT_UTILS_SHA256}':\n",
+        "    raise RuntimeError('pinned PEFT import-utils source hash mismatch')\n",
+        "probe_start = '@lru_cache\\ndef is_torchao_available():'\n",
+        "probe_end = '\\n\\n@lru_cache\\ndef is_xpu_available'\n",
+        "start = peft_source.index(probe_start)\n",
+        "end = peft_source.index(probe_end, start)\n",
+        "disabled_probe = '@lru_cache\\ndef is_torchao_available():\\n    return False\\n'\n",
+        "patched_peft = peft_source[:start] + disabled_probe + peft_source[end:]\n",
+        "peft_probe.write_text(patched_peft, encoding='utf-8')\n",
+        "print(json.dumps({'compatibility_patch': 'disable_unused_torchao_dispatcher', "
+        "'source_sha256': peft_before_sha, 'patched_sha256': "
+        "hashlib.sha256(patched_peft.encode('utf-8')).hexdigest()}, sort_keys=True), flush=True)\n",
+        "runner_relative = 'repo/examples/case_studies/arcagi_strategy_student/run_kaggle_route.py'\n",
+        "runner_source_path = bundle / runner_relative\n",
+        "runner_source = runner_source_path.read_text(encoding='utf-8')\n",
+        "runner_before_sha = hashlib.sha256(runner_source.encode('utf-8')).hexdigest()\n",
+        "manifest = json.loads((bundle / 'bundle_manifest.json').read_text(encoding='utf-8'))\n",
+        "if runner_before_sha != manifest['files'][runner_relative]['sha256']:\n",
+        "    raise RuntimeError('sealed Kaggle route source hash mismatch')\n",
+        "compact_context_training = '        \"--max-seq-length\",\\n        \"4608\",\\n        \"--min-retained-fraction\",\\n        \"1.0\",\\n        \"--prompt-encoding\",\\n        \"compact-grid-v1\",\\n'\n",
+        "if runner_source.count(compact_context_training) != 1:\n",
+        "    raise RuntimeError('expected exactly one sealed compact-context training stanza')\n",
+        "runner = Path('/kaggle/working/hfr_run_kaggle_route_gpu_compact_4608.py')\n",
+        "runner.write_text(runner_source, encoding='utf-8')\n",
+        "runner.chmod(0o700)\n",
+        "runner_sha = hashlib.sha256(runner.read_bytes()).hexdigest()\n",
+        "if runner_sha != runner_before_sha:\n",
+        "    raise RuntimeError('compact-context runner copy hash mismatch')\n",
+        "print(json.dumps({'runtime_contract': 'deterministic_t4_compact_context_suffix_logits', "
+        "'max_seq_length': 4608, 'minimum_retained_fraction': 1.0, "
+        "'prompt_encoding': 'compact-grid-v1', "
+        "'source_sha256': runner_before_sha, 'runner_sha256': runner_sha}, sort_keys=True), flush=True)\n",
         "env = dict(os.environ)\n",
         "env['PYTHONPATH'] = os.pathsep.join([str(vendor), env.get('PYTHONPATH', '')])\n",
         "subprocess.run([sys.executable, str(runner), '--bundle-root', str(bundle)], check=True, env=env)\n",
@@ -150,7 +209,9 @@ def kernel_metadata_payload(
 ) -> dict[str, Any]:
     return {
         "id": kernel_id,
-        "title": "HFR ARC strategy student sealed route",
+        # Keep the normalized title slug identical to kernel_id so Kaggle does
+        # not silently create a differently named notebook resource.
+        "title": "HFR ARCAGI strategy sealed v1",
         "code_file": notebook_name,
         "language": "python",
         "kernel_type": "notebook",
@@ -212,7 +273,10 @@ def build(args: argparse.Namespace) -> int:
         "licenses": [{"name": "other"}],
     }
     write_json(dataset / "dataset-metadata.json", dataset_metadata)
-    files = inventory(dataset, exclude={"bundle_manifest.json"})
+    # Kaggle rewrites dataset-metadata.json while ingesting a dataset.  Seal the
+    # runtime payload, not provider-owned control-plane metadata whose bytes are
+    # intentionally unstable after upload.
+    files = sealed_payload_inventory(dataset)
     manifest = {
         "format_version": "hfr.arcagi.kaggle_private_bundle.v1",
         "dataset_id": dataset_id,
@@ -225,6 +289,10 @@ def build(args: argparse.Namespace) -> int:
         "model": {"id": MODEL_ID, "revision": MODEL_REVISION, "files": MODEL_FILE_SHA256},
         "training_data_sha256": TRAINING_SHA256,
         "teacher_sha256": TEACHER_SHA256,
+        "integrity_boundary": {
+            "sealed_payload": "files",
+            "excluded_control_plane_files": sorted(KAGGLE_MUTABLE_CONTROL_PLANE_FILES),
+        },
         "files": files,
         "claim_boundary": "This private bundle contains visible-family imitation data; it is not a hidden ARC score.",
     }

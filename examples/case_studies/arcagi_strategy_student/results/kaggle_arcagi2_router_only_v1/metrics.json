@@ -1,0 +1,93 @@
+{
+  "format_version": "arcagi-public-kaggle-comparison-v1",
+  "result_kind": "controlled_router_only_kaggle_route",
+  "model": {
+    "base_model": "Qwen/Qwen3-0.6B",
+    "base_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "adapter_method": "LoRA",
+    "adapter_checkpoint_steps": 900,
+    "adapter_model_sha256": "f40c79e399088182564a6430b05509080fd83fffe198b0a143e3fe7dfe34931a",
+    "adapter_config_sha256": "8fc6d750c5073a1b4c6abf03f6a6d9448f27066aa35516e5fb9a1329e294aefd"
+  },
+  "training_data": {
+    "validated_hfr_trajectories": 1561,
+    "visible_distillation_train_rows": 1457,
+    "source_task_families": 48,
+    "teacher_used_at_inference": false
+  },
+  "evaluation_contract": {
+    "candidate_policy": "router-only",
+    "same_base_weights": true,
+    "same_prompt_renderer": true,
+    "same_compact_grid_encoding": true,
+    "same_tool_catalog": true,
+    "same_deterministic_decoding": true,
+    "same_selected_strategy_executor": true,
+    "same_output_normalizer": true,
+    "only_arm_difference": "frozen_peft_adapter_enabled",
+    "teacher_fallback_at_inference": false
+  },
+  "visible_results": {
+    "base": {
+      "exact_grid_count": 0,
+      "example_count": 52,
+      "exact_grid_rate": 0.0,
+      "invalid_action_count": 1,
+      "execution_error_count": 0
+    },
+    "lora_checkpoint_0900": {
+      "exact_grid_count": 17,
+      "example_count": 52,
+      "exact_grid_rate": 0.3269230769230769,
+      "invalid_action_count": 0,
+      "execution_error_count": 0
+    },
+    "improvement": {
+      "additional_exact_grids": 17,
+      "percentage_point_gain": 32.69230769230769
+    },
+    "claim_boundary": "Visible source families contributed transformed training rows; this is teacher imitation, not novel-family benchmark generalization."
+  },
+  "sealed_artifacts": {
+    "label_blind": true,
+    "task_count": 240,
+    "test_input_count": 259,
+    "base_invalid_action_count": 14,
+    "lora_invalid_action_count": 0,
+    "base_execution_error_count": 0,
+    "lora_execution_error_count": 0,
+    "base_gate_passed": true,
+    "lora_gate_passed": true,
+    "challenge_sha256": "232264c58f825ee77327dcfc9f4e5cb2f83b8d997eb69032be1bf2205bbe1a83",
+    "base_submission_sha256": "f20f5c2d016750a1eaf72f9a74eca41213a41bde18970c72d8cc27ab0f5bf988",
+    "lora_submission_sha256": "74cce28ee030a51d13371b413d494d416d6abea286f0cacd7f48a5a77ca432c8"
+  },
+  "kaggle": {
+    "competition": "arc-prize-2026-arc-agi-2",
+    "kernel": "zwright8/hfr-arcagi-controlled-base-lora-comparison-v1",
+    "kernel_version": 7,
+    "lora_submission_ref": 55427691,
+    "lora_submission_status": "pending",
+    "lora_public_score": null,
+    "lora_private_score": null,
+    "base_submission_status": "daily_quota_pending",
+    "base_public_score": null,
+    "base_private_score": null,
+    "official_improvement_claim_allowed": false
+  },
+  "private_evidence_hashes": {
+    "comparison_route_receipt_sha256": "7d7f4dbe18e47a4314cf261f6f7ae2cc44c87e009cf043beff22ea266d4ba8fb",
+    "hidden_base_receipt_sha256": "8729bb8e7599082682125540f3a0a08004725ca5fb24f74ca1ceb1909488f028",
+    "hidden_lora_receipt_sha256": "414f20501316ca83258aa6691de8f6e72484d62d06519e5b6c6c73f01dce5c49",
+    "visible_base_score_receipt_sha256": "fe591ee7b85af6c9c034e09af66eedb3a009b6e208e47f92078a4fece129bd6b",
+    "visible_lora_score_receipt_sha256": "2eeb7d0bcf02755ee0ff8edea57a579b51758467374cfec7dd7da93145e03d18",
+    "runtime_overlay_manifest_sha256": "c13100ac49dcab0b62e24fd3eb369c3e787c9c7c7453d446266c0a3334af60bf"
+  },
+  "publication": {
+    "contains_arc_grids_or_prompts": false,
+    "contains_task_identifiers": false,
+    "contains_raw_outputs_or_traces": false,
+    "contains_private_paths": false,
+    "contains_model_weights": false
+  }
+}

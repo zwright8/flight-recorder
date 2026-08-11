@@ -39,7 +39,7 @@ private when the evidence capsule's claim does not require publishing them.
 | --- | --- | --- | --- |
 | Qwen3-0.6B multi-family agent LoRA | 800 public-safe trajectories; 150 frozen tasks; 11 task families; three seeds per arm | Exact task pass rate rose from 17.11% to 96.22%; critical-safety pass rate rose from 45.56% to 100% | [Evidence](docs/case-studies/self-improving-agent-heldout.md) · [adapter](https://huggingface.co/zwright/qwen3-0.6b-hermes-flight-recorder-agent/tree/5c4b3eb6e8540be59ecfea563b2f2f12b9bd1877) · [dataset](https://huggingface.co/datasets/zwright/hermes-flight-recorder-self-improving-agent-trajectories/tree/82cbbb6ec1d6dbf47803b9a32201171e2926dc00) · [live demo](https://zwright-hermes-flight-recorder-agent-demo.hf.space) |
 | Qwen3-4B browser-tool LoRA | 71 reviewed source trajectories expanded to 355 supervised rows; four development and nine sealed browser tasks | Base: 0/4 development and 0/9 sealed. Adapter: 4/4 and 9/9 with zero critical failures | [Paired evidence](examples/case_studies/runtime_adapter_router/results/qwen3_4b_browser_lora_v9/README.md) · [adapter](https://huggingface.co/zwright/qwen3-4b-hermes-flight-recorder-browser-lora/tree/599b7343c7b3b6c7d9d65b403e76f7f017628cfa) · [dataset](https://huggingface.co/datasets/zwright/hermes-flight-recorder-browser-tool-calling-trajectories/tree/0030982a7d3181563e41afb3d0e740652cb705b3) |
-| Qwen3-0.6B ARC strategy-router LoRA | 1,561 validated Flight Recorder trajectories; 1,457 visible-family training rows; 52 untouched visible queries | Base: 2/52 (3.85%). Either LoRA checkpoint: 50/52 (96.15%). Bounded two-checkpoint ensemble: 52/52 (100%) | [Evidence](examples/case_studies/arcagi_strategy_student/results/visible_arcagi_a_v1/README.md) · [metrics](examples/case_studies/arcagi_strategy_student/results/visible_arcagi_a_v1/metrics.json) · [aggregate CSV](examples/case_studies/arcagi_strategy_student/results/visible_arcagi_a_v1/metrics_summary.csv) · [anonymous outcomes](examples/case_studies/arcagi_strategy_student/results/visible_arcagi_a_v1/outcomes.jsonl) · [checksums](examples/case_studies/arcagi_strategy_student/results/visible_arcagi_a_v1/SHA256SUMS) |
+| Qwen3-0.6B ARC strategy-router LoRA | 1,561 validated Flight Recorder trajectories; 1,457 visible-family training rows; local MLX and Kaggle-native PEFT replays | Local MLX: base 2/52, either LoRA 50/52, bounded ensemble 52/52. Controlled Kaggle-native router-only replay: base 0/52, step-900 LoRA 17/52; official LoRA sealed score pending | [Visible evidence](examples/case_studies/arcagi_strategy_student/results/visible_arcagi_a_v1/README.md) · [Kaggle route evidence](examples/case_studies/arcagi_strategy_student/results/kaggle_arcagi2_router_only_v1/README.md) · [Kaggle metrics](examples/case_studies/arcagi_strategy_student/results/kaggle_arcagi2_router_only_v1/metrics.json) |
 
 ### ARC result boundary
 
@@ -48,6 +48,12 @@ benchmark score, because transformations from the same 48 source task families
 occur in training. Its sanitized evidence capsule publishes aggregate metrics,
 anonymous per-query outcomes, and exact receipt hashes without grids, task
 identifiers, private paths, traces, datasets, adapters, or model weights.
+
+A separate Kaggle-native PEFT capsule records a controlled router-only replay
+and the governed ARC-AGI-2 code-submission route. Its visible 0/52 to 17/52
+delta is verified; the official LoRA sealed submission is pending and the base
+sealed submission is waiting for Kaggle's daily quota reset. No official sealed
+improvement is claimed until both external scores exist.
 
 ### Browser result boundary
 

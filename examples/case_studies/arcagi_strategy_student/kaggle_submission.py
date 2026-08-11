@@ -13,6 +13,7 @@ import hashlib
 import importlib
 import json
 import os
+import time
 from collections import Counter
 from contextlib import nullcontext
 from dataclasses import dataclass
@@ -29,7 +30,7 @@ from pipeline import (
     canonical_sha256,
     file_sha256,
     load_teacher,
-    prompt_for,
+    compact_prompt_for,
     strategy_tool,
     valid_predictions,
     write_json,
@@ -37,6 +38,7 @@ from pipeline import (
 
 
 PASS_K = 2
+CANDIDATE_POLICIES = ("router-only", "router-then-teacher")
 
 
 @dataclass(frozen=True)
@@ -45,6 +47,7 @@ class PredictionResult:
     selected_strategy: str | None
     raw_output_sha256: str
     error: str | None = None
+    candidate_sources: tuple[str, ...] = ()
 
 
 def enable_mlx_compatible_lora_add(model: Any) -> int:
@@ -128,6 +131,51 @@ def make_label_blind_problem(task_id: str, task: dict[str, Any], test_index: int
     return ArcProblem(task_id, training, ArcSet(ArcData(test_input)))
 
 
+def execute_candidate_policy(
+    executor: Any,
+    problem: Any,
+    selected_strategy: str | None,
+    candidate_policy: str,
+) -> tuple[list[np.ndarray], tuple[str, ...], str | None]:
+    """Execute a router candidate and an optional provenance-bound teacher fallback."""
+    if candidate_policy not in CANDIDATE_POLICIES:
+        raise ValueError(f"unsupported candidate policy: {candidate_policy}")
+
+    guesses: list[np.ndarray] = []
+    sources: list[str] = []
+    errors: list[str] = []
+
+    def append_first_unique(values: Any, source: str) -> None:
+        for candidate in valid_predictions(executor, values):
+            if any(np.array_equal(candidate, prior) for prior in guesses):
+                continue
+            guesses.append(candidate)
+            sources.append(source)
+            return
+
+    training = problem.training_set()
+    test_input = problem.test_set().get_input_data().data()
+    if selected_strategy is not None:
+        try:
+            append_first_unique(
+                getattr(executor, selected_strategy)(training, test_input),
+                "router_selected_strategy",
+            )
+        except Exception as exc:
+            errors.append(f"router:{type(exc).__name__}: {exc}"[:300])
+
+    if candidate_policy == "router-then-teacher":
+        try:
+            append_first_unique(
+                executor.make_predictions(problem),
+                "deterministic_teacher_fallback",
+            )
+        except Exception as exc:
+            errors.append(f"teacher:{type(exc).__name__}: {exc}"[:300])
+
+    return guesses[:PASS_K], tuple(sources[:PASS_K]), "; ".join(errors) or None
+
+
 def normalize_attempts(guesses: list[np.ndarray], test_input: list[list[int]]) -> tuple[list[list[list[int]]], str | None]:
     unique: list[np.ndarray] = []
     for guess in guesses:
@@ -155,12 +203,24 @@ def normalize_attempts(guesses: list[np.ndarray], test_input: list[list[int]]) -
 def build_submission(
     challenges: dict[str, dict[str, Any]],
     predict: Callable[[str, dict[str, Any], int], PredictionResult],
+    *,
+    max_seconds: float = 0.0,
+    progress: Callable[[dict[str, Any]], None] | None = None,
 ) -> tuple[dict[str, list[dict[str, list[list[int]]]]], list[dict[str, Any]]]:
+    if max_seconds < 0:
+        raise ValueError("inference time bound must be nonnegative")
     submission: dict[str, list[dict[str, list[list[int]]]]] = {}
     audit: list[dict[str, Any]] = []
+    total = sum(len(task["test"]) for task in challenges.values())
+    started = time.monotonic()
+    deadline = started + max_seconds if max_seconds else None
     for task_id, task in challenges.items():
         task_attempts = []
         for test_index, test_pair in enumerate(task["test"]):
+            if deadline is not None and time.monotonic() >= deadline:
+                raise TimeoutError(
+                    f"inference time bound exhausted after {len(audit)}/{total} test inputs"
+                )
             result = predict(task_id, task, test_index)
             attempts, fallback = normalize_attempts(result.guesses, test_pair["input"])
             task_attempts.append({"attempt_1": attempts[0], "attempt_2": attempts[1]})
@@ -174,8 +234,21 @@ def build_submission(
                     "attempt_2_sha256": canonical_sha256(attempts[1]),
                     "fallback": fallback,
                     "error": result.error,
+                    "candidate_sources": list(result.candidate_sources),
                 }
             )
+            if progress is not None:
+                progress(
+                    {
+                        "completed": len(audit),
+                        "total": total,
+                        "elapsed_seconds": round(time.monotonic() - started, 3),
+                    }
+                )
+            if deadline is not None and time.monotonic() >= deadline and len(audit) < total:
+                raise TimeoutError(
+                    f"inference time bound exhausted after {len(audit)}/{total} test inputs"
+                )
         submission[task_id] = task_attempts
     return submission, audit
 
@@ -191,6 +264,8 @@ class HfStrategyRouter:
         dtype: str,
         peft_addition: str,
         max_new_tokens: int,
+        max_generation_seconds: float,
+        candidate_policy: str = "router-only",
     ) -> None:
         os.environ["HF_HUB_OFFLINE"] = "1"
         os.environ["TRANSFORMERS_OFFLINE"] = "1"
@@ -201,6 +276,10 @@ class HfStrategyRouter:
         self.device = torch.device(device)
         self.dtype_name = dtype
         self.max_new_tokens = max_new_tokens
+        self.max_generation_seconds = max_generation_seconds
+        if candidate_policy not in CANDIDATE_POLICIES:
+            raise ValueError(f"unsupported candidate policy: {candidate_policy}")
+        self.candidate_policy = candidate_policy
         self.executor, self.strategy_names, self.teacher = load_teacher(arc_root)
         self.allowed = set(self.strategy_names)
         self.tools = [strategy_tool(self.strategy_names, self.teacher["sha256"])]
@@ -216,57 +295,154 @@ class HfStrategyRouter:
         except TypeError:  # Transformers < 5 uses torch_dtype.
             model = AutoModelForCausalLM.from_pretrained(model_path, local_files_only=True, torch_dtype=torch_dtype)
         if adapter_path is not None:
-            from peft import PeftModel
+            from peft import (
+                LoraConfig,
+                get_peft_model,
+                get_peft_model_state_dict,
+                set_peft_model_state_dict,
+            )
+            from safetensors.torch import load_file
 
-            model = PeftModel.from_pretrained(model, adapter_path, local_files_only=True)
+            adapter_config = LoraConfig.from_pretrained(adapter_path, local_files_only=True)
+            model = get_peft_model(model, adapter_config)
+            source_state = load_file(adapter_path / "adapter_model.safetensors", device="cpu")
+            load_result = set_peft_model_state_dict(model, source_state, adapter_name="default")
+            if load_result.unexpected_keys:
+                raise ValueError(
+                    f"frozen adapter has unexpected PEFT keys: {load_result.unexpected_keys}"
+                )
+            loaded_state = get_peft_model_state_dict(model, adapter_name="default")
+            if set(loaded_state) != set(source_state) or any(
+                not torch.equal(loaded_state[key].cpu(), source_state[key]) for key in source_state
+            ):
+                raise ValueError("frozen adapter state did not load with exact tensor parity")
+            self.adapter_load_method = "topology_then_exact_state_dict"
+            self.adapter_resident = True
+        else:
+            self.adapter_load_method = "none"
+            self.adapter_resident = False
         self.patched_lora_layers = (
             enable_mlx_compatible_lora_add(model)
             if adapter_path is not None and peft_addition == "mlx-compatible"
             else 0
         )
         self.model = model.to(self.device).eval()
+        self.adapter_enabled = self.adapter_resident
+
+    def set_adapter_enabled(self, enabled: bool) -> None:
+        """Select the controlled PEFT arm without reloading model weights."""
+        if enabled and not self.adapter_resident:
+            raise ValueError("cannot enable an adapter that is not resident")
+        self.adapter_enabled = enabled
+
+    @classmethod
+    def from_preloaded(
+        cls,
+        *,
+        arc_root: Path,
+        model: Any,
+        tokenizer: Any,
+        torch: Any,
+        device: str,
+        dtype: str,
+        max_new_tokens: int,
+        max_generation_seconds: float,
+        adapter_name: str,
+        candidate_policy: str = "router-only",
+    ) -> "HfStrategyRouter":
+        """Bind a trained in-memory PEFT model without reloading its base weights."""
+        instance = cls.__new__(cls)
+        instance.torch = torch
+        instance.device = torch.device(device)
+        instance.dtype_name = dtype
+        instance.max_new_tokens = max_new_tokens
+        instance.max_generation_seconds = max_generation_seconds
+        if candidate_policy not in CANDIDATE_POLICIES:
+            raise ValueError(f"unsupported candidate policy: {candidate_policy}")
+        instance.candidate_policy = candidate_policy
+        instance.executor, instance.strategy_names, instance.teacher = load_teacher(arc_root)
+        instance.allowed = set(instance.strategy_names)
+        instance.tools = [strategy_tool(instance.strategy_names, instance.teacher["sha256"])]
+        instance.tokenizer = tokenizer
+        model.set_adapter(adapter_name)
+        model.config.use_cache = True
+        if hasattr(model, "gradient_checkpointing_disable"):
+            model.gradient_checkpointing_disable()
+        if hasattr(model, "disable_input_require_grads"):
+            model.disable_input_require_grads()
+        instance.model = model.to(instance.device).eval()
+        instance.patched_lora_layers = 0
+        instance.adapter_load_method = "preloaded_training_session"
+        instance.adapter_resident = True
+        instance.adapter_enabled = True
+        return instance
 
     def __call__(self, task_id: str, task: dict[str, Any], test_index: int) -> PredictionResult:
+        task_ref = hashlib.sha256(task_id.encode("utf-8")).hexdigest()
+
+        def emit_stage(stage: str) -> None:
+            print(
+                json.dumps(
+                    {
+                        "prediction_stage": {
+                            "stage": stage,
+                            "task_ref_sha256": task_ref,
+                            "test_index": test_index,
+                        }
+                    },
+                    sort_keys=True,
+                ),
+                flush=True,
+            )
+
         selected_task = {"train": task["train"], "test": [task["test"][test_index]]}
         row = {
             "messages": [
                 {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": prompt_for(selected_task)},
+                {"role": "user", "content": compact_prompt_for(selected_task)},
             ],
             "tools": self.tools,
         }
         rendered = render_prompt(self.tokenizer, row)
         encoded = self.tokenizer(rendered, return_tensors="pt")
         encoded = {key: value.to(self.device) for key, value in encoded.items()}
-        with self.torch.inference_mode():
+        emit_stage("model_generation_started")
+        adapter_context = (
+            nullcontext()
+            if self.adapter_enabled or not self.adapter_resident
+            else self.model.disable_adapter()
+        )
+        with self.torch.inference_mode(), adapter_context:
+            generation = {
+                "do_sample": False,
+                "max_new_tokens": self.max_new_tokens,
+                "pad_token_id": self.tokenizer.eos_token_id,
+                "use_cache": True,
+            }
+            if self.max_generation_seconds:
+                generation["max_time"] = self.max_generation_seconds
             generated = self.model.generate(
                 **encoded,
-                do_sample=False,
-                max_new_tokens=self.max_new_tokens,
-                pad_token_id=self.tokenizer.eos_token_id,
-                use_cache=True,
+                **generation,
             )
+        emit_stage("model_generation_completed")
         new_tokens = generated[0, encoded["input_ids"].shape[1] :]
         raw_output = self.tokenizer.decode(new_tokens, skip_special_tokens=True)
         selected = parse_strategy(raw_output, self.allowed)
-        guesses: list[np.ndarray] = []
-        error = None
-        if selected is not None:
-            try:
-                problem = make_label_blind_problem(task_id, task, test_index)
-                guesses = valid_predictions(
-                    self.executor,
-                    getattr(self.executor, selected)(
-                        problem.training_set(), problem.test_set().get_input_data().data()
-                    ),
-                )
-            except Exception as exc:
-                error = f"{type(exc).__name__}: {exc}"[:300]
+        problem = make_label_blind_problem(task_id, task, test_index)
+        guesses, candidate_sources, error = execute_candidate_policy(
+            self.executor,
+            problem,
+            selected,
+            self.candidate_policy,
+        )
+        emit_stage("deterministic_execution_completed")
         return PredictionResult(
             guesses=guesses,
             selected_strategy=selected,
             raw_output_sha256=hashlib.sha256(raw_output.encode("utf-8")).hexdigest(),
             error=error,
+            candidate_sources=candidate_sources,
         )
 
 
@@ -281,6 +457,7 @@ class MlxStrategyRouter:
         adapter_path: Path | None,
         device: str,
         max_new_tokens: int,
+        candidate_policy: str = "router-only",
     ) -> None:
         if device != "cpu":
             raise ValueError("the governed MLX reference path is CPU-only")
@@ -294,6 +471,9 @@ class MlxStrategyRouter:
         generate_module.wired_limit = lambda *_args, **_kwargs: nullcontext()
         self.generate = generate_module.generate
         self.max_new_tokens = max_new_tokens
+        if candidate_policy not in CANDIDATE_POLICIES:
+            raise ValueError(f"unsupported candidate policy: {candidate_policy}")
+        self.candidate_policy = candidate_policy
         self.executor, self.strategy_names, self.teacher = load_teacher(arc_root)
         self.allowed = set(self.strategy_names)
         self.tools = [strategy_tool(self.strategy_names, self.teacher["sha256"])]
@@ -308,7 +488,7 @@ class MlxStrategyRouter:
         row = {
             "messages": [
                 {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": prompt_for(selected_task)},
+                {"role": "user", "content": compact_prompt_for(selected_task)},
             ],
             "tools": self.tools,
         }
@@ -320,49 +500,74 @@ class MlxStrategyRouter:
             verbose=False,
         )
         selected = parse_strategy(raw_output, self.allowed)
-        guesses: list[np.ndarray] = []
-        error = None
-        if selected is not None:
-            try:
-                problem = make_label_blind_problem(task_id, task, test_index)
-                guesses = valid_predictions(
-                    self.executor,
-                    getattr(self.executor, selected)(
-                        problem.training_set(), problem.test_set().get_input_data().data()
-                    ),
-                )
-            except Exception as exc:
-                error = f"{type(exc).__name__}: {exc}"[:300]
+        problem = make_label_blind_problem(task_id, task, test_index)
+        guesses, candidate_sources, error = execute_candidate_policy(
+            self.executor,
+            problem,
+            selected,
+            self.candidate_policy,
+        )
         return PredictionResult(
             guesses=guesses,
             selected_strategy=selected,
             raw_output_sha256=hashlib.sha256(raw_output.encode("utf-8")).hexdigest(),
             error=error,
+            candidate_sources=candidate_sources,
         )
 
 
-def write_governed_submission(args: argparse.Namespace) -> int:
+def write_governed_submission(
+    args: argparse.Namespace,
+    *,
+    router: Any | None = None,
+    progress_scope: str | None = None,
+) -> int:
     if (args.arm == "lora") != (args.adapter is not None):
         raise ValueError("the lora arm requires --adapter and the base arm forbids it")
     if args.out.resolve() == args.receipt.resolve():
         raise ValueError("submission and receipt paths must be distinct")
     if args.max_new_tokens < 1:
         raise ValueError("max-new-tokens must be positive")
+    if args.max_generation_seconds <= 0 or args.max_inference_seconds <= 0:
+        raise ValueError("generation and inference time bounds must be positive")
     if args.out.exists() or args.receipt.exists():
         raise ValueError("refusing to overwrite an existing submission or receipt")
     challenges = validate_label_blind_challenges(json.loads(args.challenges.read_text(encoding="utf-8")))
-    router_type = HfStrategyRouter if args.backend == "hf" else MlxStrategyRouter
-    router_kwargs = {
-        "arc_root": args.arc_root.resolve(),
-        "model_path": args.model.resolve(),
-        "adapter_path": args.adapter.resolve() if args.adapter else None,
-        "device": args.device,
-        "max_new_tokens": args.max_new_tokens,
-    }
-    if args.backend == "hf":
-        router_kwargs.update({"dtype": args.dtype, "peft_addition": args.peft_addition})
-    router = router_type(**router_kwargs)
-    submission, audit = build_submission(challenges, router)
+    preloaded_model = router is not None
+    if router is None:
+        router_type = HfStrategyRouter if args.backend == "hf" else MlxStrategyRouter
+        router_kwargs = {
+            "arc_root": args.arc_root.resolve(),
+            "model_path": args.model.resolve(),
+            "adapter_path": args.adapter.resolve() if args.adapter else None,
+            "device": args.device,
+            "max_new_tokens": args.max_new_tokens,
+            "candidate_policy": args.candidate_policy,
+        }
+        if args.backend == "hf":
+            router_kwargs.update(
+                {
+                    "dtype": args.dtype,
+                    "peft_addition": args.peft_addition,
+                    "max_generation_seconds": args.max_generation_seconds,
+                }
+            )
+        router = router_type(**router_kwargs)
+    if getattr(router, "candidate_policy", None) != args.candidate_policy:
+        raise ValueError("preloaded router candidate policy does not match the submission contract")
+    if hasattr(router, "adapter_enabled") and router.adapter_enabled != (args.adapter is not None):
+        raise ValueError("preloaded router adapter state does not match the selected arm")
+    scope = progress_scope or args.out.stem
+
+    def emit_progress(value: dict[str, Any]) -> None:
+        print(json.dumps({"inference": {"scope": scope, **value}}, sort_keys=True), flush=True)
+
+    submission, audit = build_submission(
+        challenges,
+        router,
+        max_seconds=args.max_inference_seconds,
+        progress=emit_progress,
+    )
     write_json(args.out, submission)
     args.out.chmod(0o600)
     receipt = {
@@ -377,8 +582,13 @@ def write_governed_submission(args: argparse.Namespace) -> int:
             "device": args.device,
             "dtype": args.dtype if args.backend == "hf" else "model-native-bfloat16",
             "max_new_tokens": args.max_new_tokens,
+            "max_generation_seconds": args.max_generation_seconds,
+            "max_inference_seconds": args.max_inference_seconds,
             "peft_addition": args.peft_addition if args.backend == "hf" else "not-applicable",
             "patched_lora_layers": router.patched_lora_layers,
+            "preloaded_model": preloaded_model,
+            "candidate_policy": args.candidate_policy,
+            "adapter_load_method": router.adapter_load_method,
         },
         "model": {"id": args.model_id, "revision": args.model_revision},
         "adapter": {
@@ -403,7 +613,8 @@ def write_governed_submission(args: argparse.Namespace) -> int:
         ),
         "outcomes": audit,
         "claim_boundary": (
-            "This receipt records a hybrid LoRA/base strategy router plus deterministic executor. "
+            "This receipt records a hybrid LoRA/base strategy router plus deterministic executor "
+            f"under the {args.candidate_policy} candidate policy. "
             "Only an external Kaggle score can establish performance on hidden tasks."
         ),
     }
@@ -444,6 +655,9 @@ def parser() -> argparse.ArgumentParser:
         default="mlx-compatible",
     )
     result.add_argument("--max-new-tokens", type=int, default=96)
+    result.add_argument("--max-generation-seconds", type=float, default=120.0)
+    result.add_argument("--max-inference-seconds", type=float, default=3600.0)
+    result.add_argument("--candidate-policy", choices=CANDIDATE_POLICIES, default="router-only")
     result.add_argument("--out", type=Path, required=True)
     result.add_argument("--receipt", type=Path, required=True)
     return result

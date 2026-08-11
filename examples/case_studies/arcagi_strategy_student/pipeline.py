@@ -40,6 +40,8 @@ SYSTEM_PROMPT = (
     "then call exactly one supplied read-only strategy tool for the test input. "
     "Do not invent a strategy and do not emit a grid directly."
 )
+NATIVE_ARC_PROMPT_PREFIX = "Choose one strategy tool for this ARC problem.\nARC_PROBLEM="
+COMPACT_ARC_PROMPT_PREFIX = "Choose one strategy tool for this ARC problem.\nARC_COMPACT_V1 "
 D4_NAMES = (
     "identity",
     "rotate_90",
@@ -289,8 +291,52 @@ def strategy_tool(strategy_names: list[str], teacher_revision: str) -> dict[str,
 
 def prompt_for(task: dict[str, Any]) -> str:
     payload = {"training_pairs": task["train"], "test_input": task["test"][0]["input"]}
-    return "Choose one strategy tool for this ARC problem.\nARC_PROBLEM=" + json.dumps(
+    return NATIVE_ARC_PROMPT_PREFIX + json.dumps(
         payload, separators=(",", ":"), ensure_ascii=False
+    )
+
+
+def compact_grid(grid_value: list[list[int]]) -> str:
+    """Encode a validated ARC grid losslessly with row delimiters."""
+    if not isinstance(grid_value, list) or not grid_value:
+        raise ValueError("compact ARC grids must be non-empty lists")
+    width = len(grid_value[0]) if isinstance(grid_value[0], list) else 0
+    if width < 1:
+        raise ValueError("compact ARC grids must contain non-empty rows")
+    rows = []
+    for row in grid_value:
+        if not isinstance(row, list) or len(row) != width:
+            raise ValueError("compact ARC grids must be rectangular")
+        if any(isinstance(cell, bool) or not isinstance(cell, int) or not 0 <= cell <= 9 for cell in row):
+            raise ValueError("compact ARC grid cells must be integer colors 0..9")
+        rows.append("".join(str(cell) for cell in row))
+    return "/".join(rows)
+
+
+def compact_prompt_for(task: dict[str, Any]) -> str:
+    """Render the same ARC state as ``prompt_for`` with fewer tokens."""
+    training_pairs = ";".join(
+        f"{compact_grid(pair['input'])}>{compact_grid(pair['output'])}"
+        for pair in task["train"]
+    )
+    return (
+        f"{COMPACT_ARC_PROMPT_PREFIX}training_pairs={training_pairs}\n"
+        f"test_input={compact_grid(task['test'][0]['input'])}"
+    )
+
+
+def compact_prompt_from_native(prompt: str) -> str:
+    """Losslessly convert a recorded native JSON ARC prompt to compact v1."""
+    if not isinstance(prompt, str) or not prompt.startswith(NATIVE_ARC_PROMPT_PREFIX):
+        raise ValueError("training row does not contain a native ARC JSON prompt")
+    payload = json.loads(prompt[len(NATIVE_ARC_PROMPT_PREFIX) :])
+    if not isinstance(payload, dict) or set(payload) != {"training_pairs", "test_input"}:
+        raise ValueError("native ARC prompt payload has unexpected fields")
+    return compact_prompt_for(
+        {
+            "train": payload["training_pairs"],
+            "test": [{"input": payload["test_input"]}],
+        }
     )
 
 

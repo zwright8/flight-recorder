@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import gc
 import hashlib
 import importlib.metadata
 import json
@@ -17,6 +18,7 @@ from typing import Any
 
 MODEL_ID = "Qwen/Qwen3-0.6B"
 MODEL_REVISION = "c1899de289a04d12100db370d81485cdf75e47ca"
+MINIMUM_CUDA_CAPABILITY = (7, 0)
 
 
 def file_sha256(path: Path) -> str:
@@ -82,7 +84,24 @@ def visible_gate(
 
 def checked(command: list[str], env: dict[str, str]) -> None:
     print(json.dumps({"command": command}, sort_keys=True), flush=True)
-    subprocess.run(command, check=True, env=env)
+    completed = subprocess.run(command, check=False, env=env)
+    print(
+        json.dumps(
+            {"command_result": {"returncode": completed.returncode}},
+            sort_keys=True,
+        ),
+        flush=True,
+    )
+    completed.check_returncode()
+
+
+def require_supported_cuda_capability(capability: tuple[int, int]) -> tuple[int, int]:
+    if capability < MINIMUM_CUDA_CAPABILITY:
+        raise ValueError(
+            f"CUDA capability {capability[0]}.{capability[1]} is below the "
+            f"required {MINIMUM_CUDA_CAPABILITY[0]}.{MINIMUM_CUDA_CAPABILITY[1]}"
+        )
+    return capability
 
 
 def environment_receipt() -> dict[str, Any]:
@@ -90,6 +109,7 @@ def environment_receipt() -> dict[str, Any]:
 
     if not torch.cuda.is_available():
         raise ValueError("the Kaggle route requires CUDA and will not fall back to CPU")
+    cuda_capability = require_supported_cuda_capability(torch.cuda.get_device_capability(0))
     packages = {}
     for name in ("accelerate", "numpy", "peft", "safetensors", "torch", "transformers"):
         try:
@@ -104,12 +124,14 @@ def environment_receipt() -> dict[str, Any]:
         "cudnn": torch.backends.cudnn.version(),
         "cuda_device": torch.cuda.get_device_name(0),
         "cuda_device_count": torch.cuda.device_count(),
+        "cuda_capability": list(cuda_capability),
     }
 
 
 def run(args: argparse.Namespace) -> int:
     os.environ["HF_HUB_OFFLINE"] = "1"
     os.environ["TRANSFORMERS_OFFLINE"] = "1"
+    os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
     bundle_root = args.bundle_root.resolve()
     manifest = verify_bundle(bundle_root)
     runtime_environment = environment_receipt()
@@ -120,7 +142,30 @@ def run(args: argparse.Namespace) -> int:
     args.work_dir.mkdir(parents=True, exist_ok=True)
     args.work_dir.chmod(0o700)
 
-    case_dir = bundle_root / "repo/examples/case_studies/arcagi_strategy_student"
+    case_dir = (
+        args.runtime_case_dir.resolve()
+        if args.runtime_case_dir is not None
+        else bundle_root / "repo/examples/case_studies/arcagi_strategy_student"
+    )
+    required_runtime_sources = (
+        "evaluate_student.py",
+        "kaggle_submission.py",
+        "merge_kaggle_submissions.py",
+        "pipeline.py",
+        "run_kaggle_route.py",
+        "score_kaggle_submission.py",
+        "train_peft_strategy.py",
+    )
+    missing_runtime_sources = [
+        filename for filename in required_runtime_sources if not (case_dir / filename).is_file()
+    ]
+    if missing_runtime_sources:
+        raise ValueError(f"runtime case directory is incomplete: {missing_runtime_sources}")
+    sys.path.insert(0, str(bundle_root / "repo"))
+    sys.path.insert(0, str(case_dir))
+    import kaggle_submission
+    import train_peft_strategy
+
     arc_root = bundle_root / "arc_runtime"
     model = bundle_root / "base_model"
     training_data = bundle_root / "private_data/train.jsonl"
@@ -153,9 +198,11 @@ def run(args: argparse.Namespace) -> int:
         "--gradient-accumulation-steps",
         "1",
         "--max-seq-length",
-        "8192",
+        "4608",
         "--min-retained-fraction",
         "1.0",
+        "--prompt-encoding",
+        "compact-grid-v1",
         "--rank",
         "8",
         "--lora-alpha",
@@ -171,78 +218,144 @@ def run(args: argparse.Namespace) -> int:
         "--report-every",
         "50",
     ]
-    checked(
-        common_train
-        + [
-            "--out",
-            str(checkpoints[0]),
-            "--max-steps",
-            "900",
-            "--max-training-seconds",
-            "18000",
-        ],
-        env,
+    training_argv = common_train[2:] + [
+        "--out",
+        str(checkpoints[0]),
+        "--max-steps",
+        "900",
+        "--max-training-seconds",
+        "18000",
+        "--continuation-out",
+        str(checkpoints[1]),
+        "--continuation-steps",
+        "300",
+        "--continuation-training-seconds",
+        "7200",
+    ]
+    print(
+        json.dumps(
+            {
+                "in_process_training": {
+                    "argv": training_argv,
+                    "reuse_loaded_model_for_inference": True,
+                }
+            },
+            sort_keys=True,
+        ),
+        flush=True,
     )
-    checked(
-        common_train
-        + [
-            "--initial-adapter",
-            str(checkpoints[0]),
-            "--out",
-            str(checkpoints[1]),
-            "--max-steps",
-            "300",
-            "--max-training-seconds",
-            "7200",
-        ],
-        env,
+    training_status, training_session = train_peft_strategy.train_with_session(
+        train_peft_strategy.parser().parse_args(training_argv)
     )
+    if training_status != 0 or training_session is None:
+        raise RuntimeError(
+            f"same-process training failed before inference: status={training_status}"
+        )
     for checkpoint, expected_steps in zip(checkpoints, (900, 300), strict=True):
         training_receipt = json.loads((checkpoint / "training_receipt.json").read_text(encoding="utf-8"))
-        if training_receipt.get("completed_steps") != expected_steps:
+        if (
+            training_receipt.get("status") != "succeeded"
+            or training_receipt.get("target_steps") != expected_steps
+            or training_receipt.get("completed_steps") != expected_steps
+        ):
             raise RuntimeError(
-                f"training time bound stopped {checkpoint.name} at "
-                f"{training_receipt.get('completed_steps')}/{expected_steps} steps"
+                f"training phase {checkpoint.name} failed its exact-step gate: "
+                f"status={training_receipt.get('status')} "
+                f"target={training_receipt.get('target_steps')} "
+                f"completed={training_receipt.get('completed_steps')} "
+                f"expected={expected_steps}"
             )
+    gc.collect()
+    training_session.torch.cuda.empty_cache()
+
+    loaded_adapter_names = {"checkpoint-1200": "default"}
 
     def generate(scope: str, challenges: Path, adapter: Path) -> tuple[Path, Path]:
         submission = args.work_dir / f"{scope}-{adapter.name}.json"
         receipt = args.work_dir / f"{scope}-{adapter.name}-receipt.json"
-        checked(
-            [
-                python,
-                str(case_dir / "kaggle_submission.py"),
-                "--challenges",
-                str(challenges),
-                "--arc-root",
-                str(arc_root),
-                "--model",
-                str(model),
-                "--adapter",
+        adapter_name = loaded_adapter_names.get(adapter.name)
+        if adapter_name is None:
+            adapter_name = adapter.name.replace("-", "_")
+            training_session.model.load_adapter(
                 str(adapter),
-                "--arm",
-                "lora",
-                "--backend",
-                "hf",
-                "--model-id",
-                MODEL_ID,
-                "--model-revision",
-                MODEL_REVISION,
-                "--device",
-                "cuda",
-                "--dtype",
-                "float16",
-                "--peft-addition",
-                "standard",
-                "--max-new-tokens",
-                "96",
-                "--out",
-                str(submission),
-                "--receipt",
-                str(receipt),
-            ],
-            env,
+                adapter_name=adapter_name,
+                is_trainable=False,
+                local_files_only=True,
+            )
+            loaded_adapter_names[adapter.name] = adapter_name
+        inference_seconds = (
+            args.visible_inference_seconds if scope == "visible" else args.hidden_inference_seconds
         )
+        inference_argv = [
+            "--challenges",
+            str(challenges),
+            "--arc-root",
+            str(arc_root),
+            "--model",
+            str(model),
+            "--adapter",
+            str(adapter),
+            "--arm",
+            "lora",
+            "--backend",
+            "hf",
+            "--model-id",
+            MODEL_ID,
+            "--model-revision",
+            MODEL_REVISION,
+            "--device",
+            "cuda",
+            "--dtype",
+            "float16",
+            "--peft-addition",
+            "standard",
+            "--max-new-tokens",
+            "96",
+            "--max-generation-seconds",
+            str(args.max_generation_seconds),
+            "--max-inference-seconds",
+            str(inference_seconds),
+            "--out",
+            str(submission),
+            "--receipt",
+            str(receipt),
+        ]
+        router = kaggle_submission.HfStrategyRouter.from_preloaded(
+            arc_root=arc_root,
+            model=training_session.model,
+            tokenizer=training_session.tokenizer,
+            torch=training_session.torch,
+            device="cuda",
+            dtype="float16",
+            max_new_tokens=96,
+            max_generation_seconds=args.max_generation_seconds,
+            adapter_name=adapter_name,
+        )
+        print(
+            json.dumps(
+                {
+                    "inference_router_ready": {
+                        "scope": scope,
+                        "adapter": adapter.name,
+                        "adapter_model_sha256": file_sha256(
+                            adapter / "adapter_model.safetensors"
+                        ),
+                        "base_model_reloaded": False,
+                    }
+                },
+                sort_keys=True,
+            ),
+            flush=True,
+        )
+        result = kaggle_submission.write_governed_submission(
+            kaggle_submission.parser().parse_args(inference_argv),
+            router=router,
+            progress_scope=f"{scope}-{adapter.name}",
+        )
+        if result != 0:
+            raise RuntimeError(
+                f"same-process inference failed for {scope}/{adapter.name}: status={result}"
+            )
         return submission, receipt
 
     visible = [generate("visible", visible_challenges, checkpoint) for checkpoint in checkpoints]
@@ -294,6 +407,9 @@ def run(args: argparse.Namespace) -> int:
         "competition_challenge_sha256": None,
         "network_disabled": True,
         "runtime_environment": runtime_environment,
+        "runtime_sources": {
+            filename: file_sha256(case_dir / filename) for filename in required_runtime_sources
+        },
         "label_blind_hidden_inference": passed,
         "visible_gate": {
             "passed": passed,
@@ -344,12 +460,16 @@ def run(args: argparse.Namespace) -> int:
 def parser() -> argparse.ArgumentParser:
     result = argparse.ArgumentParser(description=__doc__)
     result.add_argument("--bundle-root", type=Path, required=True)
+    result.add_argument("--runtime-case-dir", type=Path)
     result.add_argument("--competition-input-root", type=Path, default=Path("/kaggle/input"))
     result.add_argument("--work-dir", type=Path, default=Path("/kaggle/working/hfr_arcagi_route"))
     result.add_argument("--submission-out", type=Path, default=Path("/kaggle/working/submission.json"))
     result.add_argument("--learning-rate", type=float, default=1e-5)
     result.add_argument("--expected-visible-total", type=int, default=52)
     result.add_argument("--minimum-visible-passed", type=int, default=52)
+    result.add_argument("--max-generation-seconds", type=float, default=120.0)
+    result.add_argument("--visible-inference-seconds", type=float, default=3600.0)
+    result.add_argument("--hidden-inference-seconds", type=float, default=7200.0)
     return result
 
 
