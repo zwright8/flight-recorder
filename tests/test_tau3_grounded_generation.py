@@ -4,6 +4,7 @@ import copy
 import hashlib
 import json
 import os
+import subprocess
 import tempfile
 import unittest
 from datetime import date, datetime, time
@@ -3709,8 +3710,30 @@ class Tau3GroundedGenerationTests(unittest.TestCase):
                 }
                 return result
 
-        with tempfile.TemporaryDirectory() as temp:
+        project_root = Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory(dir=project_root) as temp:
             root = Path(temp)
+            tau_repo = root / "tau-repo"
+            tau_repo.mkdir()
+            (tau_repo / "README.md").write_text("test fixture\n", encoding="utf-8")
+            for command in (
+                ("init",),
+                ("config", "user.email", "test@example.com"),
+                ("config", "user.name", "Test"),
+                ("add", "README.md"),
+                ("commit", "-m", "fixture"),
+            ):
+                subprocess.run(
+                    ["git", "-C", str(tau_repo), *command],
+                    check=True,
+                    capture_output=True,
+                )
+            tau_revision = subprocess.run(
+                ["git", "-C", str(tau_repo), "rev-parse", "HEAD"],
+                check=True,
+                capture_output=True,
+                text=True,
+            ).stdout.strip()
             source = root / "source.jsonl"
             row = _scenario(split="train", domain="telecom", family_index=0, behavior="successful_completion")
             agent_state = copy.deepcopy(row["initial_state"])
@@ -3721,8 +3744,9 @@ class Tau3GroundedGenerationTests(unittest.TestCase):
             }
             row["initial_state"] = full_state
             row["source_family_id"] = canonical_sha256("synthetic-candidate-family")
-            row["tau_revision"] = "1d244f5dca42944b67a379b44bfeb9f5748f189d"
+            row["tau_revision"] = tau_revision
             row["runtime_family"] = "vendored_tau_tools@" + row["tau_revision"]
+            row["tau_repo"] = tau_repo.relative_to(project_root).as_posix()
             runtime = CandidateRuntime(full_state)
             row["system_prompt"] = runtime.system_prompt()
             row["tool_catalog"] = runtime.tool_catalog()
