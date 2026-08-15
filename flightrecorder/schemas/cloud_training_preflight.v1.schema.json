@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/cloud_training_preflight.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/cloud_training_preflight.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Fail-closed cloud training provider preflight.",
@@ -110,7 +110,7 @@
     "execution_boundary",
     "handoff_contract"
   ],
-  "title": "Hermes Flight Recorder Cloud Training Preflight",
+  "title": "Flight Recorder Cloud Training Preflight",
   "type": "object",
   "$defs": {
     "boundary": {

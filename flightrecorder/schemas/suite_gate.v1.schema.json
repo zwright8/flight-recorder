@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/suite_gate.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/suite_gate.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Gate result over a run-suite summary and optional suite-gate policy.",
@@ -37,7 +37,7 @@
     "checks",
     "metrics"
   ],
-  "title": "Hermes Flight Recorder Suite Gate",
+  "title": "Flight Recorder Suite Gate",
   "type": "object",
   "$defs": {
     "blocking_check": {

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_eval_promotion_evidence.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_eval_promotion_evidence.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Replayable three-arm held-out evaluation evidence with paired uncertainty, coverage, and non-regression gates.",
@@ -28,7 +28,7 @@
     "policy", "arms", "source_artifacts", "paired_observation_count", "pairing", "pool_coverage",
     "effects", "non_regression", "check_count", "failed_check_count", "checks", "blocking_reasons"
   ],
-  "title": "Hermes Flight Recorder Agentic Eval Promotion Evidence",
+  "title": "Flight Recorder Agentic Eval Promotion Evidence",
   "type": "object",
   "$defs": {
     "arm_summary": {

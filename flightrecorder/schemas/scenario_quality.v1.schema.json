@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/scenario_quality.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/scenario_quality.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Scenario contract quality summary emitted as scenario_quality.json.",
@@ -35,7 +35,7 @@
     "metrics",
     "scenarios"
   ],
-  "title": "Hermes Flight Recorder Scenario Quality",
+  "title": "Flight Recorder Scenario Quality",
   "type": "object",
   "$defs": {
     "check": {

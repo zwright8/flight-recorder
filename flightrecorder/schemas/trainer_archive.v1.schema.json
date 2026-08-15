@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/trainer_archive.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/trainer_archive.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Portable trainer handoff archive manifest with copied evidence artifact hashes.",
@@ -113,7 +113,7 @@
     "metrics",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Trainer Archive",
+  "title": "Flight Recorder Trainer Archive",
   "type": "object",
   "$defs": {
     "approvedCommand": {

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/dataset_splits.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/dataset_splits.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Deterministic train/validation/test split metadata for export-rl handoffs.",
@@ -82,7 +82,7 @@
     "leakage_checks",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Dataset Splits",
+  "title": "Flight Recorder Dataset Splits",
   "type": "object",
   "$defs": {
     "artifactCounts": {

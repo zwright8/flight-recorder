@@ -94,7 +94,7 @@ def _make_writer(hook: str):
 def write_event(hook: str, payload: dict[str, Any]) -> Path:
     """Append one observer event and return the output path."""
     output_dir = Path(
-        os.environ.get("HERMES_FLIGHT_RECORDER_OUTPUT_DIR", ".hfr-events")
+        os.environ.get("FLIGHT_RECORDER_OUTPUT_DIR", ".hfr-events")
     )
     output_dir.mkdir(parents=True, exist_ok=True)
     session_id = _safe_string(
@@ -451,7 +451,7 @@ def _append_mapping_sentinel(
 
 
 def _max_chars() -> int:
-    raw = os.environ.get("HERMES_FLIGHT_RECORDER_MAX_FIELD_CHARS", "12000")
+    raw = os.environ.get("FLIGHT_RECORDER_MAX_FIELD_CHARS", "12000")
     try:
         return max(100, int(raw))
     except ValueError:

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_lora_model_registry_link_plan.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_lora_model_registry_link_plan.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Side-effect-free model-registry lifecycle link plan for agentic LoRA training results.",
@@ -120,7 +120,7 @@
     "input_manifests",
     "handoff_contract"
   ],
-  "title": "Hermes Flight Recorder Agentic LoRA Model Registry Link Plan",
+  "title": "Flight Recorder Agentic LoRA Model Registry Link Plan",
   "type": "object",
   "$defs": {
     "check": {

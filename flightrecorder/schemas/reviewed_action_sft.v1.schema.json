@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/reviewed_action_sft.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/reviewed_action_sft.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Human-accepted native agent trajectory for action supervised fine-tuning.",
@@ -33,6 +33,6 @@
     "quality_gate",
     "source_artifact"
   ],
-  "title": "Hermes Flight Recorder Reviewed Action SFT",
+  "title": "Flight Recorder Reviewed Action SFT",
   "type": "object"
 }

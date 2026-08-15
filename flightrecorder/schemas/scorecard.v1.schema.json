@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/scorecard.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/scorecard.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Deterministic scorecard emitted as scorecard.json.",
@@ -58,7 +58,7 @@
     "rules",
     "summary"
   ],
-  "title": "Hermes Flight Recorder Scorecard",
+  "title": "Flight Recorder Scorecard",
   "type": "object",
   "$defs": {
     "evidenceRef": {

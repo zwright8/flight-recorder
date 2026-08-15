@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/tool_capability_selection.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/tool_capability_selection.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Governed deterministic decision describing exactly which tool definitions may be exposed for a trusted task contract.",
@@ -77,6 +77,6 @@
       "type": "object"
     }
   },
-  "title": "Hermes Flight Recorder Tool Capability Selection",
+  "title": "Flight Recorder Tool Capability Selection",
   "type": "object"
 }

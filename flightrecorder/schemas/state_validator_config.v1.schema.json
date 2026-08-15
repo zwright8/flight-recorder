@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://schemas.hermes-flight-recorder.dev/state_validator_config.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/state_validator_config.v1.schema.json",
   "title": "Flight Recorder State Validator Config",
   "type": "object",
   "additionalProperties": true,

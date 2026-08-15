@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_lora_smoke_fixture.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_lora_smoke_fixture.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Registered tiny fixture manifest emitted by scripts/train_agentic_lora.py for no-download dry-run smoke checks.",
@@ -93,6 +93,6 @@
     "recommended_commands",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Agentic LoRA Smoke Fixture",
+  "title": "Flight Recorder Agentic LoRA Smoke Fixture",
   "type": "object"
 }

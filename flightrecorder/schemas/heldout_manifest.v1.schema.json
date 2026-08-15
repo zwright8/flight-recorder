@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/heldout_manifest.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/heldout_manifest.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Held-out scenario manifest proving replayed scenario-ID and content-fingerprint readiness for eval and external-adapter handoffs.",
@@ -83,7 +83,7 @@
     "blocking_reasons",
     "governance_handoff"
   ],
-  "title": "Hermes Flight Recorder Held-Out Manifest",
+  "title": "Flight Recorder Held-Out Manifest",
   "type": "object",
   "$defs": {
     "source": {

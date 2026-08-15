@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/tau3_candidate_selection.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/tau3_candidate_selection.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Private governed Tau-3 development candidate-selection report.",

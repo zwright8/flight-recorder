@@ -1920,7 +1920,7 @@ class EvidenceBundleTests(unittest.TestCase):
             bundle["metrics"]["trainer_handoff"]["stages"][0]["path"] = f"{absolute_root}/trainer_preflight.json"
             bundle["metrics"]["live_smoke_summary"] = {
                 "hermes_root": f"{absolute_root}/hermes-agent",
-                "flight_recorder_root": f"{absolute_root}/hermes-flight-recorder",
+                "flight_recorder_root": f"{absolute_root}/flight-recorder",
             }
             gate_path_value = f"{absolute_root}/gate.json"
             blocking_gates = [{"id": "forged_gate", "path": gate_path_value}]

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/run_digest.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/run_digest.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Compact per-run evidence digest emitted as run_digest.json.",
@@ -46,7 +46,7 @@
     "training_signals",
     "recommended_actions"
   ],
-  "title": "Hermes Flight Recorder Run Digest",
+  "title": "Flight Recorder Run Digest",
   "type": "object",
   "$defs": {
     "evidence": {

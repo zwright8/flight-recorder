@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/task_completion.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/task_completion.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Task-completion verdict embedded in scorecards and emitted as task_completion.json.",
@@ -72,7 +72,7 @@
     "checks",
     "summary"
   ],
-  "title": "Hermes Flight Recorder Task Completion",
+  "title": "Flight Recorder Task Completion",
   "type": "object",
   "$defs": {
     "check": {

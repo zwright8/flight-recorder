@@ -1,4 +1,4 @@
-"""Command line interface for Hermes Flight Recorder."""
+"""Command line interface for Flight Recorder."""
 
 from __future__ import annotations
 
@@ -8519,9 +8519,9 @@ def _audit_runs(runs_dir: Path, forbidden_text: list[str]) -> dict[str, Any]:
     }
 
 
-OBSERVER_TEMPLATE = '''"""Read-only Hermes Flight Recorder observer plugin.
+OBSERVER_TEMPLATE = '''"""Read-only Flight Recorder observer plugin.
 
-Install `hermes-flight-recorder`, set HERMES_FLIGHT_RECORDER_OUTPUT_DIR to a
+Install `flight-recorder`, set FLIGHT_RECORDER_OUTPUT_DIR to a
 restricted directory, then load this plugin through Hermes' plugin mechanism.
 The collector records observer-hook JSONL only; it does not block or mutate
 Hermes tools, prompts, memory, or model requests.

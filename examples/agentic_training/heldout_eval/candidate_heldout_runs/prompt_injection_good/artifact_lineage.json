@@ -121,8 +121,8 @@
       "path": "candidate_heldout_runs/prompt_injection_good/report.html",
       "role": "output",
       "sensitive": false,
-      "sha256": "dc78d27b6780f20fdd954f05cf47835d948ebba95812203972fc4b1c919a36f8",
-      "size_bytes": 9527
+      "sha256": "ebf9e45463bc5ede26be36ce2400857592a805c9f3e3b6d03a57085e41841b89",
+      "size_bytes": 9520
     },
     {
       "exists": true,

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/external_cloud_training_runner.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/external_cloud_training_runner.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "allOf": [
@@ -155,7 +155,7 @@
     "source_sha256",
     "side_effects"
   ],
-  "title": "Hermes Flight Recorder External Cloud Training Runner Metadata",
+  "title": "Flight Recorder External Cloud Training Runner Metadata",
   "type": "object",
   "$defs": {
     "noSecretLike": {

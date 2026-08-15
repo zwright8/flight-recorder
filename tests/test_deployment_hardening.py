@@ -106,15 +106,15 @@ class DeploymentHardeningTests(unittest.TestCase):
     def test_pyproject_exposes_console_scripts(self):
         pyproject = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
 
-        self.assertEqual(pyproject["project"]["name"], "hermes-flight-recorder")
+        self.assertEqual(pyproject["project"]["name"], "flight-recorder")
         scripts = pyproject["project"]["scripts"]
         self.assertEqual(scripts["flightrecorder"], "flightrecorder.cli:main")
-        self.assertEqual(scripts["hermes-flight-recorder"], "flightrecorder.cli:main")
+        self.assertEqual(scripts["flight-recorder"], "flightrecorder.cli:main")
         self.assertEqual(scripts["hermes-harness"], "flightrecorder.harness:main")
 
     def test_live_smoke_script_help_exposes_explicit_path_modes(self):
         scripts = [
-            ("live_hermes_smoke.py", "live Hermes Flight Recorder observer smoke test"),
+            ("live_hermes_smoke.py", "live Flight Recorder observer smoke test"),
             ("live_openclaw_smoke.py", "live OpenClaw Flight Recorder smoke test"),
             ("live_coven_smoke.py", "live Coven Flight Recorder smoke test"),
         ]
@@ -479,7 +479,7 @@ class DeploymentHardeningTests(unittest.TestCase):
     def test_scenario_schema_is_valid_json(self):
         schema = json.loads((ROOT / "scenario.schema.json").read_text(encoding="utf-8"))
 
-        self.assertEqual(schema["title"], "Hermes Flight Recorder Scenario")
+        self.assertEqual(schema["title"], "Flight Recorder Scenario")
         self.assertIn("policy", schema["properties"])
 
     def test_normalize_command_redacts_by_default(self):
@@ -510,8 +510,8 @@ class DeploymentHardeningTests(unittest.TestCase):
                 self.hooks[name] = fn
 
         with tempfile.TemporaryDirectory() as tmp:
-            previous = os.environ.get("HERMES_FLIGHT_RECORDER_OUTPUT_DIR")
-            os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
+            previous = os.environ.get("FLIGHT_RECORDER_OUTPUT_DIR")
+            os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
             try:
                 ctx = FakeContext()
                 register(ctx)
@@ -528,9 +528,9 @@ class DeploymentHardeningTests(unittest.TestCase):
                 self.assertEqual(row["payload"]["tool_name"], "terminal")
             finally:
                 if previous is None:
-                    os.environ.pop("HERMES_FLIGHT_RECORDER_OUTPUT_DIR", None)
+                    os.environ.pop("FLIGHT_RECORDER_OUTPUT_DIR", None)
                 else:
-                    os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = previous
+                    os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = previous
 
     def test_hermes_observer_collector_registration_is_fail_open(self):
         class FlakyContext:
@@ -550,28 +550,28 @@ class DeploymentHardeningTests(unittest.TestCase):
 
     def test_write_event_bounds_large_fields(self):
         with tempfile.TemporaryDirectory() as tmp:
-            previous_dir = os.environ.get("HERMES_FLIGHT_RECORDER_OUTPUT_DIR")
-            previous_max = os.environ.get("HERMES_FLIGHT_RECORDER_MAX_FIELD_CHARS")
-            os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
-            os.environ["HERMES_FLIGHT_RECORDER_MAX_FIELD_CHARS"] = "100"
+            previous_dir = os.environ.get("FLIGHT_RECORDER_OUTPUT_DIR")
+            previous_max = os.environ.get("FLIGHT_RECORDER_MAX_FIELD_CHARS")
+            os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
+            os.environ["FLIGHT_RECORDER_MAX_FIELD_CHARS"] = "100"
             try:
                 path = write_event("post_llm_call", {"session_id": "session-1", "assistant_response": "x" * 200})
                 row = json.loads(path.read_text(encoding="utf-8"))
                 self.assertIn("[truncated]", row["payload"]["assistant_response"])
             finally:
                 if previous_dir is None:
-                    os.environ.pop("HERMES_FLIGHT_RECORDER_OUTPUT_DIR", None)
+                    os.environ.pop("FLIGHT_RECORDER_OUTPUT_DIR", None)
                 else:
-                    os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = previous_dir
+                    os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = previous_dir
                 if previous_max is None:
-                    os.environ.pop("HERMES_FLIGHT_RECORDER_MAX_FIELD_CHARS", None)
+                    os.environ.pop("FLIGHT_RECORDER_MAX_FIELD_CHARS", None)
                 else:
-                    os.environ["HERMES_FLIGHT_RECORDER_MAX_FIELD_CHARS"] = previous_max
+                    os.environ["FLIGHT_RECORDER_MAX_FIELD_CHARS"] = previous_max
 
     def test_write_event_redacts_structural_and_embedded_secrets_before_disk(self):
         with tempfile.TemporaryDirectory() as tmp:
-            previous = os.environ.get("HERMES_FLIGHT_RECORDER_OUTPUT_DIR")
-            os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
+            previous = os.environ.get("FLIGHT_RECORDER_OUTPUT_DIR")
+            os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
             structural_secret = "observer-structural-private-value"
             command_secret = "observer-command-private-value"
             flag_secret = "observer-flag-private-value"
@@ -614,14 +614,14 @@ class DeploymentHardeningTests(unittest.TestCase):
                 )
             finally:
                 if previous is None:
-                    os.environ.pop("HERMES_FLIGHT_RECORDER_OUTPUT_DIR", None)
+                    os.environ.pop("FLIGHT_RECORDER_OUTPUT_DIR", None)
                 else:
-                    os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = previous
+                    os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = previous
 
     def test_write_event_redacts_tokenized_command_sequences_before_disk(self):
         with tempfile.TemporaryDirectory() as tmp:
-            previous = os.environ.get("HERMES_FLIGHT_RECORDER_OUTPUT_DIR")
-            os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
+            previous = os.environ.get("FLIGHT_RECORDER_OUTPUT_DIR")
+            os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
             argv_secret = "observer-argv-private-value"
             nested_secret = "observer-nested-argv-private-value"
             command_argv_secret = "observer-command-argv-private-value"
@@ -716,14 +716,14 @@ class DeploymentHardeningTests(unittest.TestCase):
                 )
             finally:
                 if previous is None:
-                    os.environ.pop("HERMES_FLIGHT_RECORDER_OUTPUT_DIR", None)
+                    os.environ.pop("FLIGHT_RECORDER_OUTPUT_DIR", None)
                 else:
-                    os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = previous
+                    os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = previous
 
     def test_write_event_redacts_structural_header_and_parameter_pairs_before_disk(self):
         with tempfile.TemporaryDirectory() as tmp:
-            previous = os.environ.get("HERMES_FLIGHT_RECORDER_OUTPUT_DIR")
-            os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
+            previous = os.environ.get("FLIGHT_RECORDER_OUTPUT_DIR")
+            os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
             header_secret = "observer-header-private-value"
             named_header_secret = "observer-named-header-private-value"
             parameter_secret = "observer-parameter-private-value"
@@ -796,14 +796,14 @@ class DeploymentHardeningTests(unittest.TestCase):
                 )
             finally:
                 if previous is None:
-                    os.environ.pop("HERMES_FLIGHT_RECORDER_OUTPUT_DIR", None)
+                    os.environ.pop("FLIGHT_RECORDER_OUTPUT_DIR", None)
                 else:
-                    os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = previous
+                    os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = previous
 
     def test_write_event_preserves_a_bounded_partial_payload_for_adversarial_collections(self):
         with tempfile.TemporaryDirectory() as tmp:
-            previous = os.environ.get("HERMES_FLIGHT_RECORDER_OUTPUT_DIR")
-            os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
+            previous = os.environ.get("FLIGHT_RECORDER_OUTPUT_DIR")
+            os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
             try:
                 payload: dict[str, object] = {"session_id": "session-bounds"}
                 payload["cycle"] = payload
@@ -834,14 +834,14 @@ class DeploymentHardeningTests(unittest.TestCase):
                 self.assertLess(len(path.read_bytes()), 1_100_000)
             finally:
                 if previous is None:
-                    os.environ.pop("HERMES_FLIGHT_RECORDER_OUTPUT_DIR", None)
+                    os.environ.pop("FLIGHT_RECORDER_OUTPUT_DIR", None)
                 else:
-                    os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = previous
+                    os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = previous
 
     def test_write_event_uses_stable_collision_resistant_session_paths(self):
         with tempfile.TemporaryDirectory() as tmp:
-            previous = os.environ.get("HERMES_FLIGHT_RECORDER_OUTPUT_DIR")
-            os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
+            previous = os.environ.get("FLIGHT_RECORDER_OUTPUT_DIR")
+            os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = tmp
             try:
                 slash_path = write_event("on_session_start", {"session_id": "tenant/a"})
                 question_path = write_event("on_session_start", {"session_id": "tenant?a"})
@@ -858,9 +858,9 @@ class DeploymentHardeningTests(unittest.TestCase):
                 self.assertEqual(len(question_path.read_text(encoding="utf-8").splitlines()), 1)
             finally:
                 if previous is None:
-                    os.environ.pop("HERMES_FLIGHT_RECORDER_OUTPUT_DIR", None)
+                    os.environ.pop("FLIGHT_RECORDER_OUTPUT_DIR", None)
                 else:
-                    os.environ["HERMES_FLIGHT_RECORDER_OUTPUT_DIR"] = previous
+                    os.environ["FLIGHT_RECORDER_OUTPUT_DIR"] = previous
 
 
 if __name__ == "__main__":

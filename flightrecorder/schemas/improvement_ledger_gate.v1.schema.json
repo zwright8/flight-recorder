@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/improvement_ledger_gate.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/improvement_ledger_gate.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Policy gate over concrete improvement-ledger repair pressure.",
@@ -88,7 +88,7 @@
     "checks",
     "metrics"
   ],
-  "title": "Hermes Flight Recorder Improvement Ledger Gate",
+  "title": "Flight Recorder Improvement Ledger Gate",
   "type": "object",
   "$defs": {
     "blocking_check": {

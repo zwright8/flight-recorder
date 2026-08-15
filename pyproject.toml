@@ -3,13 +3,13 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hermes-flight-recorder"
+name = "flight-recorder"
 version = "0.2.0"
 description = "Adversarial eval harness and static flight-recorder reports for Hermes Agent runs"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "Hermes Flight Recorder Contributors" }]
+authors = [{ name = "Flight Recorder Contributors" }]
 keywords = ["hermes", "agents", "evals", "observability", "security"]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -30,7 +30,7 @@ yaml = ["PyYAML>=6,<7"]
 
 [project.scripts]
 flightrecorder = "flightrecorder.cli:main"
-hermes-flight-recorder = "flightrecorder.cli:main"
+flight-recorder = "flightrecorder.cli:main"
 hermes-harness = "flightrecorder.harness:main"
 
 [tool.setuptools.packages.find]

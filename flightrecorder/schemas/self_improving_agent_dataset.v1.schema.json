@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/self_improving_agent_dataset.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/self_improving_agent_dataset.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Content-addressed train, development, and frozen held-out corpus manifest for a self-improving agent proof.",
@@ -23,7 +23,7 @@
     "dataset_sha256", "train", "development", "heldout", "evaluation", "contamination_audit",
     "frozen_heldout_manifest"
   ],
-  "title": "Hermes Flight Recorder Self-Improving Agent Dataset Manifest",
+  "title": "Flight Recorder Self-Improving Agent Dataset Manifest",
   "type": "object",
   "$defs": {
     "audit_ref": {

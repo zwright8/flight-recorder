@@ -200,7 +200,7 @@ def train(args: argparse.Namespace) -> dict[str, Any]:
             raise ValueError("--push-to-hub requires --hub-model-id")
         commit = trainer.model.push_to_hub(
             args.hub_model_id,
-            commit_message="Publish statistically evaluated Hermes Flight Recorder LoRA candidate",
+            commit_message="Publish statistically evaluated Flight Recorder LoRA candidate",
             private=args.private,
         )
         tokenizer.push_to_hub(args.hub_model_id, private=args.private)
@@ -275,7 +275,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--save-steps", type=int, default=25)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--limit", type=int, default=0)
-    parser.add_argument("--trackio-project", default="hermes-flightrecorder-self-improving-proof")
+    parser.add_argument("--trackio-project", default="flight-recorder-self-improving-proof")
     parser.add_argument("--trackio-space-id", default="")
     parser.add_argument("--run-name", default="qwen3-0.6b-hfr-self-improving-proof-v1")
     parser.add_argument("--disable-trackio", action="store_true")

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/action_ledger.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/action_ledger.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Longitudinal ledger over evidence-bundle next actions emitted as action_ledger.json.",
@@ -36,7 +36,7 @@
     "entries",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Action Ledger",
+  "title": "Flight Recorder Action Ledger",
   "type": "object",
   "$defs": {
     "bundle": {

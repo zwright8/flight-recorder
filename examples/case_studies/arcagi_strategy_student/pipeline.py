@@ -817,7 +817,7 @@ def generate(args: argparse.Namespace) -> int:
             ]
         )
         if code != 0:
-            raise RuntimeError(f"Hermes Flight Recorder rejected {row['episode_id']} with exit code {code}")
+            raise RuntimeError(f"Flight Recorder rejected {row['episode_id']} with exit code {code}")
         if index % 100 == 0:
             print(f"recorded {index}/{len(examples)} validated trajectories", flush=True)
 
@@ -836,7 +836,7 @@ def generate(args: argparse.Namespace) -> int:
         ]
     )
     if code != 0:
-        raise RuntimeError(f"Hermes Flight Recorder export failed with exit code {code}")
+        raise RuntimeError(f"Flight Recorder export failed with exit code {code}")
     validation_path = out / "hfr_validation.json"
     code = run_hfr(
         [
@@ -851,7 +851,7 @@ def generate(args: argparse.Namespace) -> int:
     )
     validation = json.loads(validation_path.read_text(encoding="utf-8"))
     if code != 0 or validation.get("passed") is not True:
-        raise RuntimeError(f"Hermes Flight Recorder validation failed: {validation}")
+        raise RuntimeError(f"Flight Recorder validation failed: {validation}")
     student_manifest = derive_student_data(out, examples)
     manifest = {
         "schema_version": SCHEMA_VERSION,

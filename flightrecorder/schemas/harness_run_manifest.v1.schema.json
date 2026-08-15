@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/harness_run_manifest.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/harness_run_manifest.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Common harness-run manifest emitted before mock or live scenario execution.",
@@ -114,6 +114,6 @@
     }
   },
   "required": ["schema_version", "runner", "provider", "model", "scenario", "outputs", "sandbox", "tool_policy"],
-  "title": "Hermes Flight Recorder Harness Run Manifest",
+  "title": "Flight Recorder Harness Run Manifest",
   "type": "object"
 }

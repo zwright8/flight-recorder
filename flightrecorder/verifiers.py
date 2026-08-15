@@ -783,7 +783,7 @@ def _capture_github_issue_source(source: dict[str, Any]) -> dict[str, Any]:
     timeout = _positive_float(source.get("timeout_seconds", DEFAULT_HTTP_TIMEOUT_SECONDS), "timeout_seconds")
     headers = {
         "Accept": "application/vnd.github+json",
-        "User-Agent": "hermes-flight-recorder",
+        "User-Agent": "flight-recorder",
         "X-GitHub-Api-Version": "2022-11-28",
     }
     token = _optional_env(source.get("token_env"))
@@ -827,7 +827,7 @@ def _capture_gmail_threads_source(source: dict[str, Any]) -> dict[str, Any]:
     headers = {
         "Accept": "application/json",
         "Authorization": f"Bearer {token}",
-        "User-Agent": "hermes-flight-recorder",
+        "User-Agent": "flight-recorder",
     }
     requested_format = str(source.get("format") or "metadata")
     include_body = bool(source.get("include_body", requested_format == "full"))
@@ -1057,7 +1057,7 @@ def _message_matches_all(message: dict[str, Any], needles: list[str]) -> bool:
 
 
 def _headers_from_source(source: dict[str, Any]) -> dict[str, str]:
-    headers = {"Accept": "application/json", "User-Agent": "hermes-flight-recorder"}
+    headers = {"Accept": "application/json", "User-Agent": "flight-recorder"}
     raw_headers = source.get("headers") or {}
     if not isinstance(raw_headers, dict):
         raise VerifierError("HTTP headers must be an object")

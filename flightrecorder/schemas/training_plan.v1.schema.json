@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/training_plan.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/training_plan.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Dry-run model training plan written before downloads, heavy ML imports, or GPU work.",
@@ -52,6 +52,6 @@
     "checks",
     "blocked_reasons"
   ],
-  "title": "Hermes Flight Recorder Training Plan",
+  "title": "Flight Recorder Training Plan",
   "type": "object"
 }

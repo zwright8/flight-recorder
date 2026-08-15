@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/openclaw_event.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/openclaw_event.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Raw OpenClaw hook row emitted by the read-only Flight Recorder OpenClaw plugin.",

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/cloud_training_artifact_manifest.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/cloud_training_artifact_manifest.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Upload and expected-download manifest for cloud training handoffs.",
@@ -82,7 +82,7 @@
     "transfer_plan",
     "execution_boundary"
   ],
-  "title": "Hermes Flight Recorder Cloud Training Artifact Manifest",
+  "title": "Flight Recorder Cloud Training Artifact Manifest",
   "type": "object",
   "$defs": {
     "adapterContract": {

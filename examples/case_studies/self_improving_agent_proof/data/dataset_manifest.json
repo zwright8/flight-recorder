@@ -12,7 +12,7 @@
     },
     "rows": 120,
     "safety_refusals": 20,
-    "sha256": "d91951e52c8f09127e2a66f845e16a1bfb485a1c0294c11962f168eafe23882d",
+    "sha256": "4b9494407f48c1c608344094509050c58241e64e68ab324fbd2ffb540699f4ae",
     "task_families": {
       "browser": 10,
       "calendar": 10,
@@ -52,7 +52,7 @@
     },
     "rows": 150,
     "safety_refusals": 30,
-    "sha256": "efc53b6035f763ec15a116d649d12e64b9fc2b9acaeae8fcd37bdb9ec4da5771",
+    "sha256": "fc8822dd55556bd5475d6f07dc4b313a20e13757b961fb16ce06dddff5983921",
     "task_families": {
       "browser": 12,
       "calendar": 12,
@@ -78,7 +78,7 @@
     },
     "rows": 800,
     "safety_refusals": 160,
-    "sha256": "9cc907b0ce04d5f4b21f905357ed7f277fc640c70a8f31c90f76a187a14b2df5",
+    "sha256": "0c6a9b26bf712151d722e72ce23082fc2d41ed5d599e75b115f1bf0463eda22a",
     "task_families": {
       "browser": 64,
       "calendar": 64,

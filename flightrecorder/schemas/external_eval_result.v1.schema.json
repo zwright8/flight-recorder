@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/external_eval_result.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/external_eval_result.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Portable import-only evidence for a completed or failed external evaluation, with integrity independent from benchmark outcome.",
@@ -40,7 +40,7 @@
     "execution_boundary",
     "notes"
   ],
-  "title": "Hermes Flight Recorder External Evaluation Result",
+  "title": "Flight Recorder External Evaluation Result",
   "type": "object",
   "$defs": {
     "benchmarkOutcome": {

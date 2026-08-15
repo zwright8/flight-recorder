@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_training_flow.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_training_flow.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Fail-closed delegated trainer-flow receipt for executable SFT, action-SFT, and DPO handoffs.",
@@ -56,7 +56,7 @@
     "handoff_contract",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Agentic Training Flow",
+  "title": "Flight Recorder Agentic Training Flow",
   "type": "object",
   "$defs": {
     "check": {

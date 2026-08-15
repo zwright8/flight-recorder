@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/compare_gate.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/compare_gate.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Gate result over comparison-export improvement movement and optional compare-gate policy.",
@@ -27,7 +27,7 @@
     "checks",
     "metrics"
   ],
-  "title": "Hermes Flight Recorder Compare Gate",
+  "title": "Flight Recorder Compare Gate",
   "type": "object",
   "$defs": {
     "check": {

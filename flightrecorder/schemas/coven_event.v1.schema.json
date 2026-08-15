@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/coven_event.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/coven_event.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Raw Coven stream-json frame, daemon/API event row, or Flight Recorder-wrapped Coven row.",

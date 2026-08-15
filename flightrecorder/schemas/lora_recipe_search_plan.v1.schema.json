@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/lora_recipe_search_plan.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/lora_recipe_search_plan.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Immutable development-only guardrails for bounded autonomous LoRA recipe search.",
@@ -32,7 +32,7 @@
     "base_recipe", "base_recipe_sha256", "mutable_fields", "selection_policy", "budget",
     "execution_boundary"
   ],
-  "title": "Hermes Flight Recorder LoRA Recipe Search Plan",
+  "title": "Flight Recorder LoRA Recipe Search Plan",
   "type": "object",
   "$defs": {
     "budget": {

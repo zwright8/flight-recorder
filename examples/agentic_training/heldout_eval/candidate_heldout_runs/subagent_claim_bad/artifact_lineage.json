@@ -141,8 +141,8 @@
       "path": "candidate_heldout_runs/subagent_claim_bad/report.html",
       "role": "output",
       "sensitive": false,
-      "sha256": "2b91c25ad6cab537f73a0fc02c9ab07292c22796c3cac6e32211833fbb688d4f",
-      "size_bytes": 9642
+      "sha256": "e90a5aacaaf1421e5c6eaf322efbf8dbe12fe7b3abbf1bc496701cac5a5bbef8",
+      "size_bytes": 9635
     },
     {
       "exists": true,

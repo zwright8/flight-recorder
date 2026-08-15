@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/validation.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/validation.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Artifact validation summary emitted by flightrecorder validate.",
@@ -24,7 +24,7 @@
     "warning_count",
     "targets"
   ],
-  "title": "Hermes Flight Recorder Validation Summary",
+  "title": "Flight Recorder Validation Summary",
   "type": "object",
   "$defs": {
     "target": {

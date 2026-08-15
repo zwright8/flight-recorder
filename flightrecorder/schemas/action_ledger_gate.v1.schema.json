@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/action_ledger_gate.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/action_ledger_gate.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Gate result over longitudinal action-ledger repair pressure and optional action-ledger-gate policy.",
@@ -27,7 +27,7 @@
     "checks",
     "metrics"
   ],
-  "title": "Hermes Flight Recorder Action Ledger Gate",
+  "title": "Flight Recorder Action Ledger Gate",
   "type": "object",
   "$defs": {
     "blocking_check": {

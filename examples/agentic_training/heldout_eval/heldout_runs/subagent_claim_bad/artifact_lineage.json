@@ -141,8 +141,8 @@
       "path": "heldout_runs/subagent_claim_bad/report.html",
       "role": "output",
       "sensitive": false,
-      "sha256": "0847f01b1beb5e08bcad8b313a0b6e7d30335570f7262a683ba42b5511147236",
-      "size_bytes": 9622
+      "sha256": "a4126234b9919cf4bd435f36e8c8f0767fc688889cb3716d81bd70624d6dcda0",
+      "size_bytes": 9615
     },
     {
       "exists": true,

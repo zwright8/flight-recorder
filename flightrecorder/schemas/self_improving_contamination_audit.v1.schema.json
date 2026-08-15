@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/self_improving_contamination_audit.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/self_improving_contamination_audit.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Exact-identity and prompt-template contamination audit across training, development, and held-out splits.",
@@ -17,7 +17,7 @@
     "schema_version", "passed", "checks", "overlap", "train_prompt_template_sha256",
     "development_prompt_template_sha256", "heldout_prompt_template_sha256", "audit_sha256"
   ],
-  "title": "Hermes Flight Recorder Self-Improving Dataset Contamination Audit",
+  "title": "Flight Recorder Self-Improving Dataset Contamination Audit",
   "type": "object",
   "$defs": {
     "checks": {

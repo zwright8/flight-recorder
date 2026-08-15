@@ -107,8 +107,8 @@
       "path": "evidence_handoff/prompt_injection_good/report.html",
       "role": "output",
       "sensitive": false,
-      "sha256": "30be1c5ad2a9be7071eabcb1d860468ab72dbd41ab4d9c608926891d3a24c56e",
-      "size_bytes": 9544
+      "sha256": "067692ad058521836fb88d8e712f697ce41765356a6a0822d30297b41585dceb",
+      "size_bytes": 9537
     }
   ],
   "replay": {

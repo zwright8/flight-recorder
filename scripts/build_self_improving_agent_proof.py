@@ -164,7 +164,7 @@ def _governance(subject_id: str) -> dict[str, Any]:
         "jurisdiction": "US",
         "legal_basis": "synthetic_public_fixture",
         "license": "Apache-2.0-synthetic-fixture",
-        "owner": "hermes-flight-recorder",
+        "owner": "flight-recorder",
         "provenance": {"source": "deterministic_synthetic_generator", "source_revision": FIXTURE_VERSION},
         "retention_expires_at": "2036-01-01T00:00:00+00:00",
         "sensitivity": "public-synthetic",

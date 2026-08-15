@@ -13,7 +13,7 @@ For the recommended daily supervisor and email reporting pattern, see
 For copy-pasteable 24/7 worker prompts, see
 `docs/agentic-finetune-24-7-goals.md`.
 
-The goals assume `hermes-flight-recorder` is the evidence nucleus. Each layer
+The goals assume `flight-recorder` is the evidence nucleus. Each layer
 should produce durable artifacts, tests, and verification evidence rather than
 only a prose plan.
 
@@ -191,7 +191,7 @@ evidence.
 ```text
 Build the Evidence layer for the agentic fine-tuning platform.
 
-Work inside hermes-flight-recorder. Treat Flight Recorder as the deterministic
+Work inside flight-recorder. Treat Flight Recorder as the deterministic
 artifact authority. Inspect existing trace normalization, scorecard, evidence
 bundle, validation, and gate code first. Then implement the smallest set of
 changes needed so a fresh run suite can produce a complete, validated evidence
@@ -261,7 +261,7 @@ replay results for scoring and debugging.
 ```text
 Build the Harness layer for the agentic fine-tuning platform.
 
-Work inside hermes-flight-recorder and inspect existing live Hermes smoke,
+Work inside flight-recorder and inspect existing live Hermes smoke,
 held-out evaluation, and harness helper scripts first. Create a common harness
 run manifest and the minimal runner interface needed for run_scenario,
 run_suite, probe_model, and replay_trace.
@@ -326,7 +326,7 @@ and future RL.
 ```text
 Build the Data layer for the agentic fine-tuning platform.
 
-Work inside hermes-flight-recorder. Inspect existing training export,
+Work inside flight-recorder. Inspect existing training export,
 reviewed export, dataset metrics, dataset split, redaction, and experiment
 bundle code first. Implement the smallest durable dataset registry that records
 dataset versions, source artifact hashes, split metadata, label provenance,
@@ -397,7 +397,7 @@ entries for candidates, champions, and rollback targets.
 ```text
 Build the Model layer for the agentic fine-tuning platform.
 
-Work inside hermes-flight-recorder. Create a local model registry and model
+Work inside flight-recorder. Create a local model registry and model
 candidate format that records model id, source, license status, accepted terms,
 context length, tokenizer/chat template notes, serving compatibility,
 tool-calling/structured-output support, quantization options, memory notes, and
@@ -472,7 +472,7 @@ datasets, starting with dry-run and smoke training before expensive jobs.
 ```text
 Build the Training layer for the agentic fine-tuning platform.
 
-Work inside hermes-flight-recorder. Inspect the existing experiment bundle and
+Work inside flight-recorder. Inspect the existing experiment bundle and
 train_agentic_lora.py first. Refactor or extend the training path so it consumes
 registered model candidates and registered dataset versions, writes a complete
 training plan in dry-run mode, and archives a training result after success or
@@ -545,7 +545,7 @@ comparison-ready summaries for promotion gates.
 ```text
 Build the Eval layer for the agentic fine-tuning platform.
 
-Work inside hermes-flight-recorder. Inspect the existing held-out evaluator,
+Work inside flight-recorder. Inspect the existing held-out evaluator,
 promotion comparison, live smoke, and scenario/gate code first. Create eval
 plan and eval summary artifacts that can compare baseline, trace-only,
 champion, and candidate models on identical held-out scenarios.
@@ -612,7 +612,7 @@ behavior.
 ```text
 Build the Serving and Demo layer for the agentic fine-tuning platform.
 
-Work inside hermes-flight-recorder. Inspect the existing
+Work inside flight-recorder. Inspect the existing
 serve_transformers_openai.py, held-out evaluator, and report/replay artifacts
 first. Define serving profile and demo run artifacts. Extend the local serving
 path so eval loops can reliably identify base models and adapters, check
@@ -959,7 +959,7 @@ card, and dataset card decisions.
 ```text
 Build the Governance layer for the agentic fine-tuning platform.
 
-Work inside hermes-flight-recorder. Inspect existing promotion comparison,
+Work inside flight-recorder. Inspect existing promotion comparison,
 gate-decision, promotion ledger, action ledger, trainer handoff, and dataset
 card code first. Create a top-level promotion policy and promotion decision
 artifact that consumes evidence bundles, dataset registry entries, model

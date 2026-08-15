@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_lora_training_result.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_lora_training_result.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "allOf": [
     {
@@ -112,7 +112,7 @@
     "dpo_train_result",
     "failure"
   ],
-  "title": "Hermes Flight Recorder Agentic LoRA Training Result",
+  "title": "Flight Recorder Agentic LoRA Training Result",
   "type": "object",
   "$defs": {
     "adapter_artifacts": {

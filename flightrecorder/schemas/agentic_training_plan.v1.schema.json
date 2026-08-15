@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_training_plan.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_training_plan.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Registry-backed dry-run plan for agentic fine-tuning modes.",
@@ -140,7 +140,7 @@
       ]
     }
   ],
-  "title": "Hermes Flight Recorder Agentic Training Plan",
+  "title": "Flight Recorder Agentic Training Plan",
   "type": "object",
   "$defs": {
     "check": {

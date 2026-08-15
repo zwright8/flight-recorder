@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/improvement_ledger.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/improvement_ledger.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Longitudinal ledger over concrete improvement-plan work items.",
@@ -155,7 +155,7 @@
     "entries",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Improvement Ledger",
+  "title": "Flight Recorder Improvement Ledger",
   "type": "object",
   "$defs": {
     "entry": {

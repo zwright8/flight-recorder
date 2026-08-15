@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/eval_summary.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/eval_summary.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Governance-facing held-out evaluation summary across suite, comparison, gate, and external-adapter artifacts.",
@@ -62,7 +62,7 @@
     "risks",
     "conclusion"
   ],
-  "title": "Hermes Flight Recorder Eval Summary",
+  "title": "Flight Recorder Eval Summary",
   "type": "object",
   "$defs": {
     "arm": {

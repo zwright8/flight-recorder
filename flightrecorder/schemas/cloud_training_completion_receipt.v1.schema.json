@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/cloud_training_completion_receipt.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/cloud_training_completion_receipt.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
@@ -53,7 +53,7 @@
     "execution_boundary",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Imported Cloud Training Completion Receipt",
+  "title": "Flight Recorder Imported Cloud Training Completion Receipt",
   "type": "object",
   "$defs": {
     "check": {

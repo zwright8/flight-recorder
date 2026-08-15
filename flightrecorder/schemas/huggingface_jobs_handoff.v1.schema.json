@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/huggingface_jobs_handoff.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/huggingface_jobs_handoff.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Inert reviewed-plan Hugging Face Jobs handoff with immutable payload and canonical completion contract.",

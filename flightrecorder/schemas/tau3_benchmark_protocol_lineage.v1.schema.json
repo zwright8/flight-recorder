@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/tau3_benchmark_protocol_lineage.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/tau3_benchmark_protocol_lineage.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Hash-only proof that a benchmark protocol differs from its training protocol only in fresh sealed-source bindings.",

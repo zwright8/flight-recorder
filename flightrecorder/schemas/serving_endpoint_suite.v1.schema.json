@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/serving_endpoint_suite.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/serving_endpoint_suite.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Suite-level readiness artifact for OpenAI-compatible serving profiles before Eval or demo replay.",
@@ -39,7 +39,7 @@
     "requirements",
     "arms"
   ],
-  "title": "Hermes Flight Recorder Serving Endpoint Suite",
+  "title": "Flight Recorder Serving Endpoint Suite",
   "type": "object",
   "$defs": {
     "arm": {

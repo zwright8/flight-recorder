@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/self_improving_agent_training_result.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/self_improving_agent_training_result.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Reproducible LoRA training receipt bound to validated self-improving-agent corpus hashes.",
@@ -24,7 +24,7 @@
     "chat_template_sha256", "data_validation", "hyperparameters", "libraries", "metrics", "tracking",
     "adapter_artifacts", "hub"
   ],
-  "title": "Hermes Flight Recorder Self-Improving Agent Training Result",
+  "title": "Flight Recorder Self-Improving Agent Training Result",
   "type": "object",
   "$defs": {
     "artifact": {

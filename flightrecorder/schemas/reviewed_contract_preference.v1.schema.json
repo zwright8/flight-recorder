@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/reviewed_contract_preference.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/reviewed_contract_preference.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Chosen/rejected completions sharing one complete normalized task contract.",
@@ -23,6 +23,6 @@
     "reason": {"minLength": 1, "type": "string"}
   },
   "required": ["schema_version", "preference_id", "task_contract_fingerprint", "task_family", "prompt", "tools", "chosen_episode_id", "rejected_episode_id", "chosen", "rejected", "chosen_completion_sha256", "rejected_completion_sha256", "reason"],
-  "title": "Hermes Flight Recorder Reviewed Contract Preference",
+  "title": "Flight Recorder Reviewed Contract Preference",
   "type": "object"
 }

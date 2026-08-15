@@ -55,7 +55,7 @@
       "type": "object"
     }
   },
-  "$id": "https://schemas.hermes-flight-recorder.dev/serving_compatibility_report.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/serving_compatibility_report.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "OpenAI-compatible serving capability report for streaming, tool-call, and structured-output smoke checks.",
@@ -120,6 +120,6 @@
     "engine",
     "checks"
   ],
-  "title": "Hermes Flight Recorder Serving Compatibility Report",
+  "title": "Flight Recorder Serving Compatibility Report",
   "type": "object"
 }

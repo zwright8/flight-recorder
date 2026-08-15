@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/rl_curriculum.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/rl_curriculum.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Failure-mode curriculum metadata emitted in export-rl curriculum.json.",
@@ -35,6 +35,6 @@
     "task_families",
     "recommended_use"
   ],
-  "title": "Hermes Flight Recorder RL Curriculum",
+  "title": "Flight Recorder RL Curriculum",
   "type": "object"
 }

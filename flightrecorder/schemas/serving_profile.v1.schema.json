@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/serving_profile.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/serving_profile.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "OpenAI-compatible serving endpoint readiness profile.",
@@ -170,6 +170,6 @@
     "capabilities",
     "eval_preflight"
   ],
-  "title": "Hermes Flight Recorder Serving Profile",
+  "title": "Flight Recorder Serving Profile",
   "type": "object"
 }

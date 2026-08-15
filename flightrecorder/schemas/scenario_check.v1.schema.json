@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/scenario_check.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/scenario_check.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Scenario definition validation receipt emitted by check-scenarios.",
@@ -71,7 +71,7 @@
     "duplicates",
     "scenarios"
   ],
-  "title": "Hermes Flight Recorder Scenario Check",
+  "title": "Flight Recorder Scenario Check",
   "type": "object",
   "$defs": {
     "assertions": {

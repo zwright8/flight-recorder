@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_training_loop_plan.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_training_loop_plan.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Fail-closed closed-loop agentic training iteration contract.",
@@ -184,7 +184,7 @@
     "next_iteration",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Agentic Training Loop Plan",
+  "title": "Flight Recorder Agentic Training Loop Plan",
   "type": "object",
   "$defs": {
     "artifactRef": {

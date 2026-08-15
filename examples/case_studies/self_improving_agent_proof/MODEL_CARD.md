@@ -1,7 +1,7 @@
 ---
 base_model: Qwen/Qwen3-0.6B
 datasets:
-- zwright/hermes-flight-recorder-self-improving-agent-trajectories
+- zwright/flight-recorder-self-improving-agent-trajectories
 library_name: peft
 license: apache-2.0
 pipeline_tag: text-generation
@@ -13,7 +13,7 @@ tags:
 - flight-recorder
 ---
 
-# Qwen3-0.6B Hermes Flight Recorder Agent
+# Qwen3-0.6B Flight Recorder Agent
 
 This rank-16 LoRA adapter teaches `Qwen/Qwen3-0.6B` an opaque,
 organization-specific Hermes tool-routing convention from 800 governed Flight
@@ -40,8 +40,8 @@ repeats are not treated as independent samples.
 
 - base model revision: `c1899de289a04d12100db370d81485cdf75e47ca`
 - dataset identity: `e2af62c0a6668b3c7152579ac6c654052dd07ced6b0d0bda6da8dc387284419b`
-- training SHA-256: `9cc907b0ce04d5f4b21f905357ed7f277fc640c70a8f31c90f76a187a14b2df5`
-- frozen held-out SHA-256: `efc53b6035f763ec15a116d649d12e64b9fc2b9acaeae8fcd37bdb9ec4da5771`
+- training SHA-256: `0c6a9b26bf712151d722e72ce23082fc2d41ed5d599e75b115f1bf0463eda22a`
+- frozen held-out SHA-256: `fc8822dd55556bd5475d6f07dc4b313a20e13757b961fb16ce06dddff5983921`
 - adapter weights SHA-256: `099714d7c5db5988ec9819a7d71d572bfe6c72eb4931963dfe7ed6e9274bcfb4`
 
 ## Load the adapter
@@ -51,7 +51,7 @@ from peft import PeftModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 base_id = "Qwen/Qwen3-0.6B"
-adapter_id = "zwright/qwen3-0.6b-hermes-flight-recorder-agent"
+adapter_id = "zwright/qwen3-0.6b-flight-recorder-agent"
 
 tokenizer = AutoTokenizer.from_pretrained(adapter_id)
 model = AutoModelForCausalLM.from_pretrained(base_id)

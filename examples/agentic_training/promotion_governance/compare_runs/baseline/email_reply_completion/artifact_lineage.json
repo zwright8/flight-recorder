@@ -261,8 +261,8 @@
       "path": "examples/agentic_training/promotion_governance/compare_runs/baseline/email_reply_completion/report.html",
       "role": "output",
       "sensitive": false,
-      "sha256": "2a6c1bbee9f910668e1773296fd72ddd42b2b01646004c28128fbf270915ebbb",
-      "size_bytes": 14109
+      "sha256": "37a645b57835c6155895346f28c1c66c7841cc3741f448de9a6854735e076bbc",
+      "size_bytes": 14102
     },
     {
       "exists": true,

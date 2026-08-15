@@ -2,7 +2,7 @@
   "artifact": {
     "path": "heldout_tasks.jsonl",
     "row_count": 150,
-    "sha256": "efc53b6035f763ec15a116d649d12e64b9fc2b9acaeae8fcd37bdb9ec4da5771"
+    "sha256": "fc8822dd55556bd5475d6f07dc4b313a20e13757b961fb16ce06dddff5983921"
   },
   "contamination_audit": {
     "path": "contamination_audit.json",
@@ -13,7 +13,7 @@
     "path": "development_tasks.jsonl",
     "policy": "May be used for candidate repair and model selection, but never for gradient updates.",
     "row_count": 120,
-    "sha256": "d91951e52c8f09127e2a66f845e16a1bfb485a1c0294c11962f168eafe23882d"
+    "sha256": "4b9494407f48c1c608344094509050c58241e64e68ab324fbd2ffb540699f4ae"
   },
   "immutable": true,
   "manifest_sha256": "1ef22ea6abd4ea681a95f19cba11568e82a586c40045788ee9da033e41ade642",
@@ -22,6 +22,6 @@
   "training_artifact": {
     "path": "train_trajectories.jsonl",
     "row_count": 800,
-    "sha256": "9cc907b0ce04d5f4b21f905357ed7f277fc640c70a8f31c90f76a187a14b2df5"
+    "sha256": "0c6a9b26bf712151d722e72ce23082fc2d41ed5d599e75b115f1bf0463eda22a"
   }
 }

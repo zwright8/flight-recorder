@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/trainer_archive_check.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/trainer_archive_check.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Consumer-side readiness check over a portable trainer archive and local external trainer code paths.",
@@ -101,7 +101,7 @@
     "metrics",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Trainer Archive Check",
+  "title": "Flight Recorder Trainer Archive Check",
   "type": "object",
   "$defs": {
     "check": {

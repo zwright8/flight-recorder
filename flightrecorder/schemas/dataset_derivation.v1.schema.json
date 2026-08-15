@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/dataset_derivation.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/dataset_derivation.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Content-addressed dataset lineage record binding parents, recipe, governance, and supersession.",
@@ -17,6 +17,6 @@
     "identity_fingerprint": {"pattern": "^[0-9a-f]{64}$", "type": "string"}
   },
   "required": ["schema_version", "derivation_id", "parent_versions", "recipe", "recipe_fingerprint", "selected_row_count", "selected_content_fingerprint", "policy_fingerprint", "scan_fingerprint", "supersedes", "identity_fingerprint"],
-  "title": "Hermes Flight Recorder Dataset Derivation",
+  "title": "Flight Recorder Dataset Derivation",
   "type": "object"
 }

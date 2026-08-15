@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_lora_backend_recipes.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_lora_backend_recipes.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Side-effect-free external trainer recipe bundle emitted from a registry-backed agentic LoRA training plan.",
@@ -124,7 +124,7 @@
     "handoff_contract",
     "extension_points"
   ],
-  "title": "Hermes Flight Recorder Agentic LoRA Backend Recipes",
+  "title": "Flight Recorder Agentic LoRA Backend Recipes",
   "type": "object",
   "$defs": {
     "check": {

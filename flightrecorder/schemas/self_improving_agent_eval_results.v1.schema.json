@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/self_improving_agent_eval_results.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/self_improving_agent_eval_results.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Identity-bound repeated inference observations for one baseline or adapter evaluation arm.",
@@ -19,7 +19,7 @@
     "schema_version", "arm", "base_model", "base_model_revision", "adapter", "heldout_artifact", "decoding", "runtime",
     "summary", "observations"
   ],
-  "title": "Hermes Flight Recorder Self-Improving Agent Evaluation Results",
+  "title": "Flight Recorder Self-Improving Agent Evaluation Results",
   "type": "object",
   "$defs": {
     "decoding": {

@@ -300,9 +300,9 @@ The content identities are:
 The public-safe evidence capsule is committed at
 `examples/case_studies/runtime_adapter_router/results/qwen3_4b_browser_lora_v9/`.
 The final loadable adapter is published at
-`https://huggingface.co/zwright/qwen3-4b-hermes-flight-recorder-browser-lora`,
+`https://huggingface.co/zwright/qwen3-4b-flight-recorder-browser-lora`,
 and its exact public-synthetic corpus is at
-`https://huggingface.co/datasets/zwright/hermes-flight-recorder-browser-tool-calling-trajectories`.
+`https://huggingface.co/datasets/zwright/flight-recorder-browser-tool-calling-trajectories`.
 Raw observations, absolute-path launch records, intermediate checkpoints,
 optimizer state, RNG state, and duplicate tokenizer files remain ignored local
 artifacts. This result qualifies one read-only browser specialist; it does not

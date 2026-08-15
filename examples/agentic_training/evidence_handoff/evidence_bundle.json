@@ -6,7 +6,7 @@
       "passed": true,
       "path": "../heldout_eval/eval_summary.json",
       "schema_version": "hfr.eval_summary.v1",
-      "sha256": "0dd16fc4a058d3ac5353262d82a0d02604418d2c675c78c0812da9a106f260ca",
+      "sha256": "c238b3476d2c6f7a54f15b7e054bed00dbc2f6cdfee6f81c318920769a6ce56d",
       "size_bytes": 13218
     },
     "evidence_coverage": {
@@ -33,7 +33,7 @@
       "passed": null,
       "path": "harness_handoff/harness_result.json",
       "schema_version": "hfr.harness_run_result.v1",
-      "sha256": "52dbc05d6366fb1200fd601226bd4ba7943f220ac9d291299ccdbee1a813b9fe",
+      "sha256": "20aedf790667614582546184503d3890a8ec40a3244a5abd4c4e54fa9136d261",
       "size_bytes": 2987
     },
     "repair_queue": {
@@ -66,7 +66,7 @@
       "passed": null,
       "path": "suite_summary.json",
       "schema_version": "hfr.run_suite.v1",
-      "sha256": "bfd2da8ca7e383e18459e7988f0932874927baa4fc9065a78eb2d21804450f25",
+      "sha256": "d234fae092a47d6a4aec43fe77d834833f9e2f423c6099cf5d733057621c76ac",
       "size_bytes": 2721
     },
     "trace_observability": {

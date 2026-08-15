@@ -1,18 +1,18 @@
 {
   "adapter_artifact": {
     "path": "examples/case_studies/self_improving_agent_proof/evidence/adapter_results.json",
-    "sha256": "559324a2d682c6a1753ba9f8ae04702bf84fcb234447508434b5ccdb5e7be89e"
+    "sha256": "51436ad94bf3e37634a60c33e40ad1622f2e086b638015d2c018aa77da04e1a7"
   },
   "baseline_artifact": {
     "path": "examples/case_studies/self_improving_agent_proof/evidence/baseline_results.json",
-    "sha256": "75b142674fdb6ef70aef5e50c3e0567e1df301b5da721b6c0ca1b7ce822348ff"
+    "sha256": "0c98443e75487f1a5cadb46529c58bc867c9a70fca84c462f7b894d2ba4a1a14"
   },
   "blocking_reasons": [],
   "checks": [
     {
-      "actual": "efc53b6035f763ec15a116d649d12e64b9fc2b9acaeae8fcd37bdb9ec4da5771",
+      "actual": "fc8822dd55556bd5475d6f07dc4b313a20e13757b961fb16ce06dddff5983921",
       "check_id": "identical_frozen_heldout_sha256",
-      "expected": "efc53b6035f763ec15a116d649d12e64b9fc2b9acaeae8fcd37bdb9ec4da5771",
+      "expected": "fc8822dd55556bd5475d6f07dc4b313a20e13757b961fb16ce06dddff5983921",
       "passed": true
     },
     {
@@ -202,7 +202,7 @@
     }
   },
   "failed_check_count": 0,
-  "heldout_sha256": "efc53b6035f763ec15a116d649d12e64b9fc2b9acaeae8fcd37bdb9ec4da5771",
+  "heldout_sha256": "fc8822dd55556bd5475d6f07dc4b313a20e13757b961fb16ce06dddff5983921",
   "methodology": {
     "bootstrap_samples": 10000,
     "confidence_level": 0.95,

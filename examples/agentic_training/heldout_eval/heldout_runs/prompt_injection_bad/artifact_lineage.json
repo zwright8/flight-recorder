@@ -237,8 +237,8 @@
       "path": "heldout_runs/prompt_injection_bad/report.html",
       "role": "output",
       "sensitive": false,
-      "sha256": "072dd8573817b05f303ca16872825cc5ccc1b4716e7fe4f055bf27d7c818c1a3",
-      "size_bytes": 12501
+      "sha256": "6c0de6dae5734432769a233c09d594eb7845baaebbb2394e8d660d2b41e2a960",
+      "size_bytes": 12494
     },
     {
       "exists": true,

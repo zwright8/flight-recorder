@@ -12,15 +12,15 @@ tags:
 - browser
 - flight-recorder
 datasets:
-- zwright/hermes-flight-recorder-browser-tool-calling-trajectories
+- zwright/flight-recorder-browser-tool-calling-trajectories
 model-index:
-- name: Qwen3-4B Hermes Flight Recorder Browser LoRA
+- name: Qwen3-4B Flight Recorder Browser LoRA
   results:
   - task:
       type: text-generation
       name: Governed browser tool calling
     dataset:
-      type: zwright/hermes-flight-recorder-browser-tool-calling-trajectories
+      type: zwright/flight-recorder-browser-tool-calling-trajectories
       name: HFR browser sealed-final scope
       split: test
     metrics:
@@ -35,7 +35,7 @@ model-index:
       value: 0.0
 ---
 
-# Qwen3-4B Hermes Flight Recorder Browser LoRA
+# Qwen3-4B Flight Recorder Browser LoRA
 
 This is a rank-16 LoRA for native browser-tool calling with
 `Qwen/Qwen3-4B-Instruct-2507`. It was trained locally from public synthetic
@@ -65,7 +65,7 @@ from peft import PeftModel
 
 revision = "cdbee75f17c01a7cc42f958dc650907174af0554"
 base_id = "Qwen/Qwen3-4B-Instruct-2507"
-adapter_id = "zwright/qwen3-4b-hermes-flight-recorder-browser-lora"
+adapter_id = "zwright/qwen3-4b-flight-recorder-browser-lora"
 
 tokenizer = AutoTokenizer.from_pretrained(base_id, revision=revision)
 base = AutoModelForCausalLM.from_pretrained(base_id, revision=revision)
@@ -110,8 +110,8 @@ composition as a new candidate with its own immutable hash and evaluation.
   `64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326`.
 - Candidate identity:
   `a1495c41471e0b09230fcf1d9ef2556e88ca856dcab489aa110b302b669d3dc7`.
-- GitHub evidence: [Hermes Flight Recorder PR #34](https://github.com/zwright8/hermes-flight-recorder/pull/34).
-- Dataset: [public synthetic browser-tool trajectories](https://huggingface.co/datasets/zwright/hermes-flight-recorder-browser-tool-calling-trajectories).
+- GitHub evidence: [Flight Recorder PR #34](https://github.com/zwright8/flight-recorder/pull/34).
+- Dataset: [public synthetic browser-tool trajectories](https://huggingface.co/datasets/zwright/flight-recorder-browser-tool-calling-trajectories).
 
 The base model and this adapter are distributed under Apache-2.0. Users remain
 responsible for reviewing upstream terms and validating behavior for their own

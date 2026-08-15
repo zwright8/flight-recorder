@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/live_verifier_smoke_summary.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/live_verifier_smoke_summary.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Machine-readable proof that Flight Recorder attempted read-only live external-state verifier checks for configured SaaS providers.",

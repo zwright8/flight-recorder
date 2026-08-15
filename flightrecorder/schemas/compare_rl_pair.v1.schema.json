@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/compare_rl_pair.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/compare_rl_pair.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Baseline-vs-candidate improvement pair row emitted in export-compare-rl improvement_pairs.jsonl.",
@@ -122,6 +122,6 @@
     "chosen",
     "rejected"
   ],
-  "title": "Hermes Flight Recorder Compare RL Pair Row",
+  "title": "Flight Recorder Compare RL Pair Row",
   "type": "object"
 }

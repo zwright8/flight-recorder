@@ -8,14 +8,14 @@ tags:
   - trl
   - tool-use
   - agentic
-  - hermes-flight-recorder
+  - flight-recorder
 ---
 
-# Hermes Flight Recorder Qwen3-0.6B LoRA Demo
+# Flight Recorder Qwen3-0.6B LoRA Demo
 
 This is the model card prepared for the adapter produced by the
 [Qwen3-0.6B Flight Recorder case study](README.md). The planned Hub ID is
-`zwright/hermes-flight-recorder-qwen3-0.6b-demo`; it was not published by the
+`zwright/flight-recorder-qwen3-0.6b-demo`; it was not published by the
 GitHub case-study commit.
 
 ## Model details
@@ -47,7 +47,7 @@ from peft import PeftModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 base_id = "Qwen/Qwen3-0.6B"
-adapter_id = "zwright/hermes-flight-recorder-qwen3-0.6b-demo"
+adapter_id = "zwright/flight-recorder-qwen3-0.6b-demo"
 
 tokenizer = AutoTokenizer.from_pretrained(base_id)
 base = AutoModelForCausalLM.from_pretrained(base_id)

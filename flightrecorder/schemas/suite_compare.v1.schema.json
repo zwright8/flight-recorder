@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/suite_compare.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/suite_compare.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Suite-level regression and contract-drift comparison emitted as suite_compare.json by compare-suite.",
@@ -56,7 +56,7 @@
     "regressed",
     "summary"
   ],
-  "title": "Hermes Flight Recorder Suite Compare",
+  "title": "Flight Recorder Suite Compare",
   "type": "object",
   "$defs": {
     "aggregate": {

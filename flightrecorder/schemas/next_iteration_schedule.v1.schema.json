@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/next_iteration_schedule.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/next_iteration_schedule.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Side-effect-free next-iteration schedule proposal for closed-loop agentic training.",
@@ -123,7 +123,7 @@
     "execution_boundary",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Next Iteration Schedule",
+  "title": "Flight Recorder Next Iteration Schedule",
   "type": "object",
   "$defs": {
     "check": {

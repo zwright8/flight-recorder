@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/rejection_sampling_gate.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/rejection_sampling_gate.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$defs": {
     "artifactRef": {
@@ -157,6 +157,6 @@
     "execution_boundary",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Rejection Sampling Gate",
+  "title": "Flight Recorder Rejection Sampling Gate",
   "type": "object"
 }

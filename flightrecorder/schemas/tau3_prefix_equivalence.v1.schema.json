@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/tau3_prefix_equivalence.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/tau3_prefix_equivalence.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Bounded same-sample qualification evidence for detached complete-prompt cache MLX LoRA against standard full-gradient MLX LoRA.",
@@ -228,7 +228,7 @@
     "stability",
     "failures"
   ],
-  "title": "Hermes Flight Recorder Tau-3 Prefix Equivalence",
+  "title": "Flight Recorder Tau-3 Prefix Equivalence",
   "type": "object",
   "$defs": {
     "familyResult": {

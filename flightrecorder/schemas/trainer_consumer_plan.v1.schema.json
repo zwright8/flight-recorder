@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/trainer_consumer_plan.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/trainer_consumer_plan.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Side-effect-free trainer consumer plan derived from a trainer archive readiness check.",
@@ -90,7 +90,7 @@
     "metrics",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Trainer Consumer Plan",
+  "title": "Flight Recorder Trainer Consumer Plan",
   "type": "object",
   "$defs": {
     "check": {

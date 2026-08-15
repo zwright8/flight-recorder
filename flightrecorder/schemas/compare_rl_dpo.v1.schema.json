@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/compare_rl_dpo.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/compare_rl_dpo.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Trainer-ready comparison DPO row emitted in export-compare-rl improvement_dpo.jsonl.",
@@ -127,6 +127,6 @@
     "reason",
     "source_artifact"
   ],
-  "title": "Hermes Flight Recorder Compare RL DPO Row",
+  "title": "Flight Recorder Compare RL DPO Row",
   "type": "object"
 }

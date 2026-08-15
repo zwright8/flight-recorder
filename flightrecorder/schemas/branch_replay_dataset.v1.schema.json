@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/branch_replay_dataset.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/branch_replay_dataset.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "State-bound verified branch continuations, preferences, and human-review routing.",
@@ -22,6 +22,6 @@
     "generation_boundary": {"type": "object"}
   },
   "required": ["schema_version", "replay_id", "source_episode_id", "source_trajectory_sha256", "source_prefix_messages", "tools", "task_family", "replay_point", "candidate_count", "chosen_candidate_id", "preference_count", "preferences", "verifier_results", "review_required", "review_reasons", "generation_boundary"],
-  "title": "Hermes Flight Recorder Branch Replay Dataset",
+  "title": "Flight Recorder Branch Replay Dataset",
   "type": "object"
 }

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/rubric_spec.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/rubric_spec.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Rubric spec for human/model-grader review calibration.",
@@ -100,7 +100,7 @@
     "execution_boundary",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Rubric Spec",
+  "title": "Flight Recorder Rubric Spec",
   "type": "object",
   "$defs": {
     "boundary": {

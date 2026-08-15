@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/tau3_sealed_source_manifest.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/tau3_sealed_source_manifest.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Tau-3 Hashes-Only Sealed Source Manifest",
   "type": "object",

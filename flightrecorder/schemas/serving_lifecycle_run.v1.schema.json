@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/serving_lifecycle_run.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/serving_lifecycle_run.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Managed serving process lifecycle artifact emitted by run_managed_serving_eval.py.",
@@ -56,7 +56,7 @@
     "cleanup",
     "artifacts"
   ],
-  "title": "Hermes Flight Recorder Serving Lifecycle Run",
+  "title": "Flight Recorder Serving Lifecycle Run",
   "type": "object",
   "$defs": {
     "attempt": {

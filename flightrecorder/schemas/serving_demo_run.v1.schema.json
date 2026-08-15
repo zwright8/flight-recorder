@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/serving_demo_run.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/serving_demo_run.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Replayable serving demo report linking claims to eval evidence.",
@@ -60,6 +60,6 @@
     "claims",
     "scenarios"
   ],
-  "title": "Hermes Flight Recorder Serving Demo Run",
+  "title": "Flight Recorder Serving Demo Run",
   "type": "object"
 }

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/rl_action_sft.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/rl_action_sft.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Native tool-trajectory supervised fine-tuning row emitted in export-rl action_sft.jsonl.",
@@ -74,6 +74,6 @@
     "label_provenance",
     "source_artifact"
   ],
-  "title": "Hermes Flight Recorder RL Action SFT Row",
+  "title": "Flight Recorder RL Action SFT Row",
   "type": "object"
 }

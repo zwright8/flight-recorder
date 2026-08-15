@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/trace_observability.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/trace_observability.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Suite-level trace signal summary emitted as trace_observability.json.",
@@ -34,7 +34,7 @@
     "warnings",
     "runs"
   ],
-  "title": "Hermes Flight Recorder Trace Observability",
+  "title": "Flight Recorder Trace Observability",
   "type": "object",
   "$defs": {
     "check": {

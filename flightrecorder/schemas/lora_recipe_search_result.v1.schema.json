@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/lora_recipe_search_result.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/lora_recipe_search_result.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Replayable campaign ledger and development-selected LoRA recipe champion.",
@@ -30,7 +30,7 @@
     "kept_trial_count", "discarded_trial_count", "blocked_trial_count", "budget_usage", "champion",
     "heldout_access", "execution_boundary"
   ],
-  "title": "Hermes Flight Recorder LoRA Recipe Search Result",
+  "title": "Flight Recorder LoRA Recipe Search Result",
   "type": "object",
   "$defs": {
     "budget_usage": {

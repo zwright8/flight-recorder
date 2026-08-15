@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_rollout_receipt.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_rollout_receipt.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$defs": {
     "check": {
@@ -184,6 +184,6 @@
     "execution_boundary",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Agentic Rollout Receipt",
+  "title": "Flight Recorder Agentic Rollout Receipt",
   "type": "object"
 }

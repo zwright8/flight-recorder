@@ -169,7 +169,7 @@ def validate(experiment_dir: Path) -> dict[str, Any]:
     _add(checks, "reviewed_training_rows", reviewed, sum(1 for row in train_rows if row.get("human_label") == "accept" and row.get("reviewer_confidence") == "high"), 800)
     governed = all(
         row.get("tool_schema_provenance") == "recorded_exact"
-        and row.get("governance", {}).get("owner") == "hermes-flight-recorder"
+        and row.get("governance", {}).get("owner") == "flight-recorder"
         and row.get("governance", {}).get("legal_basis") == "synthetic_public_fixture"
         and row.get("governance", {}).get("sensitivity") == "public-synthetic"
         and "agent_training" in row.get("governance", {}).get("allowed_purposes", [])

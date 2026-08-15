@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/rl_reward.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/rl_reward.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Terminal reward row emitted in export-rl rewards.jsonl.",
@@ -97,6 +97,6 @@
     "rule_rewards",
     "attribution"
   ],
-  "title": "Hermes Flight Recorder RL Reward Row",
+  "title": "Flight Recorder RL Reward Row",
   "type": "object"
 }

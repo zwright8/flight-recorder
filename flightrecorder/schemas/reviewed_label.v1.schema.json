@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/reviewed_label.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/reviewed_label.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Human-reviewed label joined to its evidence and scorecard provenance.",
@@ -37,7 +37,7 @@
     "tools": {"items": {"type": "object"}, "type": "array"}
   },
   "required": ["schema_version", "review_item_id", "review_item_sha256", "episode_id", "scenario_id", "scenario_title", "task_family", "prompt", "response", "human_label", "suggested_human_label", "corrected_score", "score", "reward", "reviewer", "reviewer_confidence", "reviewed_at", "notes", "accepted_evidence_refs", "rejected_evidence_refs", "source_label_file", "source_label_sha256", "source_artifacts", "scorecard"],
-  "title": "Hermes Flight Recorder Reviewed Label",
+  "title": "Flight Recorder Reviewed Label",
   "type": "object",
   "$defs": {
     "confidence": {"enum": ["high", "medium", "low", "unknown"], "type": "string"},

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/model_quarantine.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/model_quarantine.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Models quarantined because their lineage directly or transitively depends on deleted training records.",
@@ -15,7 +15,7 @@
     "schema_version", "request_id", "affected_dataset_versions",
     "lineage_closure_fingerprint", "model_count", "models"
   ],
-  "title": "Hermes Flight Recorder Model Quarantine",
+  "title": "Flight Recorder Model Quarantine",
   "type": "object",
   "$defs": {
     "model": {

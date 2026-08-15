@@ -153,7 +153,7 @@ def main() -> int:
             runs_dir,
             export_dir,
             metadata={
-                "collection": "live_hermes_flightrecorder",
+                "collection": "live_flight_recorder",
                 "base_model_target": "Qwen/Qwen3-4B-Instruct-2507",
             },
         )
@@ -257,7 +257,7 @@ def build_catalog(target_episodes: int, *, index_offset: int = 0) -> dict[str, A
         "schema_version": CATALOG_SCHEMA_VERSION,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "target_model": "Qwen/Qwen3-4B-Instruct-2507",
-        "objective": "Collect live Hermes Flight Recorder episodes with deterministic task evidence for LoRA fine-tuning.",
+        "objective": "Collect live Flight Recorder episodes with deterministic task evidence for LoRA fine-tuning.",
         "tasks": tasks,
         "quality_rules": [
             "SFT rows must come only from passed or human-accepted episodes.",
@@ -949,7 +949,7 @@ def catalog_summary(catalog: dict[str, Any]) -> dict[str, Any]:
 def write_catalog_card(path: Path, catalog: dict[str, Any]) -> None:
     summary = catalog_summary(catalog)
     lines = [
-        "# Live Hermes Flight Recorder Scenario Catalog",
+        "# Live Flight Recorder Scenario Catalog",
         "",
         "This catalog bootstraps executable Hermes tasks for Qwen3-4B LoRA data collection.",
         "",

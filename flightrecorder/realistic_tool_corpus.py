@@ -859,7 +859,7 @@ def _events_from_messages(
 
 def _governance(task_id: str) -> dict[str, Any]:
     return {
-        "owner": "hermes-flight-recorder",
+        "owner": "flight-recorder",
         "tenant": "public-synthetic",
         "legal_basis": "contract",
         "allowed_purposes": ["agent_training"],

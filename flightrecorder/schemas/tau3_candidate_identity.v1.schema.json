@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/tau3_candidate_identity.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/tau3_candidate_identity.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Public-safe hash-only identity binding one governed Tau-3 development candidate to final MLX training output and endpoint model string.",

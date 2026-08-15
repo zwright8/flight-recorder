@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/tau3_blind_benchmark_result.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/tau3_blind_benchmark_result.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Hash-only result emitted by the pinned blind custodian for one fresh sealed Tau-3 domain and seed.",

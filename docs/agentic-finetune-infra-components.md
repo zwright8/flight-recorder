@@ -16,7 +16,7 @@ safety, cost, latency, and generalization across held-out tasks.
 
 ## Existing Nucleus
 
-`hermes-flight-recorder` already provides the evidence/data-contract layer:
+`flight-recorder` already provides the evidence/data-contract layer:
 
 - trace normalization and scenario scoring
 - scenario quality, evidence coverage, and trace observability gates

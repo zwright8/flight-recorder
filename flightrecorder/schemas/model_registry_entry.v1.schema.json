@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/model_registry_entry.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/model_registry_entry.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "One model registry entry linking a candidate snapshot to lifecycle metadata.",
@@ -39,7 +39,7 @@
     "links",
     "candidate"
   ],
-  "title": "Hermes Flight Recorder Model Registry Entry",
+  "title": "Flight Recorder Model Registry Entry",
   "type": "object",
   "$defs": {
     "linkRecord": {

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/huggingface_job_completion.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/huggingface_job_completion.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Terminal Hugging Face training receipt with replayed reviewed-plan and observed runtime, library, CUDA, and driver identity.",

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/reviewed_sft.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/reviewed_sft.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Human-accepted supervised fine-tuning row emitted by apply-review.",
@@ -18,6 +18,6 @@
     "task_family": {"minLength": 1, "type": "string"}
   },
   "required": ["schema_version", "review_item_id", "review_item_sha256", "episode_id", "scenario_id", "task_family", "prompt", "response", "human_label", "reviewer_confidence", "quality_gate", "source_artifact"],
-  "title": "Hermes Flight Recorder Reviewed SFT Row",
+  "title": "Flight Recorder Reviewed SFT Row",
   "type": "object"
 }

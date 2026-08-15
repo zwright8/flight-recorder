@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/self_improving_agent_episode.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/self_improving_agent_episode.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Public-safe synthetic agent episode used in the self-improving proof corpus, with an explicit train, development, or held-out role.",
@@ -40,7 +40,7 @@
     "reviewer_confidence", "review_item_id", "review_item_sha256", "tool_schema_provenance", "training_role",
     "source_id", "environment", "policy", "scenario_contract", "governance"
   ],
-  "title": "Hermes Flight Recorder Self-Improving Agent Episode",
+  "title": "Flight Recorder Self-Improving Agent Episode",
   "type": "object",
   "$defs": {
     "environment": {

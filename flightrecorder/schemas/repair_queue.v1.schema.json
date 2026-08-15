@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/repair_queue.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/repair_queue.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Concrete failed-rule repair queue emitted as repair_queue.json.",
@@ -20,7 +20,7 @@
     "schema_version": { "const": "hfr.repair_queue.v1" }
   },
   "required": ["schema_version", "runs_dir", "only_critical", "passed", "item_count", "metrics", "items"],
-  "title": "Hermes Flight Recorder Repair Queue",
+  "title": "Flight Recorder Repair Queue",
   "type": "object",
   "$defs": {
     "count": {

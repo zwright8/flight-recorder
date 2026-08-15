@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_lora_training_registry_event.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_lora_training_registry_event.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Local JSONL registry event for training result/failure handoff.",
@@ -84,6 +84,6 @@
     "plan_failed_check_count",
     "registry_note"
   ],
-  "title": "Hermes Flight Recorder Agentic LoRA Training Registry Event",
+  "title": "Flight Recorder Agentic LoRA Training Registry Event",
   "type": "object"
 }

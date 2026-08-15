@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_eval_observation.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_eval_observation.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "One identity-bound, repeat- and seed-specific observation from an agentic held-out evaluation pool.",
@@ -26,7 +26,7 @@
     "identity", "scenario_set", "execution_attestation", "case_count", "cases", "source_artifacts", "passed", "readiness",
     "blocking_reasons"
   ],
-  "title": "Hermes Flight Recorder Agentic Eval Observation",
+  "title": "Flight Recorder Agentic Eval Observation",
   "type": "object",
   "$defs": {
     "artifact": {

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/state_snapshot.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/state_snapshot.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "External-state evidence snapshot emitted by capture-state, verify-state, and run state capture.",
@@ -20,7 +20,7 @@
     "schema_version": { "const": "hfr.state_snapshot.v1" }
   },
   "required": ["schema_version", "filesystem", "json_sources", "json", "observations"],
-  "title": "Hermes Flight Recorder State Snapshot",
+  "title": "Flight Recorder State Snapshot",
   "type": "object",
   "$defs": {
     "directory_entry": {

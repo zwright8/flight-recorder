@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/improvement_plan.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/improvement_plan.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Next-iteration improvement plan over evidence bundle, repair queue, curriculum, and run digests.",
@@ -166,7 +166,7 @@
     "work_items",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Improvement Plan",
+  "title": "Flight Recorder Improvement Plan",
   "type": "object",
   "$defs": {
     "artifact": {

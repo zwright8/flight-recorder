@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/promotion_archive.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/promotion_archive.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Portable promotion-history evidence archive manifest with copied artifact hashes and relationships.",
@@ -119,6 +119,6 @@
       "type": "object"
     }
   },
-  "title": "Hermes Flight Recorder Promotion Archive",
+  "title": "Flight Recorder Promotion Archive",
   "type": "object"
 }

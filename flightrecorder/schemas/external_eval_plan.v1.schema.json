@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/external_eval_plan.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/external_eval_plan.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Fail-closed readiness plan for optional external eval harness adapters.",
@@ -58,7 +58,7 @@
     "blocking_reasons",
     "governance_handoff"
   ],
-  "title": "Hermes Flight Recorder External Eval Plan",
+  "title": "Flight Recorder External Eval Plan",
   "type": "object",
   "$defs": {
     "adapter": {

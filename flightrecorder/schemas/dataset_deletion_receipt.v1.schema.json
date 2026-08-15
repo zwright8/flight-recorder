@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/dataset_deletion_receipt.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/dataset_deletion_receipt.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Deletion-lineage receipt proving direct and transitive descendants exclude affected records and dependent models are quarantined.",
@@ -42,7 +42,7 @@
     "affected_lineage_absent", "quarantined_models", "model_quarantine_path", "notes",
     "receipt_fingerprint"
   ],
-  "title": "Hermes Flight Recorder Dataset Deletion Receipt",
+  "title": "Flight Recorder Dataset Deletion Receipt",
   "type": "object",
   "$defs": {
     "dataset": {

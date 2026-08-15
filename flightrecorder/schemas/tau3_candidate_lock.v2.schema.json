@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/tau3_candidate_lock.v2.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/tau3_candidate_lock.v2.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Public-safe hash-only lock that separates the Tau-3 training and fresh sealed benchmark protocols.",

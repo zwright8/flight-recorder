@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/tau3_mlx_training_run.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/tau3_mlx_training_run.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Prelaunch or final receipt for a local MLX-LM QLoRA Tau-3 training run.",
@@ -139,7 +139,7 @@
     "weights_updated",
     "terminal_status"
   ],
-  "title": "Hermes Flight Recorder Tau-3 MLX Training Run",
+  "title": "Flight Recorder Tau-3 MLX Training Run",
   "type": "object",
   "$defs": {
     "check": {

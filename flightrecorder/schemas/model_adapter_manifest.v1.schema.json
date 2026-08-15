@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/model_adapter_manifest.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/model_adapter_manifest.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "No-download planned adapter manifest linking a base-model registry entry to a dry-run training plan.",
@@ -51,6 +51,6 @@
     "checks",
     "blocked_reasons"
   ],
-  "title": "Hermes Flight Recorder Model Adapter Manifest",
+  "title": "Flight Recorder Model Adapter Manifest",
   "type": "object"
 }

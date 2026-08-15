@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/run_suite.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/run_suite.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Suite-level evidence summary emitted as suite_summary.json by run-suite.",
@@ -44,7 +44,7 @@
     "runs",
     "artifacts"
   ],
-  "title": "Hermes Flight Recorder Run Suite Summary",
+  "title": "Flight Recorder Run Suite Summary",
   "type": "object",
   "$defs": {
     "count": {

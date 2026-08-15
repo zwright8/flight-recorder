@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/cloud_training_provider_registry.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/cloud_training_provider_registry.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Provider-neutral cloud training capability registry.",
@@ -38,7 +38,7 @@
     "execution_boundary",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Cloud Training Provider Registry",
+  "title": "Flight Recorder Cloud Training Provider Registry",
   "type": "object",
   "$defs": {
     "boundary": {

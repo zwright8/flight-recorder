@@ -62,7 +62,7 @@ def render_report(
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{_esc(scenario['title'])} - Hermes Flight Recorder</title>
+  <title>{_esc(scenario['title'])} - Flight Recorder</title>
   <style>
     :root {{ color-scheme: light; --ink:#17202a; --muted:#566573; --line:#d6dbdf; --ok:#147a3d; --bad:#b42318; --warn:#b54708; --bg:#f7f9fb; --card:#ffffff; --accent:#1f6feb; }}
     body {{ margin:0; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:var(--bg); color:var(--ink); }}
@@ -208,9 +208,9 @@ def write_index(run_dirs: list[Path], out_path: str | Path, artifacts_dir: str |
         )
     html_doc = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hermes Flight Recorder Demo Runs</title>
+<title>Flight Recorder Demo Runs</title>
 <style>body{font-family:ui-sans-serif,system-ui;margin:32px;color:#17202a}main{max-width:1180px}section{margin-top:30px}table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid #d6dbdf;text-align:left;padding:12px;vertical-align:top}.pass{color:#147a3d;font-weight:800}.fail{color:#b42318;font-weight:800}.warn{color:#9a6700;font-weight:800}.neutral{color:#566573;font-weight:800}.muted{color:#566573;max-width:900px}code{background:#eef2f6;border-radius:6px;padding:2px 5px}a{color:#1f6feb}td{overflow-wrap:anywhere}</style>
-</head><body><main><h1>Hermes Flight Recorder Demo Runs</h1><section><h2>Scenario Reports</h2><table><thead><tr><th>Scenario</th><th>Status</th><th>Score</th><th>Summary</th></tr></thead><tbody>
+</head><body><main><h1>Flight Recorder Demo Runs</h1><section><h2>Scenario Reports</h2><table><thead><tr><th>Scenario</th><th>Status</th><th>Score</th><th>Summary</th></tr></thead><tbody>
 """ + "\n".join(rows) + f"\n</tbody></table></section>{artifact_section}</main></body></html>\n"
     output.write_text(html_doc, encoding="utf-8")
 

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/compare.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/compare.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Single scorecard baseline/candidate comparison emitted by compare.",
@@ -41,7 +41,7 @@
     "regressed",
     "summary"
   ],
-  "title": "Hermes Flight Recorder Compare",
+  "title": "Flight Recorder Compare",
   "type": "object",
   "$defs": {
     "rule_change": {

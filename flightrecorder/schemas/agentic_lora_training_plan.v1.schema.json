@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_lora_training_plan.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_lora_training_plan.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Dry-run or launch-gating plan emitted by scripts/train_agentic_lora.py before heavy ML imports.",
@@ -137,7 +137,7 @@
     "compute_assumptions",
     "trainer_backends"
   ],
-  "title": "Hermes Flight Recorder Agentic LoRA Training Plan",
+  "title": "Flight Recorder Agentic LoRA Training Plan",
   "type": "object",
   "$defs": {
     "local_training": {

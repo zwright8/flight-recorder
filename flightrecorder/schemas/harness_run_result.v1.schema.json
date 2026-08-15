@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/harness_run_result.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/harness_run_result.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Harness run result linking sandbox, tool policy, trace, scorecard, and replay artifacts.",
@@ -205,6 +205,6 @@
     }
   },
   "required": ["schema_version", "runner", "provider", "model", "scenario_id", "sandbox", "tool_policy", "trace", "scorecard", "artifacts", "replay"],
-  "title": "Hermes Flight Recorder Harness Run Result",
+  "title": "Flight Recorder Harness Run Result",
   "type": "object"
 }

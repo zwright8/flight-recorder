@@ -1,16 +1,16 @@
-# Hermes Flight Recorder
+# Flight Recorder
 
 <p align="center">
-  <img src="docs/assets/flight-recorder-logo.png" alt="Hermes Flight Recorder project mascot" width="220">
+  <img src="docs/assets/flight-recorder-logo.png" alt="Flight Recorder project mascot" width="220">
   <br>
 
 </p>
 
-[![CI](https://github.com/zwright8/hermes-flight-recorder/actions/workflows/ci.yml/badge.svg)](https://github.com/zwright8/hermes-flight-recorder/actions)
+[![CI](https://github.com/zwright8/flight-recorder/actions/workflows/ci.yml/badge.svg)](https://github.com/zwright8/flight-recorder/actions)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-Hermes Flight Recorder is an evidence and governance stack for agentic
+Flight Recorder is an evidence and governance stack for agentic
 fine-tuning work. It turns tool-using agent runs into deterministic artifacts:
 normalized traces, scorecards, evidence bundles, dataset exports, model
 registry entries, training handoff plans and results, governed LoRA recipe
@@ -37,8 +37,8 @@ private when the evidence capsule's claim does not require publishing them.
 
 | Demonstration | Governed experiment | Evaluation result | Public artifacts |
 | --- | --- | --- | --- |
-| Qwen3-0.6B multi-family agent LoRA | 800 public-safe trajectories; 150 frozen tasks; 11 task families; three seeds per arm | Exact task pass rate rose from 17.11% to 96.22%; critical-safety pass rate rose from 45.56% to 100% | [Evidence](docs/case-studies/self-improving-agent-heldout.md) · [adapter](https://huggingface.co/zwright/qwen3-0.6b-hermes-flight-recorder-agent/tree/5c4b3eb6e8540be59ecfea563b2f2f12b9bd1877) · [dataset](https://huggingface.co/datasets/zwright/hermes-flight-recorder-self-improving-agent-trajectories/tree/82cbbb6ec1d6dbf47803b9a32201171e2926dc00) · [live demo](https://zwright-hermes-flight-recorder-agent-demo.hf.space) |
-| Qwen3-4B browser-tool LoRA | 71 reviewed source trajectories expanded to 355 supervised rows; four development and nine sealed browser tasks | Base: 0/4 development and 0/9 sealed. Adapter: 4/4 and 9/9 with zero critical failures | [Paired evidence](examples/case_studies/runtime_adapter_router/results/qwen3_4b_browser_lora_v9/README.md) · [adapter](https://huggingface.co/zwright/qwen3-4b-hermes-flight-recorder-browser-lora/tree/599b7343c7b3b6c7d9d65b403e76f7f017628cfa) · [dataset](https://huggingface.co/datasets/zwright/hermes-flight-recorder-browser-tool-calling-trajectories/tree/0030982a7d3181563e41afb3d0e740652cb705b3) |
+| Qwen3-0.6B multi-family agent LoRA | 800 public-safe trajectories; 150 frozen tasks; 11 task families; three seeds per arm | Exact task pass rate rose from 17.11% to 96.22%; critical-safety pass rate rose from 45.56% to 100% | [Evidence](docs/case-studies/self-improving-agent-heldout.md) · [adapter](https://huggingface.co/zwright/qwen3-0.6b-flight-recorder-agent/tree/5c4b3eb6e8540be59ecfea563b2f2f12b9bd1877) · [dataset](https://huggingface.co/datasets/zwright/flight-recorder-self-improving-agent-trajectories/tree/82cbbb6ec1d6dbf47803b9a32201171e2926dc00) · [live demo](https://zwright-flight-recorder-agent-demo.hf.space) |
+| Qwen3-4B browser-tool LoRA | 71 reviewed source trajectories expanded to 355 supervised rows; four development and nine sealed browser tasks | Base: 0/4 development and 0/9 sealed. Adapter: 4/4 and 9/9 with zero critical failures | [Paired evidence](examples/case_studies/runtime_adapter_router/results/qwen3_4b_browser_lora_v9/README.md) · [adapter](https://huggingface.co/zwright/qwen3-4b-flight-recorder-browser-lora/tree/599b7343c7b3b6c7d9d65b403e76f7f017628cfa) · [dataset](https://huggingface.co/datasets/zwright/flight-recorder-browser-tool-calling-trajectories/tree/0030982a7d3181563e41afb3d0e740652cb705b3) |
 | Qwen3-0.6B ARC strategy-router LoRA | 1,561 validated Flight Recorder trajectories; 1,457 visible-family training rows; local MLX and Kaggle-native PEFT replays | Local MLX: base 2/52, either LoRA 50/52, bounded ensemble 52/52. Controlled Kaggle-native router-only replay: base 0/52, step-900 LoRA 17/52; official LoRA sealed score pending | [Visible evidence](examples/case_studies/arcagi_strategy_student/results/visible_arcagi_a_v1/README.md) · [Kaggle route evidence](examples/case_studies/arcagi_strategy_student/results/kaggle_arcagi2_router_only_v1/README.md) · [Kaggle metrics](examples/case_studies/arcagi_strategy_student/results/kaggle_arcagi2_router_only_v1/metrics.json) |
 
 ### ARC result boundary
@@ -133,8 +133,8 @@ All major artifacts have bundled JSON Schema contracts under
 The offline demo is deterministic and requires no API keys.
 
 ```bash
-git clone https://github.com/zwright8/hermes-flight-recorder.git
-cd hermes-flight-recorder
+git clone https://github.com/zwright8/flight-recorder.git
+cd flight-recorder
 
 python3.11 -m pip install -e . --no-deps
 python3.11 -m unittest discover

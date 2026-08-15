@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_loop_ledger.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_loop_ledger.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Longitudinal ledger over closed-loop agentic training iteration plans.",
@@ -315,7 +315,7 @@
     "execution_boundary",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Agentic Loop Ledger",
+  "title": "Flight Recorder Agentic Loop Ledger",
   "type": "object",
   "$defs": {
     "basic_group_summary": {

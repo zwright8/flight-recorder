@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/frozen_heldout_manifest.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/frozen_heldout_manifest.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Immutable content binding that keeps final held-out tasks outside training and model selection.",
@@ -18,7 +18,7 @@
     "schema_version", "created_at", "immutable", "policy", "artifact", "training_artifact",
     "development_artifact", "contamination_audit", "manifest_sha256"
   ],
-  "title": "Hermes Flight Recorder Frozen Held-Out Manifest",
+  "title": "Flight Recorder Frozen Held-Out Manifest",
   "type": "object",
   "$defs": {
     "artifact": {

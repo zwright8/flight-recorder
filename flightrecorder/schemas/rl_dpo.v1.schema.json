@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/rl_dpo.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/rl_dpo.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Trainer-ready direct-preference row emitted in export-rl dpo.jsonl.",
@@ -107,6 +107,6 @@
     "rejected_source_fingerprints",
     "source_artifact"
   ],
-  "title": "Hermes Flight Recorder RL DPO Row",
+  "title": "Flight Recorder RL DPO Row",
   "type": "object"
 }

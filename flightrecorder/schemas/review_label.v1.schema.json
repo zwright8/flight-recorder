@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/review_label.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/review_label.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Human label template or completed label row for an export-review item.",
@@ -22,7 +22,7 @@
     "suggested_human_label": {"$ref": "#/$defs/label"}
   },
   "required": ["schema_version", "review_item_id", "review_item_sha256", "episode_id", "scenario_id", "suggested_human_label", "human_label", "corrected_score", "reviewer", "reviewer_confidence", "reviewed_at", "notes", "accepted_evidence_refs", "rejected_evidence_refs"],
-  "title": "Hermes Flight Recorder Review Label",
+  "title": "Flight Recorder Review Label",
   "type": "object",
   "$defs": {
     "confidence": {"enum": ["high", "medium", "low", "unknown"], "type": "string"},

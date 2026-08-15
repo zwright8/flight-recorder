@@ -17,7 +17,7 @@
   },
   "heldout_artifact": {
     "path": "experiments/qwen3_0_6b_tool_calling/data/heldout_tasks.jsonl",
-    "sha256": "efc53b6035f763ec15a116d649d12e64b9fc2b9acaeae8fcd37bdb9ec4da5771",
+    "sha256": "fc8822dd55556bd5475d6f07dc4b313a20e13757b961fb16ce06dddff5983921",
     "task_count": 150
   },
   "observations": [

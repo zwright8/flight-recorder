@@ -621,7 +621,7 @@
           "serving_lifecycle"
         ]
       },
-      "sha256": "8ebef2a86516c948e6d8f05409db7a6ed91dcb9dd268ade92c855f4886e5278f",
+      "sha256": "00104e91dcde9f3ac088f271e02c6052a2c999a6d47fa87d79523e983521231f",
       "size_bytes": 68439,
       "training_outputs": {
         "artifact_count": 6,

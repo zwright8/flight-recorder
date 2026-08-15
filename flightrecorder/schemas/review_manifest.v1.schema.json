@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/review_manifest.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/review_manifest.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Manifest for export-review human review queues.",
@@ -94,7 +94,7 @@
     "outputs",
     "artifact_fingerprints"
   ],
-  "title": "Hermes Flight Recorder Review Manifest",
+  "title": "Flight Recorder Review Manifest",
   "type": "object",
   "$defs": {
     "fileFingerprint": {

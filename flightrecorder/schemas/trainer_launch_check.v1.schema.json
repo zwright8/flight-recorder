@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/trainer_launch_check.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/trainer_launch_check.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Consumer-side trainer launch decision over a validated trainer preflight.",
@@ -118,7 +118,7 @@
     "approved_command",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Trainer Launch Check",
+  "title": "Flight Recorder Trainer Launch Check",
   "type": "object",
   "$defs": {
     "approvedCommand": {

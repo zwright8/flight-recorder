@@ -178,8 +178,8 @@ def hermes_run_env(
         {
             "HOME": str(home_dir),
             "HERMES_HOME": str(hermes_home),
-            "HERMES_FLIGHT_RECORDER_OUTPUT_DIR": str(events_dir),
-            "HERMES_FLIGHT_RECORDER_MAX_FIELD_CHARS": str(max_field_chars),
+            "FLIGHT_RECORDER_OUTPUT_DIR": str(events_dir),
+            "FLIGHT_RECORDER_MAX_FIELD_CHARS": str(max_field_chars),
             "HERMES_API_TIMEOUT": str(timeout),
             "HERMES_STREAM_READ_TIMEOUT": str(timeout),
             "HERMES_STREAM_RETRIES": "0",

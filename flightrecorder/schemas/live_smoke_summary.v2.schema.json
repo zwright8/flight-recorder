@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/live_smoke_summary.v2.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/live_smoke_summary.v2.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Machine-readable proof that Flight Recorder launched a live Hermes runtime, captured observer hooks, and scored the resulting trace.",
@@ -84,7 +84,7 @@
     "summary",
     "environment"
   ],
-  "title": "Hermes Flight Recorder Live Smoke Summary",
+  "title": "Flight Recorder Live Smoke Summary",
   "type": "object",
   "$defs": {
     "environment": {

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/trajectory.v2.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/trajectory.v2.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Lossless observable agent trajectory with immutable runtime identities and action-trainability quarantine.",
@@ -59,7 +59,7 @@
     "metadata",
     "action_training"
   ],
-  "title": "Hermes Flight Recorder Trajectory v2",
+  "title": "Flight Recorder Trajectory v2",
   "type": "object",
   "$defs": {
     "actionTraining": {

@@ -417,7 +417,7 @@ debug, and easy to run in CI.
 ## PR Description Draft
 
 ```text
-Add Hermes Flight Recorder: deterministic scorecards for Hermes autonomy traces
+Add Flight Recorder: deterministic scorecards for Hermes autonomy traces
 
 Hermes already has a self-improvement loop through memory, session search,
 background skill review, and skill maintenance. This contribution adds the

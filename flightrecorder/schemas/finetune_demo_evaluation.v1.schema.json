@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/finetune_demo_evaluation.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/finetune_demo_evaluation.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Bounded integration and memorization evaluation for a Flight Recorder agentic LoRA case study.",
@@ -78,7 +78,7 @@
     "tuned",
     "versions"
   ],
-  "title": "Hermes Flight Recorder Fine-tune Demo Evaluation",
+  "title": "Flight Recorder Fine-tune Demo Evaluation",
   "type": "object",
   "$defs": {
     "model_evaluation": {

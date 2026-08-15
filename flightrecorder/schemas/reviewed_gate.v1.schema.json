@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/reviewed_gate.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/reviewed_gate.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Gate result over an apply-review reviewed trainer handoff and optional reviewed-gate policy.",
@@ -54,7 +54,7 @@
     "metrics",
     "decision"
   ],
-  "title": "Hermes Flight Recorder Reviewed Gate",
+  "title": "Flight Recorder Reviewed Gate",
   "type": "object",
   "$defs": {
     "blocking_check": {

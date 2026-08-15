@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/huggingface_publication_receipt.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/huggingface_publication_receipt.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Private Hugging Face Hub publication receipt bound to an immutable artifact set, reviewed plan, and observed runtime identity.",

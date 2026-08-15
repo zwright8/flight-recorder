@@ -1,1 +1,1 @@
-"""Hermes Flight Recorder tests."""
+"""Flight Recorder tests."""

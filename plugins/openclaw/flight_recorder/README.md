@@ -1,6 +1,6 @@
 # Flight Recorder OpenClaw Plugin
 
-Read-only OpenClaw hook collector for Hermes Flight Recorder.
+Read-only OpenClaw hook collector for Flight Recorder.
 
 ```bash
 openclaw plugins install plugins/openclaw/flight_recorder --link

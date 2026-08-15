@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/trainer_preflight.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/trainer_preflight.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Trainer preflight launch guard over passed gates and trainer-facing evidence artifacts.",
@@ -125,7 +125,7 @@
     "trainer_command",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Trainer Preflight",
+  "title": "Flight Recorder Trainer Preflight",
   "type": "object",
   "$defs": {
     "artifact": {

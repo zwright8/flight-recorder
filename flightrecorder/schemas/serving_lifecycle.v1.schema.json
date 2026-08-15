@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/serving_lifecycle.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/serving_lifecycle.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Managed OpenAI-compatible serving process lifecycle check.",
@@ -263,6 +263,6 @@
     "errors",
     "logs"
   ],
-  "title": "Hermes Flight Recorder Serving Lifecycle",
+  "title": "Flight Recorder Serving Lifecycle",
   "type": "object"
 }

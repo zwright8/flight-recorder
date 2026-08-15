@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/promotion_decision.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/promotion_decision.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Side-effect-free governance decision authorizing or blocking promotion alias movement.",
@@ -404,6 +404,6 @@
       "type": "object"
     }
   },
-  "title": "Hermes Flight Recorder Promotion Decision",
+  "title": "Flight Recorder Promotion Decision",
   "type": "object"
 }

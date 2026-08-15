@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/model_candidate.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/model_candidate.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Base-model scouting candidate with source, license review, terms, and compatibility metadata.",
@@ -14,7 +14,7 @@
     "source": {"$ref": "#/$defs/source"}
   },
   "required": ["schema_version", "candidate_id", "model_id", "source", "license", "compatibility"],
-  "title": "Hermes Flight Recorder Model Candidate",
+  "title": "Flight Recorder Model Candidate",
   "type": "object",
   "$defs": {
     "compatibility": {

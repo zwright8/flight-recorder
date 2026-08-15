@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_loop_controller_state.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_loop_controller_state.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Durable resumable state for a plan-bound agentic loop controller.",
@@ -26,6 +26,6 @@
     "lease": {"required": ["owner_id", "expires_at", "heartbeat_at", "fencing_token"], "type": "object"}
   },
   "required": ["schema_version", "controller_id", "plan_fingerprint", "state_path", "status", "current_phase", "active_model", "rollback_model", "started_at", "deadline_at", "completed_at", "spent_cost_usd", "elapsed_duration_seconds", "total_attempts", "pending_approvals", "phase_records", "rollback", "failure_analysis", "next_iteration", "lease"],
-  "title": "Hermes Flight Recorder Agentic Loop Controller State",
+  "title": "Flight Recorder Agentic Loop Controller State",
   "type": "object"
 }

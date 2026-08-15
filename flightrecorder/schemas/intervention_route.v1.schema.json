@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/intervention_route.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/intervention_route.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Evidence-bound least-cost intervention decision over the complete agent stack.",
@@ -16,6 +16,6 @@
     "work_item": {"required": ["work_item_id", "intervention", "priority", "summary", "evidence_refs", "affected_task_families", "affected_tools", "affected_policies", "acceptance_metrics", "execution_boundary"], "type": "object"}
   },
   "required": ["schema_version", "route_id", "routing_fingerprint", "cluster", "selected_intervention", "routing_reasons", "estimated_cost", "estimated_risk", "rejected_alternatives", "work_item"],
-  "title": "Hermes Flight Recorder Intervention Route",
+  "title": "Flight Recorder Intervention Route",
   "type": "object"
 }

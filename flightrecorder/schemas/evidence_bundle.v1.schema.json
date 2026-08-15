@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/evidence_bundle.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/evidence_bundle.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Evidence handoff manifest emitted by evidence-bundle.",
@@ -99,7 +99,7 @@
     "metrics",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Evidence Bundle",
+  "title": "Flight Recorder Evidence Bundle",
   "type": "object",
   "$defs": {
     "artifact": {

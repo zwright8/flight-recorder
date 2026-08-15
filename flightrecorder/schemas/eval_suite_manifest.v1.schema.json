@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/eval_suite_manifest.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/eval_suite_manifest.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Ordered eval suite selector consumed by run-suite --suite-manifest.",
@@ -27,6 +27,6 @@
     }
   },
   "required": ["schema_version", "suite_id", "description", "tags", "scenario_ids"],
-  "title": "Hermes Flight Recorder Eval Suite Manifest",
+  "title": "Flight Recorder Eval Suite Manifest",
   "type": "object"
 }

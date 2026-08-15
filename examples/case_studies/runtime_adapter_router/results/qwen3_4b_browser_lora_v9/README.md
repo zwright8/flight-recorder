@@ -75,9 +75,9 @@ weights are byte-identical to the governed output.
 - `SHA256SUMS` fingerprints every machine-readable artifact in this capsule.
 
 The loadable adapter is published at
-[`zwright/qwen3-4b-hermes-flight-recorder-browser-lora`](https://huggingface.co/zwright/qwen3-4b-hermes-flight-recorder-browser-lora).
+[`zwright/qwen3-4b-flight-recorder-browser-lora`](https://huggingface.co/zwright/qwen3-4b-flight-recorder-browser-lora).
 The exact public synthetic corpus is published at
-[`zwright/hermes-flight-recorder-browser-tool-calling-trajectories`](https://huggingface.co/datasets/zwright/hermes-flight-recorder-browser-tool-calling-trajectories).
+[`zwright/flight-recorder-browser-tool-calling-trajectories`](https://huggingface.co/datasets/zwright/flight-recorder-browser-tool-calling-trajectories).
 
 ## Claim boundary
 

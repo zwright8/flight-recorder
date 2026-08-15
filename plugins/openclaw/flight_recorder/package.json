@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "private": true,
-  "description": "Read-only OpenClaw hook collector for Hermes Flight Recorder.",
+  "description": "Read-only OpenClaw hook collector for Flight Recorder.",
   "scripts": {
     "test": "node --test test/*.test.js"
   },

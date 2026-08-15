@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/harness_model_probe.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/harness_model_probe.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "No-network harness model probe receipt for mock and live-smoke runner selection.",
@@ -60,6 +60,6 @@
     "failed_probes",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Harness Model Probe",
+  "title": "Flight Recorder Harness Model Probe",
   "type": "object"
 }

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/rl_reward_model.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/rl_reward_model.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Trainer-ready reward-model row emitted in export-rl reward_model.jsonl.",
@@ -93,6 +93,6 @@
     "source_fingerprints",
     "source_artifact"
   ],
-  "title": "Hermes Flight Recorder RL Reward Model Row",
+  "title": "Flight Recorder RL Reward Model Row",
   "type": "object"
 }

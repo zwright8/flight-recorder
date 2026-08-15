@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/review_item.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/review_item.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "One evidence-grounded item emitted in an export-review queue.",
@@ -42,7 +42,7 @@
     "task_family": {"minLength": 1, "type": "string"}
   },
   "required": ["schema_version", "review_item_id", "review_item_sha256", "episode_id", "scenario_id", "scenario_title", "task_family", "source_artifacts", "source_artifact_fingerprints", "prompt", "final_answer", "event_count", "episode_events_sha256", "scorecard", "rule_summaries", "task_evidence", "evidence_target_counts", "suggested_human_label", "label_options"],
-  "title": "Hermes Flight Recorder Review Item",
+  "title": "Flight Recorder Review Item",
   "type": "object",
   "$defs": {
     "fingerprint": {

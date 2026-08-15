@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/promotion_rollback_receipt.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/promotion_rollback_receipt.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Promotion rollback receipt proving the rollback target is registered and matches the current champion before alias movement.",
@@ -113,6 +113,6 @@
       "type": "object"
     }
   },
-  "title": "Hermes Flight Recorder Promotion Rollback Receipt",
+  "title": "Flight Recorder Promotion Rollback Receipt",
   "type": "object"
 }

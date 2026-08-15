@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/promotion_alias_apply.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/promotion_alias_apply.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Guarded alias-apply receipt proving registry aliases moved only after a passing promotion decision.",
@@ -166,6 +166,6 @@
       "type": "object"
     }
   },
-  "title": "Hermes Flight Recorder Promotion Alias Apply Receipt",
+  "title": "Flight Recorder Promotion Alias Apply Receipt",
   "type": "object"
 }

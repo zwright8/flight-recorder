@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/promotion_release_record.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/promotion_release_record.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Reviewable release record binding promotion decision, cards, alias receipt, rollback, eval gate, and notes.",
@@ -242,6 +242,6 @@
       "type": "object"
     }
   },
-  "title": "Hermes Flight Recorder Promotion Release Record",
+  "title": "Flight Recorder Promotion Release Record",
   "type": "object"
 }

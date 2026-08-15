@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/promotion_policy.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/promotion_policy.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Promotion governance policy declaring required evidence, model classes, safety limits, forbidden-rule blockers, and release artifact contracts.",
@@ -120,6 +120,6 @@
     "require_supported_cards",
     "require_artifact_validation"
   ],
-  "title": "Hermes Flight Recorder Promotion Policy",
+  "title": "Flight Recorder Promotion Policy",
   "type": "object"
 }

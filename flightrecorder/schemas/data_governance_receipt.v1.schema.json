@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/data_governance_receipt.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/data_governance_receipt.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Purpose-bound governance and personal-data admission receipt for a training dataset.",
@@ -23,6 +23,6 @@
     "notes": {"items": {"type": "string"}, "type": "array"}
   },
   "required": ["schema_version", "passed", "purpose", "record_count", "authorized_record_count", "blocked_record_count", "pii_finding_count", "blocked_reasons", "policy", "requested_policy", "policy_violations", "policy_fingerprint", "scan_fingerprint", "record_statuses", "findings", "evaluated_at", "notes"],
-  "title": "Hermes Flight Recorder Data Governance Receipt",
+  "title": "Flight Recorder Data Governance Receipt",
   "type": "object"
 }

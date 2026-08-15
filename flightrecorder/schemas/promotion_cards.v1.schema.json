@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/promotion_cards.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/promotion_cards.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Promotion model-card and dataset-card manifest with input evidence fingerprints.",
@@ -53,6 +53,6 @@
     "metrics",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Promotion Cards",
+  "title": "Flight Recorder Promotion Cards",
   "type": "object"
 }

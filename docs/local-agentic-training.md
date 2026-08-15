@@ -1,6 +1,6 @@
 # Local Agentic LoRA Training
 
-Hermes Flight Recorder can run a small, explicitly authorized LoRA trial from
+Flight Recorder can run a small, explicitly authorized LoRA trial from
 registered local artifacts. The intended first use is a user-defined agentic
 task such as exact-schema tool calling: capture the task as Flight Recorder
 scenarios, export and review the trajectories, then select its `task_family`

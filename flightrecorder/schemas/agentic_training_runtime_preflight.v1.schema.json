@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_training_runtime_preflight.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_training_runtime_preflight.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Side-effect-free runtime readiness preflight for an agentic training plan.",
@@ -123,7 +123,7 @@
     "handoff_contract",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Agentic Training Runtime Preflight",
+  "title": "Flight Recorder Agentic Training Runtime Preflight",
   "type": "object",
   "$defs": {
     "check": {

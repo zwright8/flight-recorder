@@ -1,5 +1,5 @@
 ---
-pretty_name: Hermes Flight Recorder Browser Tool-Calling Trajectories
+pretty_name: Flight Recorder Browser Tool-Calling Trajectories
 license: apache-2.0
 task_categories:
 - text-generation
@@ -20,7 +20,7 @@ configs:
     path: data/sealed_final_action_sft.jsonl
 ---
 
-# Hermes Flight Recorder Browser Tool-Calling Trajectories
+# Flight Recorder Browser Tool-Calling Trajectories
 
 This dataset repository publishes the exact public-synthetic artifacts used by
 the Qwen3-4B browser LoRA case study.
@@ -44,6 +44,6 @@ model selection. They exist to make the historical claim auditable and must not
 be reused as hidden evaluation data for later recipes.
 
 Build logic lives in
-[`scripts/build_runtime_adapter_training_corpus.py`](https://github.com/zwright8/hermes-flight-recorder/blob/codex/runtime-adapter-router/scripts/build_runtime_adapter_training_corpus.py).
+[`scripts/build_runtime_adapter_training_corpus.py`](https://github.com/zwright8/flight-recorder/blob/codex/runtime-adapter-router/scripts/build_runtime_adapter_training_corpus.py).
 The paired model evidence is in
-[PR #34](https://github.com/zwright8/hermes-flight-recorder/pull/34).
+[PR #34](https://github.com/zwright8/flight-recorder/pull/34).

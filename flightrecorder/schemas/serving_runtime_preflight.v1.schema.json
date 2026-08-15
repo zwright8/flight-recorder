@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/serving_runtime_preflight.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/serving_runtime_preflight.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Dependency and artifact preflight for launching real local serving runtimes.",
@@ -90,7 +90,7 @@
     "command_refs",
     "environment"
   ],
-  "title": "Hermes Flight Recorder Serving Runtime Preflight",
+  "title": "Flight Recorder Serving Runtime Preflight",
   "type": "object",
   "$defs": {
     "adapter": {

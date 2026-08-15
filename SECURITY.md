@@ -1,6 +1,6 @@
 # Security Notes
 
-Hermes Flight Recorder is an audit and evaluation tool. It is not an isolation
+Flight Recorder is an audit and evaluation tool. It is not an isolation
 boundary and does not prevent prompt injection, data exfiltration, or unsafe
 tool execution by itself.
 

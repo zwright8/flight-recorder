@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/huggingface_canonical_import.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/huggingface_canonical_import.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Offline import receipt binding an immutable Hugging Face completion revision to canonical training and cloud-completion artifacts.",

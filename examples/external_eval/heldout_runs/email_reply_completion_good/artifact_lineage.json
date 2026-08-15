@@ -264,8 +264,8 @@
       "path": "heldout_runs/email_reply_completion_good/report.html",
       "role": "output",
       "sensitive": false,
-      "sha256": "e6a92a1a5df2428e578a4f71a54279ea4c637b0da537b534edbd00ef7e670268",
-      "size_bytes": 13643
+      "sha256": "10a28a44b18c8ea2aa6435992b0e8ac2c6fdb935e5600269a4cd1f9434eec106",
+      "size_bytes": 13636
     }
   ],
   "replay": {

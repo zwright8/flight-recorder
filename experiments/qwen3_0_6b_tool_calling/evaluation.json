@@ -1,18 +1,18 @@
 {
   "adapter_artifact": {
     "path": "experiments/qwen3_0_6b_tool_calling/evidence/adapter.json",
-    "sha256": "98effb9236735bb61630697d09d1be1abfa1505b37e382e87b1ba2a9602d7b38"
+    "sha256": "0fefa639ed2d255a0663e40bb90f673fdaf81a74769052648c0c3e26b4db4c9d"
   },
   "baseline_artifact": {
     "path": "experiments/qwen3_0_6b_tool_calling/evidence/baseline.json",
-    "sha256": "e3ec833c1c8946d2f13edb3113b663dff8e226b76c07c9c8dd157a16febd1720"
+    "sha256": "c14014163d90d59070a3c30976d36ae667c898f7be8c90d15019298f23fe7054"
   },
   "blocking_reasons": [],
   "checks": [
     {
-      "actual": "efc53b6035f763ec15a116d649d12e64b9fc2b9acaeae8fcd37bdb9ec4da5771",
+      "actual": "fc8822dd55556bd5475d6f07dc4b313a20e13757b961fb16ce06dddff5983921",
       "check_id": "identical_frozen_heldout_sha256",
-      "expected": "efc53b6035f763ec15a116d649d12e64b9fc2b9acaeae8fcd37bdb9ec4da5771",
+      "expected": "fc8822dd55556bd5475d6f07dc4b313a20e13757b961fb16ce06dddff5983921",
       "passed": true
     },
     {
@@ -202,7 +202,7 @@
     }
   },
   "failed_check_count": 0,
-  "heldout_sha256": "efc53b6035f763ec15a116d649d12e64b9fc2b9acaeae8fcd37bdb9ec4da5771",
+  "heldout_sha256": "fc8822dd55556bd5475d6f07dc4b313a20e13757b961fb16ce06dddff5983921",
   "methodology": {
     "bootstrap_samples": 10000,
     "confidence_level": 0.95,

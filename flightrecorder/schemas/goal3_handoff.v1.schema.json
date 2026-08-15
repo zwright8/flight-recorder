@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/goal3_handoff.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/goal3_handoff.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Goal 3 data handoff summary over export, validation, gate, evidence bundle, and trainer preflight artifacts.",
@@ -63,7 +63,7 @@
     "stages",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Goal 3 Handoff",
+  "title": "Flight Recorder Goal 3 Handoff",
   "type": "object",
   "$defs": {
     "stage": {

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/rl_dataset_metrics.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/rl_dataset_metrics.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Dataset quality metrics emitted in export-rl dataset_metrics.json.",
@@ -130,6 +130,6 @@
     "quality_flags",
     "recommended_checks"
   ],
-  "title": "Hermes Flight Recorder RL Dataset Metrics",
+  "title": "Flight Recorder RL Dataset Metrics",
   "type": "object"
 }

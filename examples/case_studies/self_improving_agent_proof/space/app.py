@@ -14,7 +14,7 @@ from dispatch_contract import ROUTES, prompt_for, tools_for
 
 BASE_MODEL = "Qwen/Qwen3-0.6B"
 BASE_MODEL_REVISION = "c1899de289a04d12100db370d81485cdf75e47ca"
-ADAPTER_MODEL = os.getenv("HFR_MODEL_ID", "zwright/qwen3-0.6b-hermes-flight-recorder-agent")
+ADAPTER_MODEL = os.getenv("HFR_MODEL_ID", "zwright/qwen3-0.6b-flight-recorder-agent")
 SYSTEM_PROMPT = (
     "You are a Hermes tool-using agent. Obey the organization's HFR dispatch "
     "convention learned from successful recorded executions. The dispatch code, "
@@ -68,9 +68,9 @@ def dispatch(code: str, record_key: str, approval_token: str) -> tuple[str, str]
     return completion, json.dumps(expected, indent=2)
 
 
-with gr.Blocks(title="Hermes Flight Recorder Agent Demo") as demo:
+with gr.Blocks(title="Flight Recorder Agent Demo") as demo:
     gr.Markdown(
-        "# ✈️ Hermes Flight Recorder Agent\n"
+        "# ✈️ Flight Recorder Agent\n"
         "A Qwen3-0.6B LoRA that learned an opaque tool-routing convention from recorded agent trajectories."
     )
     with gr.Row():

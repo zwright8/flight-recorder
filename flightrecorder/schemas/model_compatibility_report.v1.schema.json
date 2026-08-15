@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/model_compatibility_report.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/model_compatibility_report.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "No-download compatibility report derived from model candidate metadata.",
@@ -30,6 +30,6 @@
     "probes",
     "summary"
   ],
-  "title": "Hermes Flight Recorder Model Compatibility Report",
+  "title": "Flight Recorder Model Compatibility Report",
   "type": "object"
 }

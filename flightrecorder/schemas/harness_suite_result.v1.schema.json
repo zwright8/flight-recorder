@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/harness_suite_result.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/harness_suite_result.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Mock harness suite receipt linking per-scenario harness artifacts.",
@@ -80,6 +80,6 @@
     "runs",
     "artifacts"
   ],
-  "title": "Hermes Flight Recorder Harness Suite Result",
+  "title": "Flight Recorder Harness Suite Result",
   "type": "object"
 }

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/rl_preference.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/rl_preference.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Preference row emitted in export-rl preferences.jsonl.",
@@ -59,6 +59,6 @@
     "chosen",
     "rejected"
   ],
-  "title": "Hermes Flight Recorder RL Preference Row",
+  "title": "Flight Recorder RL Preference Row",
   "type": "object"
 }

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/cloud_training_status_receipt.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/cloud_training_status_receipt.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Dry-run cloud training status and cancellation receipt.",
@@ -107,7 +107,7 @@
     "status",
     "execution_boundary"
   ],
-  "title": "Hermes Flight Recorder Cloud Training Status Receipt",
+  "title": "Flight Recorder Cloud Training Status Receipt",
   "type": "object",
   "$defs": {
     "check": {

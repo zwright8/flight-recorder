@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/suite_trend.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/suite_trend.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Longitudinal run-suite trend emitted as suite_trend.json by trend-suite.",
@@ -28,7 +28,7 @@
     "critical_failure_trends",
     "summary"
   ],
-  "title": "Hermes Flight Recorder Suite Trend",
+  "title": "Flight Recorder Suite Trend",
   "type": "object",
   "$defs": {
     "count_map": {

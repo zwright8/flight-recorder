@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/training_manifest.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/training_manifest.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Manifest for export-rl training handoffs.",
@@ -236,7 +236,7 @@
     "outputs",
     "artifact_fingerprints"
   ],
-  "title": "Hermes Flight Recorder Training Manifest",
+  "title": "Flight Recorder Training Manifest",
   "type": "object",
   "$defs": {
     "fileFingerprint": {

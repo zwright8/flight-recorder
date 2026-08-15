@@ -1,6 +1,6 @@
 # Case Study: Flight Recorder LoRA Improves Held-Out Agent Tasks
 
-This case study demonstrates that Hermes Flight Recorder artifacts can support
+This case study demonstrates that Flight Recorder artifacts can support
 a complete, evidence-backed agent-improvement loop: collect reviewed agent
 trajectories, fine-tune an open-weight model, evaluate the adapted model on an
 untouched held-out task set, and publish the decision evidence.

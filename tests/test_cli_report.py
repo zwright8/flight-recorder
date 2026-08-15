@@ -1696,7 +1696,7 @@ class CliReportTests(unittest.TestCase):
 
             self.assertEqual(code, 0)
             index = index_path.read_text(encoding="utf-8")
-            self.assertIn("Hermes Flight Recorder Demo Runs", index)
+            self.assertIn("Flight Recorder Demo Runs", index)
             self.assertIn("Prompt Injection", index)
             self.assertIn("Evidence Artifacts", index)
             self.assertIn("Improvement Ledger Gate", index)

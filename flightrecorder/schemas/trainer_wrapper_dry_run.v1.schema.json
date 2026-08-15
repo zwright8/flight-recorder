@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/trainer_wrapper_dry_run.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/trainer_wrapper_dry_run.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Dry-run receipt from the reference external trainer wrapper consuming a trainer consumer plan.",
@@ -79,7 +79,7 @@
     "metrics",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Trainer Wrapper Dry Run",
+  "title": "Flight Recorder Trainer Wrapper Dry Run",
   "type": "object",
   "$defs": {
     "check": {

@@ -264,8 +264,8 @@
       "path": "examples/agentic_training/promotion_governance/compare_runs/candidate/email_reply_completion/report.html",
       "role": "output",
       "sensitive": false,
-      "sha256": "20ff7169c0f9692f04a7cdf454379ebe4cab63b92fc813ed9b8ade847281ec1a",
-      "size_bytes": 13620
+      "sha256": "4a37713961d3170366a4ac555d7c4ba97df087bc7db98960cd0c962c60305f90",
+      "size_bytes": 13613
     }
   ],
   "replay": {

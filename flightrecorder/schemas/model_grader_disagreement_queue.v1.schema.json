@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/model_grader_disagreement_queue.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/model_grader_disagreement_queue.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Portable human-review queue derived from a model-grader dry-run receipt.",
@@ -69,7 +69,7 @@
     "execution_boundary",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Model Grader Disagreement Queue",
+  "title": "Flight Recorder Model Grader Disagreement Queue",
   "type": "object",
   "$defs": {
     "boundary": {

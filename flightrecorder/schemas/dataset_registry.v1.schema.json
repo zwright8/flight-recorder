@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/dataset_registry.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/dataset_registry.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "allOf": [
@@ -292,7 +292,7 @@
     "artifact_fingerprints",
     "outputs"
   ],
-  "title": "Hermes Flight Recorder Dataset Registry",
+  "title": "Flight Recorder Dataset Registry",
   "type": "object",
   "$defs": {
     "fileFingerprint": {

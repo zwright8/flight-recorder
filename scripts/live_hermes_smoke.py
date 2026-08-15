@@ -142,7 +142,7 @@ class MockChatHandler(BaseHTTPRequestHandler):
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Run a live Hermes Flight Recorder observer smoke test")
+    parser = argparse.ArgumentParser(description="Run a live Flight Recorder observer smoke test")
     parser.add_argument(
         "--hermes-root",
         default=os.environ.get("HERMES_AGENT_ROOT") or _default_hermes_root(),
@@ -243,8 +243,8 @@ def _run_live_session(
         {
             "HERMES_HOME": str(hermes_home),
             "HOME": str(home_dir),
-            "HERMES_FLIGHT_RECORDER_OUTPUT_DIR": str(events_dir),
-            "HERMES_FLIGHT_RECORDER_MAX_FIELD_CHARS": "20000",
+            "FLIGHT_RECORDER_OUTPUT_DIR": str(events_dir),
+            "FLIGHT_RECORDER_MAX_FIELD_CHARS": "20000",
             "HERMES_API_TIMEOUT": "30",
             "HERMES_STREAM_READ_TIMEOUT": "30",
             "HERMES_STREAM_RETRIES": "0",

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/tau3_fresh_contamination_replay.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/tau3_fresh_contamination_replay.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Hash-only disjointness replay across Tau-3 train, development, retired sealed, and fresh sealed sources.",

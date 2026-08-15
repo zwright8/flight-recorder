@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/tau3_sealed_grid_completeness.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/tau3_sealed_grid_completeness.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Public-safe hash-only completeness proof for the final Tau-3 sealed benchmark grid.",

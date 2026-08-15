@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/dataset_curation_receipt.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/dataset_curation_receipt.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$defs": {
     "artifactRef": {
@@ -161,6 +161,6 @@
     "execution_boundary",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Dataset Curation Receipt",
+  "title": "Flight Recorder Dataset Curation Receipt",
   "type": "object"
 }

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/live_openclaw_smoke_summary.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/live_openclaw_smoke_summary.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Machine-readable proof that Flight Recorder launched a live OpenClaw Gateway, captured plugin hooks, and scored the resulting trace.",

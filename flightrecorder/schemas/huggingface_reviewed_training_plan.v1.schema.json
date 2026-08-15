@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/huggingface_reviewed_training_plan.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/huggingface_reviewed_training_plan.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Reviewed, content-addressed sole source of behavior-affecting Hugging Face trainer configuration.",

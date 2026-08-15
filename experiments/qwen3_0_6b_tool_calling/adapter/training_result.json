@@ -165,10 +165,10 @@
       "train_sha256": true
     },
     "dataset_sha256": "e2af62c0a6668b3c7152579ac6c654052dd07ced6b0d0bda6da8dc387284419b",
-    "development_sha256": "d91951e52c8f09127e2a66f845e16a1bfb485a1c0294c11962f168eafe23882d",
-    "heldout_sha256": "efc53b6035f763ec15a116d649d12e64b9fc2b9acaeae8fcd37bdb9ec4da5771",
+    "development_sha256": "4b9494407f48c1c608344094509050c58241e64e68ab324fbd2ffb540699f4ae",
+    "heldout_sha256": "fc8822dd55556bd5475d6f07dc4b313a20e13757b961fb16ce06dddff5983921",
     "train_row_count": 800,
-    "train_sha256": "9cc907b0ce04d5f4b21f905357ed7f277fc640c70a8f31c90f76a187a14b2df5"
+    "train_sha256": "0c6a9b26bf712151d722e72ce23082fc2d41ed5d599e75b115f1bf0463eda22a"
   },
   "hub": null,
   "hyperparameters": {
@@ -205,7 +205,7 @@
   "status": "succeeded",
   "tracking": {
     "enabled": false,
-    "project": "hermes-flightrecorder-self-improving-proof",
+    "project": "flight-recorder-self-improving-proof",
     "run_name": "qwen3-0.6b-hfr-tool-calling-reproduction",
     "space_id": null
   },

@@ -1,8 +1,8 @@
 {
   "all_splits_audit_data": {
     "path": "examples/case_studies/runtime_adapter_router/data/all_splits_action_sft.jsonl",
-    "sha256": "e0c18b7b64ad3b716569312d65c306826f59042f12eff6d54eef579fd42de384",
-    "size_bytes": 3989168
+    "sha256": "b971e295f8f8393d6275e83665718b430254817201d8bcea6551852992f47b56",
+    "size_bytes": 3984128
   },
   "behavior_counts": {
     "browser_positive": 40,
@@ -21,22 +21,22 @@
   "candidate_manifests": {
     "browser": {
       "path": "examples/case_studies/runtime_adapter_router/registry/browser_dataset_version.json",
-      "sha256": "303737da5a3b6bd5b625a6a09c59802c16f7b9f4fb66b0dac4ba4ef3ad8e03ea",
+      "sha256": "e8bd7917c5420b716ff02a82dd956d26db836893014b08aeb6132b474bb53e96",
       "size_bytes": 4382
     },
     "code_terminal": {
       "path": "examples/case_studies/runtime_adapter_router/registry/code_terminal_dataset_version.json",
-      "sha256": "c8b3e301953641e1dba04aa18f22c5d90a5e73b29f002a75ce5fb3e74db28017",
+      "sha256": "f3124fb50e2db72de671c1d2a5644229ba90fa1b023d7beeaf53b7d6542992f6",
       "size_bytes": 4442
     },
     "database": {
       "path": "examples/case_studies/runtime_adapter_router/registry/database_dataset_version.json",
-      "sha256": "324d2cdc89edb20785dde13b533a945afe2fa943a4ce6718b4cb9abb06c9de21",
+      "sha256": "e1ac477579017cea7b0b4b5d2a2e7dc6d60f497d18fd8be76d532b481c867bc3",
       "size_bytes": 4392
     },
     "generalist": {
       "path": "examples/case_studies/runtime_adapter_router/registry/generalist_dataset_version.json",
-      "sha256": "33e45a3e6d12f7d4da9296c410af8a78870b937938eb9d7426aab13786f23b38",
+      "sha256": "04580ca169b1ccb413483ea5783493a1a79c3b05d056058f2f9cf3372c7b2fb1",
       "size_bytes": 4855
     }
   },
@@ -59,8 +59,8 @@
     },
     "curated_dataset": {
       "path": "examples/case_studies/runtime_adapter_router/controls/curated_dataset.json",
-      "sha256": "00f60abd78ba3915a27fc4f0fa1d6ea0a03b855005bdb813f34b2783d5876416",
-      "size_bytes": 5027571
+      "sha256": "80fdd747ce5c8a26cfe6f1e7daeb18ea1fbca18c515957484f81601095f23997",
+      "size_bytes": 5023539
     },
     "governance_receipt": {
       "path": "examples/case_studies/runtime_adapter_router/controls/governance_receipt.json",
@@ -76,12 +76,12 @@
   "corpus_fingerprint": "767a1f9fb42304a09f1873c0f6c562a990f51577b7117ebadb5d4d2a936b4620",
   "data": {
     "path": "examples/case_studies/runtime_adapter_router/data/flightrecorder_action_sft.jsonl",
-    "sha256": "32c644970a77644d6254647cc2da0dc986052573754f011337f83c3e09a1209f",
-    "size_bytes": 3177461
+    "sha256": "2fc4aaa05d6e0a011bb5a5145ce75de03f0ff67668fc6ef09aa894efb0430023",
+    "size_bytes": 3173429
   },
   "dataset_manifest": {
     "path": "examples/case_studies/runtime_adapter_router/registry/dataset_version.json",
-    "sha256": "ce312548a53497e80103d498d44ad0175d5ed2f67f85c89b6060f36999701547",
+    "sha256": "dc88493f53d1fb9e9dfe9896c8f1b74383c5c974a764e48b4af63e2294fdaf95",
     "size_bytes": 4781
   },
   "default_count_range": {
@@ -101,8 +101,8 @@
   },
   "rl_action_sft_data": {
     "path": "examples/case_studies/runtime_adapter_router/data/rl_action_sft.jsonl",
-    "sha256": "8f0bf80d6c1ff4122b320d7c721e564d744b7e373700387fb844473dd78ed7b9",
-    "size_bytes": 2908757
+    "sha256": "41caecf8ea9851c6591b457b1dd1dc7594e5ae377fd5920067d43b137fd1aed3",
+    "size_bytes": 2904725
   },
   "row_count": 360,
   "schema_version": "hfr.runtime_adapter_router_corpus_manifest.v1",

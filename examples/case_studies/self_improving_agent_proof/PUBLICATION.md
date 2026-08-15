@@ -7,9 +7,9 @@ Space API.
 
 | Artifact | Immutable revision | Verification |
 | --- | --- | --- |
-| [Trajectory dataset](https://huggingface.co/datasets/zwright/hermes-flight-recorder-self-improving-agent-trajectories/tree/82cbbb6ec1d6dbf47803b9a32201171e2926dc00) | `82cbbb6ec1d6dbf47803b9a32201171e2926dc00` | Eight expected files; no private traces |
-| [LoRA adapter](https://huggingface.co/zwright/qwen3-0.6b-hermes-flight-recorder-agent/tree/5c4b3eb6e8540be59ecfea563b2f2f12b9bd1877) | `5c4b3eb6e8540be59ecfea563b2f2f12b9bd1877` | Ten expected files; no checkpoints, optimizer state, or `training_args.bin` |
-| [ZeroGPU demo source](https://huggingface.co/spaces/zwright/hermes-flight-recorder-agent-demo/tree/88c00606f9ef87a4c03bd4658853dde76b80ce3c) | `88c00606f9ef87a4c03bd4658853dde76b80ce3c` | Source-only Space; runtime reported the same SHA |
+| [Trajectory dataset](https://huggingface.co/datasets/zwright/flight-recorder-self-improving-agent-trajectories/tree/82cbbb6ec1d6dbf47803b9a32201171e2926dc00) | `82cbbb6ec1d6dbf47803b9a32201171e2926dc00` | Eight expected files; no private traces |
+| [LoRA adapter](https://huggingface.co/zwright/qwen3-0.6b-flight-recorder-agent/tree/5c4b3eb6e8540be59ecfea563b2f2f12b9bd1877) | `5c4b3eb6e8540be59ecfea563b2f2f12b9bd1877` | Ten expected files; no checkpoints, optimizer state, or `training_args.bin` |
+| [ZeroGPU demo source](https://huggingface.co/spaces/zwright/flight-recorder-agent-demo/tree/88c00606f9ef87a4c03bd4658853dde76b80ce3c) | `88c00606f9ef87a4c03bd4658853dde76b80ce3c` | Source-only Space; runtime reported the same SHA |
 
 The adapter was downloaded again from the immutable model revision. Its
 `adapter_model.safetensors` SHA-256 was:
@@ -22,14 +22,14 @@ The remotely resolved dataset manifest, training receipt, and evaluation
 report matched the committed local files byte-for-byte:
 
 ```text
-dataset_manifest.json  ced2ba1bc4dec41a0f11d2800d7b75e1513380e5d20b13acad7a5aa6d0031125
-training_result.json   cb0c868cf3a388d476f2cb8e7df886fc03e4436dba565a5470c57f0d5009dc64
-evaluation.json        8ef3ba7f59b5b00107f5e568da000cce9abbd03c783ce93858b753460c46cca2
+dataset_manifest.json  2a3c6ca4d56197cbd0c88018ae1b042efdda3ce394374ff8b04c6e998ea07451
+training_result.json   8cab0e7269834bcd6c7ddbead5621effa2e35b577fc22b2d34185f156089f000
+evaluation.json        e3328c5b50c92b68b810ce94411ccadb686149ee826518b52ad44a0cde98f694
 ```
 
 ## Live deployment verification
 
-The [public demo](https://zwright-hermes-flight-recorder-agent-demo.hf.space)
+The [public demo](https://zwright-flight-recorder-agent-demo.hf.space)
 reported `RUNNING` on `zero-a10g`, with runtime SHA
 `88c00606f9ef87a4c03bd4658853dde76b80ce3c`. Its public Gradio schema exposes
 the named `/dispatch` endpoint.

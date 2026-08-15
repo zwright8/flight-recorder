@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/action_credit.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/action_credit.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Per-tool-action credit independent of terminal episode success.",
@@ -19,6 +19,6 @@
     "action": {"type": "object"}
   },
   "required": ["schema_version", "episode_id", "message_index", "tool_call_id", "tool_name", "label", "reward", "status", "confidence", "source", "episode_outcome", "observation", "action"],
-  "title": "Hermes Flight Recorder Action Credit",
+  "title": "Flight Recorder Action Credit",
   "type": "object"
 }

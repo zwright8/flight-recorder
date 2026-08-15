@@ -22,7 +22,7 @@ fi
 
 cleanup_local_artifacts() {
   find . -type d -name __pycache__ -prune -exec rm -rf {} + 2>/dev/null || true
-  rm -rf hermes_flight_recorder.egg-info build dist
+  rm -rf flight_recorder.egg-info build dist
 }
 trap cleanup_local_artifacts EXIT
 
@@ -1711,7 +1711,7 @@ fi
 import importlib.metadata
 import flightrecorder
 
-assert flightrecorder.__version__ == importlib.metadata.version("hermes-flight-recorder")
+assert flightrecorder.__version__ == importlib.metadata.version("flight-recorder")
 PY
 "$VENV_DIR/bin/flightrecorder" --help >/dev/null
 "$VENV_DIR/bin/python" -m flightrecorder schemas --name scorecard \

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/model_scout_manifest.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/model_scout_manifest.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Model scouting manifest with candidate refs, selection policy, license posture, and compatibility proof links.",
@@ -11,7 +11,7 @@
     "updated_at": {"minLength": 1, "type": "string"}
   },
   "required": ["schema_version", "updated_at", "selection_policy", "candidates"],
-  "title": "Hermes Flight Recorder Model Scout Manifest",
+  "title": "Flight Recorder Model Scout Manifest",
   "type": "object",
   "$defs": {
     "candidateRef": {

@@ -1,7 +1,7 @@
 # Visible ARC-AGI-A Strategy Distillation Evidence
 
 This package publishes the reviewed, privacy-safe evidence for a local
-Qwen3-0.6B strategy-router experiment. Hermes Flight Recorder recorded and
+Qwen3-0.6B strategy-router experiment. Flight Recorder recorded and
 validated the teacher trajectories used for action SFT. The frozen base and
 LoRA arms were then evaluated with the same prompts, model revision, decoding,
 tool catalog, deterministic strategy executor, prediction cap, and exact-grid

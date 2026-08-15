@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/agentic_loop_controller_plan.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/agentic_loop_controller_plan.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Immutable, approval-bound execution plan for the complete agent improvement loop.",
@@ -18,6 +18,6 @@
     "plan_fingerprint": {"pattern": "^[0-9a-f]{64}$", "type": "string"}
   },
   "required": ["schema_version", "controller_id", "artifact_dir", "candidate_model", "champion_model", "budget", "deadline_at", "canary_guardrails", "phases", "failure_phases", "execution_boundary", "plan_fingerprint"],
-  "title": "Hermes Flight Recorder Agentic Loop Controller Plan",
+  "title": "Flight Recorder Agentic Loop Controller Plan",
   "type": "object"
 }

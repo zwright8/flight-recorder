@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/dataset_contamination_report.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/dataset_contamination_report.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Exact and near-duplicate contamination report across splits and protected corpora.",
@@ -19,6 +19,6 @@
     "blocking_reasons": {"items": {"type": "string"}, "type": "array"}
   },
   "required": ["schema_version", "passed", "similarity_threshold", "row_count", "cluster_count", "duplicate_cluster_count", "cross_split_cluster_count", "protected_match_count", "clusters", "cross_split_clusters", "protected_matches", "report_fingerprint", "blocking_reasons"],
-  "title": "Hermes Flight Recorder Dataset Contamination Report",
+  "title": "Flight Recorder Dataset Contamination Report",
   "type": "object"
 }

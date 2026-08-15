@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/rl_step_reward.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/rl_step_reward.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Step-level reward attribution row emitted in export-rl step_rewards.jsonl.",
@@ -112,6 +112,6 @@
     "passed",
     "evidence"
   ],
-  "title": "Hermes Flight Recorder RL Step Reward Row",
+  "title": "Flight Recorder RL Step Reward Row",
   "type": "object"
 }

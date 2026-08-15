@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/external_eval_receipt.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/external_eval_receipt.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Dry-run or blocked live external benchmark adapter receipt.",
@@ -111,7 +111,7 @@
     "execution_boundary",
     "notes"
   ],
-  "title": "Hermes Flight Recorder External Eval Receipt",
+  "title": "Flight Recorder External Eval Receipt",
   "type": "object",
   "$defs": {
     "adapterContract": {

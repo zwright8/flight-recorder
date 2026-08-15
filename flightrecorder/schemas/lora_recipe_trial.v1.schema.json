@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/lora_recipe_trial.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/lora_recipe_trial.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Immutable receipt for one baseline, kept, discarded, crashed, or blocked LoRA recipe trial.",
@@ -25,7 +25,7 @@
     "source_plan", "development_suite", "proposal", "recipe", "recipe_sha256", "status",
     "evaluation", "decision", "execution_boundary"
   ],
-  "title": "Hermes Flight Recorder LoRA Recipe Trial",
+  "title": "Flight Recorder LoRA Recipe Trial",
   "type": "object",
   "$defs": {
     "decision": {

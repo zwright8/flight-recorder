@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/tau3_blind_source_bundle_validation.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/tau3_blind_source_bundle_validation.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Hash-only cross-artifact validation receipt for a fresh Tau-3 blind source and exact custodian executable.",

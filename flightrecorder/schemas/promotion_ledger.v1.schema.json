@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/promotion_ledger.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/promotion_ledger.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Longitudinal ledger over promotion decision gates.",
@@ -21,6 +21,6 @@
     "metrics",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Promotion Ledger",
+  "title": "Flight Recorder Promotion Ledger",
   "type": "object"
 }

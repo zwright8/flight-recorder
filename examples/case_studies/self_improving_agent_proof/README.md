@@ -1,6 +1,6 @@
 # Case Study: A Self-Improving Hermes Agent
 
-This case study tests whether Hermes Flight Recorder trajectories can teach a
+This case study tests whether Flight Recorder trajectories can teach a
 small language model an organization-specific tool-routing convention and
 improve its behavior on tasks that were never used for training.
 
@@ -49,9 +49,9 @@ python3 scripts/build_self_improving_agent_proof.py \
 
 The command is deterministic. The committed manifest binds:
 
-- training SHA-256: `9cc907b0ce04d5f4b21f905357ed7f277fc640c70a8f31c90f76a187a14b2df5`
-- development SHA-256: `d91951e52c8f09127e2a66f845e16a1bfb485a1c0294c11962f168eafe23882d`
-- held-out SHA-256: `efc53b6035f763ec15a116d649d12e64b9fc2b9acaeae8fcd37bdb9ec4da5771`
+- training SHA-256: `0c6a9b26bf712151d722e72ce23082fc2d41ed5d599e75b115f1bf0463eda22a`
+- development SHA-256: `4b9494407f48c1c608344094509050c58241e64e68ab324fbd2ffb540699f4ae`
+- held-out SHA-256: `fc8822dd55556bd5475d6f07dc4b313a20e13757b961fb16ce06dddff5983921`
 - dataset identity: `e2af62c0a6668b3c7152579ac6c654052dd07ced6b0d0bda6da8dc387284419b`
 
 `frozen_heldout_manifest.json` states that held-out prompts, outputs, and task
@@ -128,9 +128,9 @@ were non-regressing. See [EVALUATION.md](EVALUATION.md), the replayable
 
 ## Published artifacts
 
-- [Dataset](https://huggingface.co/datasets/zwright/hermes-flight-recorder-self-improving-agent-trajectories/tree/82cbbb6ec1d6dbf47803b9a32201171e2926dc00): revision `82cbbb6ec1d6dbf47803b9a32201171e2926dc00`
-- [Adapter](https://huggingface.co/zwright/qwen3-0.6b-hermes-flight-recorder-agent/tree/5c4b3eb6e8540be59ecfea563b2f2f12b9bd1877): revision `5c4b3eb6e8540be59ecfea563b2f2f12b9bd1877`
-- [Demo Space](https://zwright-hermes-flight-recorder-agent-demo.hf.space): runtime revision `88c00606f9ef87a4c03bd4658853dde76b80ce3c`
+- [Dataset](https://huggingface.co/datasets/zwright/flight-recorder-self-improving-agent-trajectories/tree/82cbbb6ec1d6dbf47803b9a32201171e2926dc00): revision `82cbbb6ec1d6dbf47803b9a32201171e2926dc00`
+- [Adapter](https://huggingface.co/zwright/qwen3-0.6b-flight-recorder-agent/tree/5c4b3eb6e8540be59ecfea563b2f2f12b9bd1877): revision `5c4b3eb6e8540be59ecfea563b2f2f12b9bd1877`
+- [Demo Space](https://zwright-flight-recorder-agent-demo.hf.space): runtime revision `88c00606f9ef87a4c03bd4658853dde76b80ce3c`
 
 GitHub is the reproducibility and decision-record home. Hugging Face Hub is the
 right distribution home for immutable dataset and model revisions and for the
@@ -143,24 +143,24 @@ The reviewed upload set intentionally excludes optimizer checkpoints,
 `training_args.bin`, and the trainer-generated generic README:
 
 ```bash
-hf upload zwright/hermes-flight-recorder-self-improving-agent-trajectories \
+hf upload zwright/flight-recorder-self-improving-agent-trajectories \
   examples/case_studies/self_improving_agent_proof/data . --repo-type dataset
-hf upload zwright/hermes-flight-recorder-self-improving-agent-trajectories \
+hf upload zwright/flight-recorder-self-improving-agent-trajectories \
   examples/case_studies/self_improving_agent_proof/DATASET_CARD.md README.md --repo-type dataset
 
-hf upload zwright/qwen3-0.6b-hermes-flight-recorder-agent \
+hf upload zwright/qwen3-0.6b-flight-recorder-agent \
   runs/self_improving_agent_proof/adapter-v3 . \
   --exclude 'checkpoint-*' --exclude 'checkpoint-*/**' \
   --exclude README.md --exclude training_args.bin --exclude training_result.json
-hf upload zwright/qwen3-0.6b-hermes-flight-recorder-agent \
+hf upload zwright/qwen3-0.6b-flight-recorder-agent \
   examples/case_studies/self_improving_agent_proof/MODEL_CARD.md README.md
-hf upload zwright/qwen3-0.6b-hermes-flight-recorder-agent \
+hf upload zwright/qwen3-0.6b-flight-recorder-agent \
   examples/case_studies/self_improving_agent_proof/evidence/training_result.json training_result.json
-hf upload zwright/qwen3-0.6b-hermes-flight-recorder-agent \
+hf upload zwright/qwen3-0.6b-flight-recorder-agent \
   examples/case_studies/self_improving_agent_proof/evaluation.json evaluation.json
 
 python -c 'from huggingface_hub import HfApi; HfApi().upload_folder(\
-repo_id="zwright/hermes-flight-recorder-agent-demo", repo_type="space", \
+repo_id="zwright/flight-recorder-agent-demo", repo_type="space", \
 folder_path="examples/case_studies/self_improving_agent_proof/space", \
 ignore_patterns=["__pycache__/**", "*.pyc"])'
 ```

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/tau3_post_publication_record.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/tau3_post_publication_record.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Create-once Tau-3 post-publication record binding an allowed preflight to a Hugging Face revision.",

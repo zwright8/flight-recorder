@@ -4,7 +4,7 @@ language:
 - en
 task_categories:
 - text-generation
-pretty_name: Hermes Flight Recorder Self-Improving Agent Trajectories
+pretty_name: Flight Recorder Self-Improving Agent Trajectories
 size_categories:
 - n<1K
 tags:
@@ -14,7 +14,7 @@ tags:
 - flight-recorder
 ---
 
-# Hermes Flight Recorder Self-Improving Agent Trajectories
+# Flight Recorder Self-Improving Agent Trajectories
 
 This public-safe synthetic dataset contains 800 governed agent trajectories
 for supervised tool-use training, 120 development tasks, and a separately

@@ -1,7 +1,7 @@
 # Case Study: Fine-tuning Qwen3-0.6B from a Flight Recorder Trajectory
 
 This bounded demonstration shows that a trajectory recorded and gated by
-Hermes Flight Recorder can be consumed by the repository's TRL/PEFT training
+Flight Recorder can be consumed by the repository's TRL/PEFT training
 path and produce a real LoRA update. It is an integration and memorization
 proof, not evidence that one example improves general agent quality.
 

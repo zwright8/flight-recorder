@@ -1,6 +1,6 @@
 # Deployment Guide
 
-This guide describes a local or CI deployment for Hermes Flight Recorder.
+This guide describes a local or CI deployment for Flight Recorder.
 
 ## Install
 
@@ -56,8 +56,8 @@ flightrecorder observer-template --out flight_recorder_plugin.py
 Environment variables:
 
 ```bash
-export HERMES_FLIGHT_RECORDER_OUTPUT_DIR=/secure/hermes-flight-recorder/events
-export HERMES_FLIGHT_RECORDER_MAX_FIELD_CHARS=20000
+export FLIGHT_RECORDER_OUTPUT_DIR=/secure/flight-recorder/events
+export FLIGHT_RECORDER_MAX_FIELD_CHARS=20000
 ```
 
 The collector writes one JSONL file per session id. It never blocks tools,

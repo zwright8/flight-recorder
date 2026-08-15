@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/serving_endpoint_check.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/serving_endpoint_check.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "OpenAI-compatible serving endpoint preflight summary for automation gates.",
@@ -92,6 +92,6 @@
     "failed_checks",
     "artifacts"
   ],
-  "title": "Hermes Flight Recorder Serving Endpoint Check",
+  "title": "Flight Recorder Serving Endpoint Check",
   "type": "object"
 }

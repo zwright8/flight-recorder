@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/compare_rl_manifest.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/compare_rl_manifest.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Manifest for export-compare-rl improvement-pair handoffs.",
@@ -199,7 +199,7 @@
     "outputs",
     "artifact_fingerprints"
   ],
-  "title": "Hermes Flight Recorder Compare RL Manifest",
+  "title": "Flight Recorder Compare RL Manifest",
   "type": "object",
   "$defs": {
     "fileFingerprint": {

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/adapter_route_decision.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/adapter_route_decision.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Governed deterministic exact-one-adapter route decision bound to task, tool capability selection, immutable runtime identities, and independent promotion evidence.",
@@ -159,6 +159,6 @@
       "type": "object"
     }
   },
-  "title": "Hermes Flight Recorder Adapter Route Decision",
+  "title": "Flight Recorder Adapter Route Decision",
   "type": "object"
 }

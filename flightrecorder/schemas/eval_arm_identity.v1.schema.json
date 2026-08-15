@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/eval_arm_identity.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/eval_arm_identity.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Immutable model, adapter, runtime, tool, and environment identity for one held-out evaluation arm.",
@@ -21,7 +21,7 @@
     "tools": { "$ref": "#/$defs/artifact" }
   },
   "required": ["schema_version", "arm", "model", "adapter", "runtime", "tools", "environment"],
-  "title": "Hermes Flight Recorder Eval Arm Identity",
+  "title": "Flight Recorder Eval Arm Identity",
   "type": "object",
   "$defs": {
     "artifact": {

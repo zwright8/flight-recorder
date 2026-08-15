@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/lineage.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/lineage.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Per-run lineage manifest connecting source inputs, generated evidence, and replay instructions.",
@@ -52,7 +52,7 @@
     }
   },
   "required": ["schema_version", "scenario", "trace", "scorecard", "inputs", "outputs", "graph", "evidence_links", "replay", "summary"],
-  "title": "Hermes Flight Recorder Artifact Lineage",
+  "title": "Flight Recorder Artifact Lineage",
   "type": "object",
   "$defs": {
     "evidenceLink": {

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/decision_gate.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/decision_gate.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Side-effect-free gate over a supported registered, schema-valid source artifact decision recommendation.",
@@ -41,7 +41,7 @@
     "source_decision",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Decision Gate",
+  "title": "Flight Recorder Decision Gate",
   "type": "object",
   "$defs": {
     "check": {

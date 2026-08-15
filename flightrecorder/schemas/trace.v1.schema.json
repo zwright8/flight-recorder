@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/trace.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/trace.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Canonical normalized trace emitted as normalized_trace.json.",
@@ -46,7 +46,7 @@
     "events",
     "final_answer"
   ],
-  "title": "Hermes Flight Recorder Normalized Trace",
+  "title": "Flight Recorder Normalized Trace",
   "type": "object",
   "$defs": {
     "event": {

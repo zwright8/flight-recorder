@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/harness_replay_result.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/harness_replay_result.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "allOf": [
@@ -38,6 +38,6 @@
     "exit_code",
     "passed"
   ],
-  "title": "Hermes Flight Recorder Harness Replay Result",
+  "title": "Flight Recorder Harness Replay Result",
   "type": "object"
 }

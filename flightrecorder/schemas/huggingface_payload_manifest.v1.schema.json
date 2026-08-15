@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/huggingface_payload_manifest.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/huggingface_payload_manifest.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Content-addressed file inventory for a Hugging Face Jobs payload, excluding the manifest itself.",

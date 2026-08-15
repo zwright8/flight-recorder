@@ -38,7 +38,7 @@ from typing import Any, Callable, Iterable
 
 
 DEFAULT_MODEL = "Qwen/Qwen3-4B-Instruct-2507"
-DEFAULT_TRACKIO_PROJECT = "hermes-flightrecorder-agentic"
+DEFAULT_TRACKIO_PROJECT = "flight-recorder-agentic"
 AUTORESEARCH_MACOS_REFERENCE = "miolini/autoresearch-macos@537c6e6d0ecf7d28f9d70ce20bb05d8c7ed9cfce"
 PLAN_SCHEMA_VERSION = "hfr.agentic_lora_training_plan.v1"
 RESULT_SCHEMA_VERSION = "hfr.agentic_lora_training_result.v1"

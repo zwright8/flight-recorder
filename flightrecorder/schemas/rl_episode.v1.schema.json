@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/rl_episode.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/rl_episode.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Canonical episode row emitted in export-rl episodes.jsonl.",
@@ -75,7 +75,7 @@
     "state_diff",
     "outcome"
   ],
-  "title": "Hermes Flight Recorder RL Episode Row",
+  "title": "Flight Recorder RL Episode Row",
   "type": "object",
   "$defs": {
     "outcome": {

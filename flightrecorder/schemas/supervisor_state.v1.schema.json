@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/supervisor_state.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/supervisor_state.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Local autonomous supervisor checkpoint state used to resume bounded layer-goal packets.",
@@ -81,7 +81,7 @@
     "latest_verification",
     "promotion_readiness"
   ],
-  "title": "Hermes Flight Recorder Supervisor State",
+  "title": "Flight Recorder Supervisor State",
   "type": "object",
   "$defs": {
     "artifact": {

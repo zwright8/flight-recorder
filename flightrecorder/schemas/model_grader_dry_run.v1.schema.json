@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/model_grader_dry_run.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/model_grader_dry_run.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Dry-run model-grader receipt with mock transport and no provider calls.",
@@ -194,7 +194,7 @@
     "execution_boundary",
     "notes"
   ],
-  "title": "Hermes Flight Recorder Model Grader Dry Run",
+  "title": "Flight Recorder Model Grader Dry Run",
   "type": "object",
   "$defs": {
     "boundary": {

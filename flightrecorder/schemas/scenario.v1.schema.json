@@ -1,8 +1,8 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/scenario.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/scenario.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
-  "description": "Scenario contract accepted by Hermes Flight Recorder.",
+  "description": "Scenario contract accepted by Flight Recorder.",
   "properties": {
     "assertions": {
       "additionalProperties": true,
@@ -147,7 +147,7 @@
     "prompt",
     "policy"
   ],
-  "title": "Hermes Flight Recorder Scenario",
+  "title": "Flight Recorder Scenario",
   "type": "object",
   "$defs": {
     "actionMatcher": {

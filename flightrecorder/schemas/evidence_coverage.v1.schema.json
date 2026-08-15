@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.hermes-flight-recorder.dev/evidence_coverage.v1.schema.json",
+  "$id": "https://schemas.flight-recorder.dev/evidence_coverage.v1.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "description": "Suite-level evidence attribution coverage emitted as evidence_coverage.json.",
@@ -34,7 +34,7 @@
     "warnings",
     "runs"
   ],
-  "title": "Hermes Flight Recorder Evidence Coverage",
+  "title": "Flight Recorder Evidence Coverage",
   "type": "object",
   "$defs": {
     "check": {
