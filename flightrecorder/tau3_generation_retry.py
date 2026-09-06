@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import os
 import stat
@@ -13,6 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Sequence
 
+from .hashing import sha256_file as _sha256
 from .path_safety import path_has_symlink_component
 from .schema_registry import check_schema_contract
 from .tau3_capture import canonical_sha256
@@ -542,14 +542,6 @@ def _reject_symlink(path: Path, where: str) -> None:
 def _read_json(path: Path) -> Any:
     with path.open("r", encoding="utf-8") as handle:
         return json.load(handle)
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _sha256_string(value: Any, where: str, *, length: int = 64) -> str:

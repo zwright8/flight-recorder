@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from .gate_contract import build_gate_decision
+from .gate_metrics import validation_metrics as _validation_metrics
 
 TRAINING_GATE_SCHEMA_VERSION = "hfr.training_gate.v1"
 TRAINING_GATE_POLICY_SCHEMA_VERSION = "hfr.training_gate.policy.v1"
@@ -470,26 +471,6 @@ def _add_validation_check(checks: list[dict[str, Any]], check_id: str, validatio
             ),
         }
     )
-
-
-def _validation_metrics(validation_summary: dict[str, Any] | None) -> dict[str, Any]:
-    if not isinstance(validation_summary, dict):
-        return {
-            "available": False,
-            "passed": False,
-            "strict": False,
-            "target_count": 0,
-            "error_count": 0,
-            "warning_count": 0,
-        }
-    return {
-        "available": True,
-        "passed": bool(validation_summary.get("passed")),
-        "strict": bool(validation_summary.get("strict")),
-        "target_count": _int_value(validation_summary.get("target_count")),
-        "error_count": _int_value(validation_summary.get("error_count")),
-        "warning_count": _int_value(validation_summary.get("warning_count")),
-    }
 
 
 def _quality_flags(value: Any) -> list[dict[str, Any]]:

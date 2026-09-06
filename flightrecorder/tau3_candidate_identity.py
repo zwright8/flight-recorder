@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256_file
 from .atomic_json import AtomicJsonError, atomic_write_json_cas
 from .path_safety import path_has_symlink_component
 from .schema_registry import check_schema_contract
@@ -353,14 +354,6 @@ def _load_json_object(path: Path) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise Tau3CandidateIdentityError(f"JSON file must contain an object: {path}")
     return payload
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _canonical_sha256(value: Any) -> str:

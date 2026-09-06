@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .cloud_training import build_cloud_training_launch_receipt, build_cloud_training_status_receipt
 from .external_eval import ExternalEvalPlanError, build_external_eval_receipt
 from .source_contract import inspect_artifact_source
@@ -2082,14 +2083,6 @@ def _display_source_path(path: Path, output_path: Path, preserve_paths: bool) ->
         return os.path.relpath(source.resolve(), output_dir.resolve())
     except (OSError, ValueError):
         return str(path)
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _directory_tree_fingerprint(path: Path) -> dict[str, Any]:

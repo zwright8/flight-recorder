@@ -17,6 +17,7 @@ from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any, Iterable
 
+from .hashing import sha256_file as _sha256_file
 from .atomic_json import atomic_write_json_cas, json_file_sha256
 from .path_safety import path_has_symlink_component
 
@@ -848,14 +849,6 @@ def _atomic_write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
 
 def _atomic_write_json(path: Path, value: dict[str, Any]) -> None:
     atomic_write_json_cas(path, value, expected_sha256=json_file_sha256(path))
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _canonical_sha256(value: Any) -> str:

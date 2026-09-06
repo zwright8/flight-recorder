@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import copy
-import hashlib
 import json
 import os
 from datetime import datetime, timezone
 from pathlib import Path, PureWindowsPath
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .source_contract import inspect_artifact_source
 
 AGENTIC_ROLLOUT_PLAN_SCHEMA_VERSION = "hfr.agentic_rollout_plan.v1"
@@ -572,14 +572,6 @@ def _is_windows_absolute(value: str) -> bool:
 
 def _basename(value: str) -> str:
     return value.replace("\\", "/").rstrip("/").rsplit("/", 1)[-1] or "path"
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _add_check(checks: list[dict[str, Any]], check_id: str, passed: bool, actual: dict[str, Any], expected: dict[str, Any]) -> None:

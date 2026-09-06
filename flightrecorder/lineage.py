@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 import shlex
 from pathlib import Path
 from typing import Any
+from .hashing import sha256_file as _sha256
 
 LINEAGE_SCHEMA_VERSION = "hfr.lineage.v1"
 REPLAY_BUNDLE_SCHEMA_VERSION = "hfr.replay_bundle.v1"
@@ -299,14 +299,6 @@ def _file_record(
         record["size_bytes"] = stat.st_size
         record["sha256"] = _sha256(path)
     return record
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _display_path(path: Path, preserve_paths: bool = False) -> str:

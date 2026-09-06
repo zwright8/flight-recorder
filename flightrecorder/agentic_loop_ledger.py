@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 import os
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .agentic_training_loop_plan import AGENTIC_TRAINING_LOOP_PLAN_SCHEMA_VERSION
 from .path_safety import path_has_symlink_component as _path_has_symlink_component
 from .source_contract import inspect_artifact_source
@@ -618,14 +618,6 @@ def _number_or_none(value: Any) -> int | float | None:
 
 def _number_or_zero(value: Any) -> int | float:
     return value if isinstance(value, (int, float)) and not isinstance(value, bool) and value >= 0 else 0
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _display_path(path: Path, preserve_paths: bool = False) -> str:

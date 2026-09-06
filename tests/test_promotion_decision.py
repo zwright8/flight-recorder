@@ -1257,7 +1257,7 @@ class PromotionDecisionTests(unittest.TestCase):
 
             with (
                 patch(
-                    "flightrecorder.cli.atomic_write_json_cas",
+                    "flightrecorder._cli.governance.atomic_write_json_cas",
                     side_effect=swap_then_write,
                 ),
                 self.assertRaises(SystemExit) as raised,

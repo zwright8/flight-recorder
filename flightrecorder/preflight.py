@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .path_safety import path_has_symlink_component
 from .reviewed_gate import ReviewedGateError, build_reviewed_export_source_artifact
 from .schema_registry import (
@@ -1308,14 +1309,6 @@ def _metadata(value: dict[str, str] | None) -> dict[str, str]:
 
 def _int_value(value: Any) -> int:
     return value if isinstance(value, int) and not isinstance(value, bool) and value >= 0 else 0
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _tree_fingerprint(root: Path) -> dict[str, Any]:

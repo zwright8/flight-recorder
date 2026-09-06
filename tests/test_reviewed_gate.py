@@ -243,7 +243,7 @@ class ReviewedGateTests(unittest.TestCase):
                     if skip_validation:
                         command.insert(-2, "--skip-validation")
                     with patch(
-                        "flightrecorder.cli.evaluate_reviewed_gate",
+                        "flightrecorder._cli.gates.evaluate_reviewed_gate",
                         side_effect=evaluate_during_transient_aba,
                     ):
                         code = run_cli(command)

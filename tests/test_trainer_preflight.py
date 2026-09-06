@@ -3651,7 +3651,7 @@ class TrainerPreflightTests(unittest.TestCase):
                     preflight.write_bytes(invalid_bytes)
 
             with patch(
-                "flightrecorder.cli.validate_trainer_preflight",
+                "flightrecorder._cli.gates.validate_trainer_preflight",
                 side_effect=validate_during_transient_valid_file,
             ):
                 self.assertEqual(
@@ -3679,7 +3679,7 @@ class TrainerPreflightTests(unittest.TestCase):
             )
 
             with patch(
-                "flightrecorder.cli.validate_trainer_preflight",
+                "flightrecorder._cli.gates.validate_trainer_preflight",
                 side_effect=validate_during_transient_valid_file,
             ):
                 code, output, error = run_cli_error(
@@ -4051,11 +4051,11 @@ class TrainerPreflightTests(unittest.TestCase):
 
             with (
                 patch(
-                    "flightrecorder.validation._validate_preflight_file_hash",
+                    "flightrecorder._validation.trainer_archive._validate_preflight_file_hash",
                     side_effect=swap_to_valid_after_hash,
                 ),
                 patch(
-                    "flightrecorder.validation.trainer_preflight_gate_semantics_ready",
+                    "flightrecorder._validation.trainer_archive.trainer_preflight_gate_semantics_ready",
                     side_effect=restore_invalid_after_semantics,
                 ),
             ):

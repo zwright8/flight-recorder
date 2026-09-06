@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import copy
-import hashlib
 import json
 import os
 import shutil
@@ -11,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path, PureWindowsPath
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .dependency_probe import module_available_without_import
 from .source_contract import inspect_artifact_source
 
@@ -609,14 +609,6 @@ def _add_receipt_check(
             "summary": f"{check_id}: {'passed' if passed else 'failed'}",
         }
     )
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _display_path(path: Path, preserve_paths: bool, display_base_dir: Path | None = None) -> str:

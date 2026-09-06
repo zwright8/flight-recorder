@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 import os
 import re
@@ -10,6 +9,7 @@ from itertools import islice
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .path_safety import path_has_symlink_component
 from .state import sanitize_state_snapshot
 
@@ -155,14 +155,6 @@ def _directory_entry(path: Path) -> dict[str, Any]:
     else:
         entry["kind"] = "missing"
     return entry
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _read_text(path: Path, max_chars: int) -> str:

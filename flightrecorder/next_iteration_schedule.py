@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 import os
 from datetime import datetime, timezone
 from pathlib import Path, PureWindowsPath
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .source_contract import inspect_artifact_source
 
 NEXT_ITERATION_SCHEDULE_SCHEMA_VERSION = "hfr.next_iteration_schedule.v1"
@@ -320,14 +320,6 @@ def _is_safe_public_path(value: str) -> bool:
         and "~" not in path.parts
         and ".." not in path.parts
     )
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _non_negative_int(value: Any) -> int:

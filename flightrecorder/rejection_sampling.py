@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-import hashlib
 import os
 from datetime import datetime, timezone
 from pathlib import Path, PureWindowsPath
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .atomic_json import atomic_write_json_cas, json_file_sha256
 from .source_contract import inspect_artifact_source
 
@@ -314,14 +314,6 @@ def _is_public_rejection_sampling_ref_path(value: str) -> bool:
 
 def _basename(value: str) -> str:
     return value.replace("\\", "/").rstrip("/").rsplit("/", 1)[-1] or "path"
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _non_negative_int(value: Any) -> int:

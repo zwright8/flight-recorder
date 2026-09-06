@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .agentic_training_flow import AGENTIC_TRAINING_FLOW_SCHEMA_VERSION, FLOW_READY_RECOMMENDATION
 from .agentic_training_result import (
     AGENTIC_TRAINING_RESULT_SCHEMA_VERSION,
@@ -2004,14 +2005,6 @@ def _dir_record(path: Path, preserve_paths: bool, output_path: Path | None) -> d
     if path.exists() and path.is_dir():
         record["entry_count"] = sum(1 for _ in path.iterdir())
     return record
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _display_path(path: Path, preserve_paths: bool = False) -> str:

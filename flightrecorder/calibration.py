@@ -8,6 +8,7 @@ from pathlib import Path, PureWindowsPath
 from typing import Any
 
 from .atomic_json import atomic_write_json_cas, json_file_sha256
+from .gate_metrics import validation_metrics as _validation_metrics
 from .path_safety import path_has_symlink_component as _path_has_symlink_component
 from .review import REVIEW_LABELS, TRAINING_NEGATIVE_LABELS
 from .reviewed_gate import build_reviewed_export_source_artifact
@@ -283,26 +284,6 @@ def _add_source_paths_check(checks: list[dict[str, Any]], reviewed_export: str, 
             "summary": f"source_paths_replayable: passed={passed}",
         }
     )
-
-
-def _validation_metrics(validation_summary: dict[str, Any] | None) -> dict[str, Any]:
-    if not isinstance(validation_summary, dict):
-        return {
-            "available": False,
-            "passed": False,
-            "strict": False,
-            "target_count": 0,
-            "error_count": 0,
-            "warning_count": 0,
-        }
-    return {
-        "available": True,
-        "passed": bool(validation_summary.get("passed")),
-        "strict": bool(validation_summary.get("strict")),
-        "target_count": _int_value(validation_summary.get("target_count")),
-        "error_count": _int_value(validation_summary.get("error_count")),
-        "warning_count": _int_value(validation_summary.get("warning_count")),
-    }
 
 
 def _read_jsonl(path: Path, label: str) -> list[dict[str, Any]]:

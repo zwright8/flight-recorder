@@ -17,6 +17,7 @@ from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path, PurePosixPath
 from typing import Any, Callable, Iterator
+from .hashing import sha256_file as _sha256_file
 
 
 DIRECTORY_CONTENT_HASH_ALGORITHM = "hfr.sha256.file-tree.v1"
@@ -2710,14 +2711,6 @@ def _attest_directory(path: Path) -> _DirectoryAttestation:
     if _path_identity(path) != identity:
         raise ValueError(f"output directory identity changed while being checked: {path}")
     return _DirectoryAttestation(identity=identity, tree_sha256=digest.hexdigest())
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _path_identity(path: Path) -> tuple[int, int] | None:

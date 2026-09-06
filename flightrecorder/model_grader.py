@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path, PureWindowsPath
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .atomic_json import atomic_write_json_cas, json_file_sha256
 from .path_safety import path_has_symlink_component as _path_has_symlink_component
 from .review import REVIEW_LABELS, review_item_sha256
@@ -1063,14 +1064,6 @@ def _override_unresolved_queue_count(receipt: dict[str, Any]) -> int:
     metrics = receipt.get("metrics") if isinstance(receipt.get("metrics"), dict) else {}
     value = metrics.get("unresolved_queue_count")
     return int(value) if isinstance(value, int) and value >= 0 else 0
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _stable_sha(value: dict[str, Any]) -> str:

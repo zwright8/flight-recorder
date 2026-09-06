@@ -11,6 +11,7 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256_file
 from .path_safety import path_has_symlink_component
 
 DOMAINS = ("airline", "retail", "telecom")
@@ -480,14 +481,6 @@ def _hash_json(value: Any) -> str:
 
 def _sha256_text(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _fsync_directory(path: Path) -> None:

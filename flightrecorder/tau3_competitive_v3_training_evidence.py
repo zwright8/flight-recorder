@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import errno
-import hashlib
 import json
 import os
 import re
@@ -11,6 +10,7 @@ import tempfile
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
+from .hashing import sha256_file as _sha256_file
 from .path_safety import path_has_symlink_component
 from .schema_registry import SchemaRegistryError, check_schema_contract
 from .tau3_competitive_v3 import (
@@ -486,14 +486,6 @@ def _read_json(path: Path, label: str) -> dict[str, Any]:
             f"{label} must be a JSON object"
         )
     return payload
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _dict(value: Any) -> dict[str, Any]:

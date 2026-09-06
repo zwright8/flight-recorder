@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .bundle import EVIDENCE_BUNDLE_SCHEMA_VERSION
 from .digest import RUN_DIGEST_SCHEMA_VERSION
 from .eval_summary import EVAL_SUMMARY_SCHEMA_VERSION
@@ -600,14 +601,6 @@ def _read_json(path: Path, label: str) -> dict[str, Any]:
     if not isinstance(value, dict):
         raise ImprovementPlanError(f"{label} must contain a JSON object: {path}")
     return value
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _display_path(path: Path, preserve_paths: bool = False) -> str:

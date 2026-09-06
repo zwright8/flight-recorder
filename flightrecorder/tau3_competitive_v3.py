@@ -23,6 +23,7 @@ from datetime import datetime
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
+from .hashing import sha256_file as _sha256_file
 from .schema_registry import SchemaRegistryError, check_schema_contract
 from .tau3_behavior_probes import validate_tau3_behavior_probes
 from .tau3_competitive_dataset import validate_tau3_competitive_dataset_bundle
@@ -2107,14 +2108,6 @@ def _require(target: _Target, condition: bool, error: str) -> None:
 
 def _require_sha(target: _Target, value: Any, label: str) -> None:
     _require(target, isinstance(value, str) and bool(SHA256_RE.fullmatch(value)), f"{label} must be a lowercase sha256")
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _read_binding_json(path: Path, label: str) -> dict[str, Any]:

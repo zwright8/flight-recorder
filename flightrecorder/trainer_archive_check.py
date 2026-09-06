@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .trainer_archive import TRAINER_ARCHIVE_SCHEMA_VERSION
 
 TRAINER_ARCHIVE_CHECK_SCHEMA_VERSION = "hfr.trainer_archive_check.v1"
@@ -451,14 +452,6 @@ def _string_list(value: Any) -> list[str]:
 
 def _int_value(value: Any) -> int:
     return value if isinstance(value, int) and not isinstance(value, bool) and value >= 0 else 0
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _display_path(path: Path, preserve_paths: bool = False) -> str:

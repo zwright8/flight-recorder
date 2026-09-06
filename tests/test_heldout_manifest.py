@@ -595,7 +595,7 @@ class HeldoutManifestTests(unittest.TestCase):
             scenario_before = scenario.read_bytes()
             competing_bytes = b'{"owner":"competing"}\n'
 
-            from flightrecorder.cli import write_heldout_manifest as actual_write
+            from flightrecorder._cli.generation import write_heldout_manifest as actual_write
 
             def compete_then_write(*args, **kwargs):
                 out.write_bytes(competing_bytes)
@@ -603,7 +603,7 @@ class HeldoutManifestTests(unittest.TestCase):
 
             exit_code = None
             with patch(
-                "flightrecorder.cli.write_heldout_manifest",
+                "flightrecorder._cli.generation.write_heldout_manifest",
                 side_effect=compete_then_write,
             ):
                 try:

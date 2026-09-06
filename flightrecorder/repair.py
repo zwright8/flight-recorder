@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 import json
-import hashlib
 import os
 import re
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .training import RunRecord, TrainingExportError, load_run_records
 
 REPAIR_QUEUE_SCHEMA_VERSION = "hfr.repair_queue.v1"
@@ -321,11 +321,3 @@ def _display_path_for_output_source(path: Path, output_path: Path | None) -> str
         except (OSError, ValueError):
             return str(path)
     return _display_path(path)
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()

@@ -11,6 +11,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 import flightrecorder.cli as cli_module
+import flightrecorder._cli.run_core as run_core_module
 from flightrecorder.artifacts import ArtifactError
 from flightrecorder.cli import main
 from flightrecorder.report import render_report
@@ -760,14 +761,14 @@ class CliReportTests(unittest.TestCase):
                 out,
             )
             prior_lineage = (out / "artifact_lineage.json").read_bytes()
-            original_write = cli_module.write_run_lineage
+            original_write = run_core_module.write_run_lineage
 
             def interrupt_after_lineage(**kwargs):
                 original_write(**kwargs)
                 raise ArtifactError("injected staged-write interruption")
 
             with (
-                patch.object(cli_module, "write_run_lineage", side_effect=interrupt_after_lineage),
+                patch.object(run_core_module, "write_run_lineage", side_effect=interrupt_after_lineage),
                 self.assertRaisesRegex(ArtifactError, "injected staged-write interruption"),
             ):
                 cli_module._run_scenario_artifacts(
@@ -797,7 +798,7 @@ class CliReportTests(unittest.TestCase):
             )
             alien.mkdir()
             (alien / "unowned.txt").write_text("keep\n", encoding="utf-8")
-            real_exchange = cli_module._atomic_exchange_run_directories
+            real_exchange = run_core_module._atomic_exchange_run_directories
             exchange_count = 0
 
             def swap_target_then_exchange(staging: Path, target: Path):
@@ -810,7 +811,7 @@ class CliReportTests(unittest.TestCase):
 
             with (
                 patch.object(
-                    cli_module,
+                    run_core_module,
                     "_atomic_exchange_run_directories",
                     side_effect=swap_target_then_exchange,
                 ),
@@ -835,7 +836,7 @@ class CliReportTests(unittest.TestCase):
                 out,
             )
             prior_lineage = (out / "artifact_lineage.json").read_bytes()
-            real_exchange = cli_module._atomic_exchange_run_directories
+            real_exchange = run_core_module._atomic_exchange_run_directories
             exchange_count = 0
 
             def exchange_then_interrupt(first: Path, second: Path):
@@ -847,7 +848,7 @@ class CliReportTests(unittest.TestCase):
 
             with (
                 patch.object(
-                    cli_module,
+                    run_core_module,
                     "_atomic_exchange_run_directories",
                     side_effect=exchange_then_interrupt,
                 ),
@@ -887,7 +888,7 @@ class CliReportTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             out = root / "run"
-            real_publish = cli_module._atomic_rename_new_run_directory
+            real_publish = run_core_module._atomic_rename_new_run_directory
 
             def create_alien_then_publish(staging: Path, target: Path):
                 target.mkdir()
@@ -896,7 +897,7 @@ class CliReportTests(unittest.TestCase):
 
             with (
                 patch.object(
-                    cli_module,
+                    run_core_module,
                     "_atomic_rename_new_run_directory",
                     side_effect=create_alien_then_publish,
                 ),
@@ -917,7 +918,7 @@ class CliReportTests(unittest.TestCase):
             entered = threading.Event()
             release = threading.Event()
             failures: list[BaseException] = []
-            original_write = cli_module.write_run_lineage
+            original_write = run_core_module.write_run_lineage
 
             def blocking_write(**kwargs):
                 result = original_write(**kwargs)
@@ -932,7 +933,7 @@ class CliReportTests(unittest.TestCase):
                 except BaseException as exc:  # pragma: no cover - asserted below
                     failures.append(exc)
 
-            with patch.object(cli_module, "write_run_lineage", side_effect=blocking_write):
+            with patch.object(run_core_module, "write_run_lineage", side_effect=blocking_write):
                 thread = threading.Thread(target=publish)
                 thread.start()
                 self.assertTrue(entered.wait(timeout=5))
@@ -958,7 +959,7 @@ class CliReportTests(unittest.TestCase):
                 return True
 
             with (
-                patch.object(cli_module, "_is_owned_run_directory", side_effect=swap_and_claim),
+                patch.object(run_core_module, "_is_owned_run_directory", side_effect=swap_and_claim),
                 self.assertRaisesRegex(ArtifactError, "unrecognized run output"),
             ):
                 cli_module._run_scenario_artifacts(ROOT / "scenarios" / "prompt_injection_good.json", out)

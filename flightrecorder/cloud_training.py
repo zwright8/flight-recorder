@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 import os
 from datetime import datetime, timezone
 from pathlib import Path, PureWindowsPath
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .dependency_probe import module_available_without_import as _module_available
 from .schema_registry import SchemaRegistryError, check_schema_file
 from .source_contract import inspect_artifact_source
@@ -944,14 +944,6 @@ def _is_safe_public_path(value: str) -> bool:
         and "~" not in path.parts
         and ".." not in path.parts
     )
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _int_value(value: Any) -> int:

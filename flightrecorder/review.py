@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path, PureWindowsPath
 from typing import Any
 
+from .hashing import sha256_file as _sha256_file
 from .data_governance import task_contract_fingerprint
 from .path_safety import (
     AtomicNamespaceMutationError,
@@ -2053,14 +2054,6 @@ def _display_reviewed_path(
         return os.path.relpath(display_path.resolve(), display_root.resolve())
     except (OSError, ValueError):
         return _display_path(display_path, preserve_paths)
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _display_path(path: Path, preserve_paths: bool = False) -> str:

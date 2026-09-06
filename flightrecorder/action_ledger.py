@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .bundle import EVIDENCE_BUNDLE_SCHEMA_VERSION
 
 ACTION_LEDGER_SCHEMA_VERSION = "hfr.action_ledger.v1"
@@ -222,14 +223,6 @@ def _action_fingerprint(action_id: str, priority: str, artifact: str, evidence: 
 
 def _is_sha256(value: Any) -> bool:
     return isinstance(value, str) and len(value) == 64 and value == value.lower() and all(char in "0123456789abcdef" for char in value)
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _display_path(path: Path, preserve_paths: bool = False) -> str:

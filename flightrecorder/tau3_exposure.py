@@ -7,6 +7,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
+from .hashing import sha256_file as _sha256_file
 
 TAU3_TRAINING_EXPOSURE_SCHEMA_VERSION = "hfr.tau3_training_exposure.v1"
 TAU3_COMPETITIVE_ROW_SCHEMA_VERSION = "hfr.tau3_competitive_dataset_row.v1"
@@ -710,14 +711,6 @@ def _write_jsonl(path: Path, rows: Iterable[dict[str, Any]]) -> None:
 
 def _write_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _canonical_sha256(value: Any) -> str:

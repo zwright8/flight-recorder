@@ -14,6 +14,7 @@ from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
+from .hashing import sha256_file as _sha256_file
 from .atomic_json import atomic_write_json_cas
 from .path_safety import path_has_symlink_component
 from .schema_registry import check_schema_contract
@@ -1092,14 +1093,6 @@ def _list_of_dicts(value: Any) -> list[dict[str, Any]]:
 
 def _dict(value: Any) -> dict[str, Any]:
     return value if isinstance(value, dict) else {}
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _canonical_sha256(value: Any) -> str:

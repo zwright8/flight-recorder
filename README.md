@@ -1372,6 +1372,8 @@ Trainer handoff stages with failed checks are blockers, not readiness evidence.
 
 ## Project Docs
 
+- `docs/architecture.md`: runtime boundaries, internal module responsibilities,
+  and compatibility rules for extending the package.
 - `TRAINING_PIPELINE.md`: detailed training-data, review, trainer, and
   improvement-loop contracts.
 - `docs/agentic-finetune-infra-components.md`: full platform blueprint.

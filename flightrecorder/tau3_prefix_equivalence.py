@@ -9,6 +9,7 @@ import re
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256_file
 from .schema_registry import SchemaRegistryError, check_schema_contract
 
 TAU3_PREFIX_EQUIVALENCE_SCHEMA_VERSION = "hfr.tau3_prefix_equivalence.v1"
@@ -1502,11 +1503,3 @@ def _canonical_sha256(value: Any) -> str:
         ensure_ascii=False,
     ).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()

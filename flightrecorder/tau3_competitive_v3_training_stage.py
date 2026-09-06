@@ -11,6 +11,7 @@ import tempfile
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
+from .hashing import sha256_file as _sha256_file
 from .schema_registry import SchemaRegistryError, check_schema_contract
 from .tau3_mlx_training import validate_tau3_process_segments
 
@@ -726,14 +727,6 @@ def _records_sha256(records: list[dict[str, Any]]) -> str:
                 allow_nan=False,
             ).encode("utf-8")
         )
-    return digest.hexdigest()
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
     return digest.hexdigest()
 
 

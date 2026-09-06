@@ -19,6 +19,7 @@ from dataclasses import dataclass
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any, Mapping, Sequence
 
+from .hashing import sha256_file as _sha256_file
 from .path_safety import path_has_symlink_component
 
 EXECUTION_BUNDLE_SCHEMA_VERSION = "hfr.tau3_execution_bundle.v1"
@@ -412,14 +413,6 @@ def _tree_sha256(root: Path) -> str:
     digest = hashlib.sha256()
     for record in records:
         digest.update(json.dumps(record, sort_keys=True, separators=(",", ":")).encode("utf-8"))
-    return digest.hexdigest()
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
     return digest.hexdigest()
 
 

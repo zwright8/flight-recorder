@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-import hashlib
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .path_safety import path_has_symlink_component as _path_has_symlink_component
 from .schema_registry import SchemaRegistryError, check_schema_contract
 
@@ -172,11 +172,3 @@ def _display_path(path: Path, preserve_paths: bool) -> str:
     if preserve_paths or not path.is_absolute():
         return str(path)
     return f"<redacted:{path.name}>"
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()

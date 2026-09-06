@@ -19,6 +19,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256_file
 from .path_safety import path_has_symlink_component
 from .schema_registry import check_schema_contract
 from .tau3_competitive_dataset import (
@@ -4872,14 +4873,6 @@ def _sha256_tree(path: Path) -> str:
     for item in sorted(child for child in path.rglob("*") if child.is_file()):
         digest.update(item.relative_to(path).as_posix().encode("utf-8"))
         digest.update(_sha256_file(item).encode("ascii"))
-    return digest.hexdigest()
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
     return digest.hexdigest()
 
 

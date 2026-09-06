@@ -522,7 +522,7 @@ class DecisionGateTests(unittest.TestCase):
                 return evaluate_decision_gate(*args, **kwargs)
 
             with patch(
-                "flightrecorder.cli.evaluate_decision_gate",
+                "flightrecorder._cli.gates.evaluate_decision_gate",
                 side_effect=mutate_output_then_evaluate,
             ):
                 with self.assertRaises(SystemExit) as raised:

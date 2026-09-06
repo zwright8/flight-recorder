@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 import os
 from datetime import datetime, timezone
 from pathlib import Path, PureWindowsPath
 from typing import Any
 
+from .hashing import sha256_file as _sha256
 from .agentic_loop_ledger import (
     AGENTIC_LOOP_LEDGER_SCHEMA_VERSION,
     _decision as _ledger_decision,
@@ -604,14 +604,6 @@ def _output_relative_path(value: Any, output_dir: Path) -> Any:
     except (OSError, ValueError):
         return f"<redacted:{path.name}>"
     return os.path.relpath(path.resolve(), output_dir.resolve())
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _is_windows_absolute(value: str) -> bool:

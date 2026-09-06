@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path, PureWindowsPath
 from typing import Any
 
+from .hashing import sha256_file as _sha256_file
 from .atomic_json import atomic_write_json_cas, json_file_sha256
 from .path_safety import assert_output_does_not_alias_sources
 from .schema_registry import check_schema_contract
@@ -540,14 +541,6 @@ def _path_has_symlink_component(path: Path, *, root: Path) -> bool:
         return False
     except (OSError, ValueError):
         return True
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _labeled_path(spec: str | Path) -> LabeledPath:

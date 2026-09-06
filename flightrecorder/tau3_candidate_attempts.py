@@ -19,6 +19,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256_file
 from .path_safety import path_has_symlink_component
 from .repeated_eval import canonical_sha256
 from .schema_registry import check_schema_contract
@@ -1316,14 +1317,6 @@ def _write_text_new(path: Path, value: str) -> None:
     with path.open("x", encoding="utf-8") as handle:
         handle.write(value)
     path.chmod(0o444)
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _tree_sha256(path: Path) -> str:

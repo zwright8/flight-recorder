@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .hashing import sha256_file as _sha256_file
 from .artifacts import CONTRACT_SCOPES, compare_scorecards
 from .compare_gate import compare_movement_summary
 from .path_safety import path_has_symlink_component as _path_has_symlink_component
@@ -3103,14 +3104,6 @@ def _artifact_fingerprints(paths: dict[str, Path], preserve_paths: bool, *, excl
 def _preflight_output_files(paths: dict[str, Path], label: str) -> None:
     for path in paths.values():
         _require_output_file(path, label)
-
-
-def _sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
 
 
 def _write_json(path: Path, payload: dict[str, Any]) -> None:
